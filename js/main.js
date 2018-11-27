@@ -1,13 +1,19 @@
-var game = new Phaser.Game(
-    800,
-    600,
-    Phaser.AUTO,
-    'game',
-    {
-      preload: preload,
-      create: create,
-      update: update
-    });
+const config = {
+  type: Phaser.AUTO,
+  width: 800,
+  height: 600,
+  physics: {
+    default: 'arcade'
+  },
+  scene: {
+    preload: preloadFn,
+    create: createFn,
+    update: updateFn
+  }
+};
+const game = new Phaser.Game(config);
+
+const WALK_SPEED = 2;
 
 var sprite;
 var upKey;
@@ -15,30 +21,18 @@ var downKey;
 var leftKey;
 var rightKey;
 
-function preload() {
-  game.load.image('girl', 'img/girl.png');
+function preloadFn() {
+  this.load.image('girl', 'img/girl.png');
 }
 
-function create() {
-  upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-  downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-  leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-  rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+function createFn() {
+  const girl = this.physics.add.image(400, 100, 'girl');
+  girl.displayWidth = 50;
+  girl.displayHeight = 70;
+  girl.setVelocity(100, 200);
+  girl.setBounce(1, 1);
+  girl.setCollideWorldBounds(true);
 
-  game.stage.backgroundColor = '#736357';
-  sprite = game.add.sprite(300, 300, 'girl');
-  sprite.width = 30;
-  sprite.height = 50;
 }
 
-function update() {
-  if (upKey.isDown) {
-    sprite.y--;
-  } else if (downKey.isDown) {
-    sprite.y++;
-  } else if (leftKey.isDown) {
-    sprite.x--;
-  } else if (rightKey.isDown) {
-    sprite.x++;
-  }
-}
+function updateFn() {}
