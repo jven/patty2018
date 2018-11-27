@@ -61,7 +61,7 @@ function updateFn() {
       touchingBlock = true;
     });
     if (touchingBlock) {
-      blockState.touchBy(patty);
+      blockState.touchBy(cursors);
     } else {
       blockState.notTouching();
     }
