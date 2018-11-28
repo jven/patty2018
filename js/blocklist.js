@@ -6,8 +6,20 @@ class BlockList {
     this.blockIndex_ = 0;
   }
 
-  addBlock(x, y, width, height) {
-    const blockState = new BlockState(this.scene_, x, y, width, height);
+  isBlockInRegion(centerX, centerY, width, height) {
+    const region = new Phaser.Geom.Rectangle(
+        centerX - width / 2, centerY - height / 2, width, height);
+    const noIntersection = this.sprites_.every(blockSprite => {
+      const intersection = Phaser.Geom.Rectangle.Intersection(
+          blockSprite.getBounds(), region);
+      return !intersection.width && !intersection.height;
+    });
+    return !noIntersection;
+  }
+
+  addBlock(centerX, centerY, width, height) {
+    const blockState = new BlockState(
+        this, this.scene_, centerX, centerY, width, height);
     this.blocks_.push(blockState);
     const sprite = blockState.getSprite();
     sprite.setData('blockIndex', this.blockIndex_++);

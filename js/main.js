@@ -40,8 +40,8 @@ function createFn() {
   cursors = this.input.keyboard.createCursorKeys();
 
   patty = this.physics.add.image(100, 100, 'girl');
-  patty.displayWidth = 50;
-  patty.displayHeight = 70;
+  patty.displayWidth = 40;
+  patty.displayHeight = 60;
   patty.setCollideWorldBounds(true);
 
   blockList = new BlockList(this);
