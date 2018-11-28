@@ -63,17 +63,18 @@ function updateFn() {
 
   if (cursors.left.isDown) {
     patty.setVelocityX(-MOVE_SPEED);
+    patty.setVelocityY(0);
   } else if (cursors.right.isDown) {
     patty.setVelocityX(MOVE_SPEED);
-  } else {
+    patty.setVelocityY(0);
+  } else if (cursors.up.isDown) {
     patty.setVelocityX(0);
-  }
-
-  if (cursors.up.isDown) {
     patty.setVelocityY(-MOVE_SPEED);
   } else if (cursors.down.isDown) {
+    patty.setVelocityX(0);
     patty.setVelocityY(MOVE_SPEED);
   } else {
+    patty.setVelocityX(0);
     patty.setVelocityY(0);
   }
 }
