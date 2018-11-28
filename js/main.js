@@ -3,7 +3,7 @@ const CAMERA_HEIGHT = 600;
 const WORLD_WIDTH = 700;
 const WORLD_HEIGHT = 800;
 const MOVE_SPEED = 200;
-const ANIMATION_FRAME_RATE = 5;
+const ANIMATION_FRAME_RATE = 10;
 
 const config = {
   type: Phaser.AUTO,
