@@ -61,7 +61,7 @@ function createFn() {
   });
   this.anims.create({
     key: 'standRight',
-    frames: [{key: 'girl', frame: 17}],
+    frames: [{key: 'girl', frame: 18}],
     frameRate: ANIMATION_FRAME_RATE
   });
   this.anims.create({
