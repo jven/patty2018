@@ -9,17 +9,26 @@ const BLOCK_MOVE_DURATION = 200;
 const COLLISION_ALLOWANCE = 10;
 
 class BlockState {
-  constructor(scene, sprite) {
+  constructor(scene, x, y, width, height) {
+    const sprite = scene.physics.add.image(x, y, 'gift').setImmovable();
+    sprite.displayWidth = width;
+    sprite.displayHeight = height;
+    sprite.setCollideWorldBounds(true);
+
     this.scene_ = scene;
     this.sprite_ = sprite;
     this.force_ = 0;
+  }
+
+  getIndex() {
+    return this.index_;
   }
 
   getSprite() {
     return this.sprite_;
   }
 
-  touchBy(cursors) {
+  touchFrom(cursors) {
     this.force_++;
     if (this.force_ >= BLOCK_HYSTERESIS) {
       this.moveAwayFrom_(cursors);
@@ -33,10 +42,15 @@ class BlockState {
 
   moveAwayFrom_(cursors) {
     var direction = this.directionFromCursors_(cursors);
+    if (!direction) {
+      // User is holding down more than one key, can't determine direction.
+      return;
+    }
+
     const dx = direction[0];
     const dy = direction[1];
     if (dx * dy != 0 || Math.abs(dx) + Math.abs(dy) != 1) {
-      // User is holding down more than one key, can't determine direction.
+      console.error('Unexpected state.');
       return;
     }
 

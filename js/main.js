@@ -20,7 +20,7 @@ const config = {
 const game = new Phaser.Game(config);
 var cursors;
 var patty;
-var blockStates = [];
+var blockList;
 
 function preloadFn() {
   this.load.image('gift', 'img/gift.png');
@@ -39,33 +39,27 @@ function createFn() {
 
   cursors = this.input.keyboard.createCursorKeys();
 
-  patty = this.physics.add.image(200, 300, 'girl');
+  patty = this.physics.add.image(100, 100, 'girl');
   patty.displayWidth = 50;
   patty.displayHeight = 70;
   patty.setCollideWorldBounds(true);
 
-  const newBlockSprite = this.physics.add.image(100, 200, 'gift').setImmovable();
-  newBlockSprite.displayWidth = 50;
-  newBlockSprite.displayHeight = 50;
-  newBlockSprite.setCollideWorldBounds(true);
-  // TODO(jven): Construct sprite inside.
-  blockStates.push(new BlockState(this, newBlockSprite));
+  blockList = new BlockList(this);
+  blockList
+      .addBlock(200, 200, 50, 50)
+      .addBlock(200, 300, 50, 50)
+      .addBlock(300, 200, 50, 50)
+      .addBlock(300, 300, 50, 50)
+      .addBlock(400, 400, 50, 50)
+      .addBlock(400, 450, 50, 50)
+      .addBlock(450, 400, 50, 50)
+      .addBlock(450, 450, 50, 50);
 
   this.cameras.main.startFollow(patty);
 }
 
 function updateFn() {
-  blockStates.forEach(blockState => {
-    var touchingBlock = false;
-    this.physics.world.collide(patty, blockState.getSprite(), () => {
-      touchingBlock = true;
-    });
-    if (touchingBlock) {
-      blockState.touchBy(cursors);
-    } else {
-      blockState.notTouching();
-    }
-  });
+  blockList.touchFrom(patty, cursors);
 
   if (cursors.left.isDown) {
     patty.setVelocityX(-MOVE_SPEED);
