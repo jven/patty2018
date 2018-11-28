@@ -3,6 +3,11 @@ const CAMERA_HEIGHT = 600;
 const WORLD_WIDTH = 700;
 const WORLD_HEIGHT = 800;
 const MOVE_SPEED = 200;
+
+const PATTY_SPRITE_WIDTH = 24;
+const PATTY_SPRITE_HEIGHT = 32;
+const PATTY_SCALE = 1.5;
+
 const ANIMATION_FRAME_RATE = 10;
 
 const config = {
@@ -27,8 +32,8 @@ var standAnimation = 'standDown';
 function preloadFn() {
   this.load.image('gift', 'img/gift.png');
   this.load.spritesheet('girl', 'img/fumiko.png', {
-    frameWidth: 24,
-    frameHeight: 32
+    frameWidth: PATTY_SPRITE_WIDTH,
+    frameHeight: PATTY_SPRITE_HEIGHT
   });
   this.load.image('wood', 'img/wood.jpg');
 }
@@ -45,8 +50,8 @@ function createFn() {
   cursors = this.input.keyboard.createCursorKeys();
 
   patty = this.physics.add.sprite(100, 100, 'girl');
-  patty.displayWidth = 48;
-  patty.displayHeight = 64;
+  patty.displayWidth = PATTY_SPRITE_WIDTH * PATTY_SCALE;
+  patty.displayHeight = PATTY_SPRITE_HEIGHT * PATTY_SCALE;
   patty.setCollideWorldBounds(true);
 
   this.anims.create({
