@@ -35,7 +35,11 @@ function preloadFn() {
     frameWidth: PATTY_SPRITE_WIDTH,
     frameHeight: PATTY_SPRITE_HEIGHT
   });
-  this.load.image('wood', 'img/wood.jpg');
+  this.load.image('wood', 'img/wood.png');
+  this.load.image('rugtopleft', 'img/rugtopleft.png');
+  this.load.image('rugleft', 'img/rugleft.png');
+  this.load.image('rugtop', 'img/rugtop.png');
+  this.load.image('rugmiddle', 'img/rugmiddle.png');
 }
 
 function createFn() {
@@ -50,6 +54,7 @@ function createFn() {
   cursors = this.input.keyboard.createCursorKeys();
 
   world = new World(this);
+  grid = new Grid(this);
 
   blockList = new BlockList(this, world);
   blockList
