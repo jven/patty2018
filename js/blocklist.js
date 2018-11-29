@@ -1,36 +1,24 @@
 class BlockList {
-  constructor(scene) {
+  constructor(scene, world) {
     this.scene_ = scene;
+    this.world_ = world;
     this.blocks_ = [];
     this.sprites_ = [];
     this.blockIndex_ = 0;
   }
 
-  isBlockInRegion(centerX, centerY, width, height) {
-    const region = new Phaser.Geom.Rectangle(
-        centerX - width / 2, centerY - height / 2, width, height);
-    const noIntersection = this.sprites_.every(blockSprite => {
-      const intersection = Phaser.Geom.Rectangle.Intersection(
-          blockSprite.getBounds(), region);
-      return !intersection.width && !intersection.height;
-    });
-    return !noIntersection;
-  }
-
-  addBlock(centerX, centerY, width, height) {
+  addBlock(centerX, centerY, width, height, spriteKey) {
     const blockState = new BlockState(
-        this, this.scene_, centerX, centerY, width, height);
+        this.scene_, this.world_, centerX, centerY, width, height, spriteKey);
     this.blocks_.push(blockState);
     const sprite = blockState.getSprite();
     sprite.setData('blockIndex', this.blockIndex_++);
     this.sprites_.push(sprite);
 
+    this.world_.addObstacleSprite(sprite);
+
     this.blockIndex_++;
     return this;
-  }
-
-  addCollidingSpritesTo(patty) {
-    this.sprites_.forEach(s => patty.addCollidingSprite(s));
   }
 
   update(pattySprite, cursors) {

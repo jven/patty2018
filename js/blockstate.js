@@ -1,23 +1,13 @@
-/** The time needed for Patty to touch a block before it moves. */
-const BLOCK_HYSTERESIS = 20;
-/** The time it takes for the block to move. */
-const BLOCK_MOVE_DURATION = 200;
-/**
- * The amount of allowance to give when deciding whether a block can be moved to
- * a given space.
- */
-const MOVE_COLLISION_ALLOWANCE = 10;
-
 class BlockState {
-  constructor(blockList, scene, centerX, centerY, width, height) {
+  constructor(scene, world, centerX, centerY, width, height, spriteKey) {
     const sprite = scene.physics.add.image(
-        centerX, centerY, 'gift').setImmovable();
+        centerX, centerY, spriteKey).setImmovable();
     sprite.displayWidth = width;
     sprite.displayHeight = height;
     sprite.setCollideWorldBounds(true);
 
-    this.blockList_ = blockList;
     this.scene_ = scene;
+    this.world_ = world;
     this.sprite_ = sprite;
     this.force_ = 0;
     this.forceDirection_ = null;
@@ -48,7 +38,7 @@ class BlockState {
     }
 
     this.force_++;
-    if (this.force_ >= BLOCK_HYSTERESIS) {
+    if (this.force_ >= Config.BLOCK_HYSTERESIS) {
       this.moveAwayFrom_();
       this.force_ = 0;
     }
@@ -71,18 +61,18 @@ class BlockState {
       return;
     }
 
-    if (this.blockList_.isBlockInRegion(
+    if (this.world_.anyObstacleInRegion(
         this.sprite_.x + dx * this.sprite_.displayWidth,
         this.sprite_.y + dy * this.sprite_.displayHeight,
-        this.sprite_.displayWidth - MOVE_COLLISION_ALLOWANCE,
-        this.sprite_.displayHeight - MOVE_COLLISION_ALLOWANCE)) {
+        this.sprite_.displayWidth - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
+        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE)) {
       // There is a block in the way.
       return;
     }
 
     const tween = {
       targets: this.sprite_,
-      duration: BLOCK_MOVE_DURATION
+      duration: Config.BLOCK_MOVE_DURATION
     };
     if (dx != 0) {
       tween.x = this.sprite_.x + dx * this.sprite_.displayWidth;

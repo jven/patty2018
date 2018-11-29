@@ -24,9 +24,10 @@ const config = {
   }
 };
 const game = new Phaser.Game(config);
+var blockList;
 var cursors;
 var patty;
-var blockList;
+var world;
 
 function preloadFn() {
   this.load.image('gift', 'img/gift.png');
@@ -48,19 +49,20 @@ function createFn() {
 
   cursors = this.input.keyboard.createCursorKeys();
 
-  blockList = new BlockList(this);
-  blockList
-      .addBlock(200, 200, 50, 50)
-      .addBlock(200, 300, 50, 50)
-      .addBlock(300, 200, 50, 50)
-      .addBlock(300, 300, 50, 50)
-      .addBlock(400, 400, 50, 50)
-      .addBlock(400, 450, 50, 50)
-      .addBlock(450, 400, 50, 50)
-      .addBlock(450, 450, 50, 50);
+  world = new World(this);
 
-  patty = new Patty(this /* scene */, cursors);
-  blockList.addCollidingSpritesTo(patty);
+  blockList = new BlockList(this, world);
+  blockList
+      .addBlock(200, 200, 50, 50, 'gift')
+      .addBlock(200, 300, 50, 50, 'gift')
+      .addBlock(300, 200, 50, 50, 'gift')
+      .addBlock(300, 300, 50, 50, 'gift')
+      .addBlock(400, 400, 50, 50, 'gift')
+      .addBlock(400, 450, 50, 50, 'gift')
+      .addBlock(450, 400, 50, 50, 'gift')
+      .addBlock(450, 450, 50, 50, 'gift');
+
+  patty = new Patty(this, world, cursors);
 }
 
 function updateFn() {
@@ -68,7 +70,7 @@ function updateFn() {
 
   // Patty must move after checking for collisions to allow other sprites to
   // check for overlaps on the next update.
-  patty.checkForCollisions();
+  world.checkCollisions(patty.getSprite());
 
   patty.update();
 }
