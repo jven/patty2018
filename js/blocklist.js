@@ -29,14 +29,14 @@ class BlockList {
     return this;
   }
 
-  touchFrom(patty, cursors) {
+  touchFrom(pattySprite, cursors) {
     // Count the number of overlapping blocks and keep track of the overlapping
     // block.
     var numOverlaps = 0;
     var collidingBlockIndex = -1;
     this.sprites_.forEach(blockSprite => {
       const intersection = Phaser.Geom.Rectangle.Intersection(
-          patty.getBounds(), blockSprite.getBounds());
+          pattySprite.getBounds(), blockSprite.getBounds());
       if (intersection.width && intersection.height) {
         numOverlaps++;
         const blockIndex = blockSprite.getData('blockIndex');
@@ -49,7 +49,7 @@ class BlockList {
     });
 
     // Actually perform the separation.
-    this.scene_.physics.collide(patty, this.sprites_);
+    this.scene_.physics.collide(pattySprite, this.sprites_);
 
     // If there is a single overlapping block, mark it as touched. Otherwise,
     // mark all other blocks as untouched.
