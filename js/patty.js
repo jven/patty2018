@@ -16,6 +16,11 @@ class Patty {
     scene.cameras.main.startFollow(this.sprite_);
   }
 
+  teleportTo(x, y) {
+    this.sprite_.x = x;
+    this.sprite_.y = y;
+  }
+
   getSprite() {
     return this.sprite_;
   }

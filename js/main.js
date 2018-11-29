@@ -56,18 +56,20 @@ function createFn() {
   world = new World(this);
   grid = new Grid(this);
 
-  blockList = new BlockList(this, world);
+  blockList = new BlockList(this, world, grid);
   blockList
-      .addBlock(200, 200, 50, 50, 'gift')
-      .addBlock(200, 300, 50, 50, 'gift')
-      .addBlock(300, 200, 50, 50, 'gift')
-      .addBlock(300, 300, 50, 50, 'gift')
-      .addBlock(400, 400, 50, 50, 'gift')
-      .addBlock(400, 450, 50, 50, 'gift')
-      .addBlock(450, 400, 50, 50, 'gift')
-      .addBlock(450, 450, 50, 50, 'gift');
+      .addBlockInGrid(1, 1, 'gift')
+      .addBlockInGrid(3, 1, 'gift')
+      .addBlockInGrid(1, 3, 'gift')
+      .addBlockInGrid(3, 3, 'gift')
+      .addBlockInGrid(5, 5, 'gift')
+      .addBlockInGrid(6, 5, 'gift')
+      .addBlockInGrid(6, 6, 'gift')
+      .addBlockInGrid(7, 6, 'gift');
 
   patty = new Patty(this, world, cursors);
+  const pattyStart = grid.getTileCenter(8, 4);
+  patty.teleportTo(pattyStart.x, pattyStart.y);
 }
 
 function updateFn() {

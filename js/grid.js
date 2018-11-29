@@ -40,11 +40,11 @@ class Grid {
   }
 
   renderRugSprite_(tileX, tileY, key) {
-    const center = Grid.getTileCenter(tileX, tileY);
+    const center = this.getTileCenter(tileX, tileY);
     return this.scene_.add.sprite(center.x, center.y, key);
   }
 
-  static getTileCenter(tileX, tileY) {
+  getTileCenter(tileX, tileY) {
     if (tileX < 0 || tileX >= Config.GRID_WIDTH_IN_TILES
         || tileY < 0 || tileY >= Config.GRID_HEIGHT_IN_TILES) {
       console.error('Invalid tileX, tileY: ' + tileX + ', ' + tileY);

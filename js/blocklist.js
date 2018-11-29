@@ -1,7 +1,8 @@
 class BlockList {
-  constructor(scene, world) {
+  constructor(scene, world, grid) {
     this.scene_ = scene;
     this.world_ = world;
+    this.grid_ = grid;
     this.blocks_ = [];
     this.sprites_ = [];
     this.blockIndex_ = 0;
@@ -19,6 +20,16 @@ class BlockList {
 
     this.blockIndex_++;
     return this;
+  }
+
+  addBlockInGrid(tileX, tileY, spriteKey) {
+    const center = this.grid_.getTileCenter(tileX, tileY);
+    return this.addBlock(
+        center.x,
+        center.y,
+        Config.GRID_TILE_SIZE_PX,
+        Config.GRID_TILE_SIZE_PX,
+        spriteKey);
   }
 
   update(pattySprite, cursors) {

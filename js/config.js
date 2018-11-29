@@ -7,7 +7,7 @@ const Config = {
   /** The width of the grid, in number of tiles. */
   GRID_WIDTH_IN_TILES: 11,
   /** The height of the grid, in number of tiles. */
-  GRID_HEIGHT_IN_TILES: 6,
+  GRID_HEIGHT_IN_TILES: 7,
 
   /** The time needed for Patty to touch a block before it moves. */
   BLOCK_HYSTERESIS: 20,
