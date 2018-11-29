@@ -10,7 +10,14 @@ class BlockList {
 
   addBlock(centerX, centerY, width, height, spriteKey) {
     const blockState = new BlockState(
-        this.scene_, this.world_, centerX, centerY, width, height, spriteKey);
+        this.scene_,
+        this.world_,
+        this.grid_,
+        centerX,
+        centerY,
+        width,
+        height,
+        spriteKey);
     this.blocks_.push(blockState);
     const sprite = blockState.getSprite();
     sprite.setData('blockIndex', this.blockIndex_++);

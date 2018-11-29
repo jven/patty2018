@@ -56,4 +56,13 @@ class Grid {
       y: Config.GRID_TOP_LEFT_Y + Config.GRID_TILE_SIZE_PX * (tileY + 0.5)
     };
   }
+
+  isInGrid(x, y) {
+    return x >= Config.GRID_TOP_LEFT_X
+        && x <= Config.GRID_TOP_LEFT_X + Config.GRID_TILE_SIZE_PX *
+            Config.GRID_WIDTH_IN_TILES
+        && y >= Config.GRID_TOP_LEFT_Y
+        && y <= Config.GRID_TOP_LEFT_Y + Config.GRID_TILE_SIZE_PX *
+            Config.GRID_HEIGHT_IN_TILES;
+  }
 }

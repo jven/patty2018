@@ -1,5 +1,5 @@
 class BlockState {
-  constructor(scene, world, centerX, centerY, width, height, spriteKey) {
+  constructor(scene, world, grid, centerX, centerY, width, height, spriteKey) {
     const sprite = scene.physics.add.image(
         centerX, centerY, spriteKey).setImmovable();
     sprite.displayWidth = width;
@@ -8,6 +8,7 @@ class BlockState {
 
     this.scene_ = scene;
     this.world_ = world;
+    this.grid_ = grid;
     this.sprite_ = sprite;
     this.force_ = 0;
     this.forceDirection_ = null;
@@ -61,12 +62,16 @@ class BlockState {
       return;
     }
 
-    if (this.world_.anyObstacleInRegion(
+    const isObstacleInTheWay = this.world_.anyObstacleInRegion(
         this.sprite_.x + dx * this.sprite_.displayWidth,
         this.sprite_.y + dy * this.sprite_.displayHeight,
         this.sprite_.displayWidth - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
-        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE)) {
-      // There is a block in the way.
+        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE);
+    const isInGrid = this.grid_.isInGrid(
+        this.sprite_.x + dx * this.sprite_.displayWidth,
+        this.sprite_.y + dy * this.sprite_.displayHeight);
+    if (isObstacleInTheWay || !isInGrid) {
+      // Abort the move.
       return;
     }
 
