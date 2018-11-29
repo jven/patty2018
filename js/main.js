@@ -48,8 +48,6 @@ function createFn() {
 
   cursors = this.input.keyboard.createCursorKeys();
 
-  patty = new Patty(this /* scene */, cursors);
-
   blockList = new BlockList(this);
   blockList
       .addBlock(200, 200, 50, 50)
@@ -60,9 +58,17 @@ function createFn() {
       .addBlock(400, 450, 50, 50)
       .addBlock(450, 400, 50, 50)
       .addBlock(450, 450, 50, 50);
+
+  patty = new Patty(this /* scene */, cursors);
+  blockList.addCollidingSpritesTo(patty);
 }
 
 function updateFn() {
-  blockList.touchFrom(patty.getSprite(), cursors);
+  blockList.update(patty.getSprite(), cursors);
+
+  // Patty must move after checking for collisions to allow other sprites to
+  // check for overlaps on the next update.
+  patty.checkForCollisions();
+
   patty.update();
 }

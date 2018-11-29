@@ -29,7 +29,11 @@ class BlockList {
     return this;
   }
 
-  touchFrom(pattySprite, cursors) {
+  addCollidingSpritesTo(patty) {
+    this.sprites_.forEach(s => patty.addCollidingSprite(s));
+  }
+
+  update(pattySprite, cursors) {
     // Count the number of overlapping blocks and keep track of the overlapping
     // block.
     var numOverlaps = 0;
@@ -47,9 +51,6 @@ class BlockList {
         collidingBlockIndex = blockIndex;
       }
     });
-
-    // Actually perform the separation.
-    this.scene_.physics.collide(pattySprite, this.sprites_);
 
     // If there is a single overlapping block, mark it as touched. Otherwise,
     // mark all other blocks as untouched.

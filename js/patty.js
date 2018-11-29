@@ -2,6 +2,7 @@ class Patty {
   constructor(scene, cursors) {
     this.scene_ = scene;
     this.cursors_ = cursors;
+    this.collidableSprites_ = [];
 
     this.sprite_ = scene.physics.add.sprite(100, 100, 'girl');
     this.sprite_.displayWidth = Config.PATTY_SPRITE_WIDTH * Config.PATTY_SCALE;
@@ -13,6 +14,10 @@ class Patty {
     this.createAnimations_();
 
     scene.cameras.main.startFollow(this.sprite_);
+  }
+
+  addCollidingSprite(sprite) {
+    this.collidableSprites_.push(sprite);
   }
 
   getSprite() {
@@ -78,5 +83,10 @@ class Patty {
       this.sprite_.setVelocityY(0);
       this.sprite_.anims.play(this.standAnimation_);
     }
+  }
+
+  checkForCollisions() {
+    // Separate Patty from collidable sprites.
+    this.scene_.physics.collide(this.sprite_, this.collidableSprites_);
   }
 }
