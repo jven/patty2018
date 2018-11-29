@@ -62,14 +62,14 @@ class BlockState {
       return;
     }
 
+    const newCenterX = this.sprite_.x + dx * this.sprite_.displayWidth;
+    const newCenterY = this.sprite_.y + dy * this.sprite_.displayHeight;
     const isObstacleInTheWay = this.world_.anyObstacleInRegion(
-        this.sprite_.x + dx * this.sprite_.displayWidth,
-        this.sprite_.y + dy * this.sprite_.displayHeight,
+        newCenterX,
+        newCenterY,
         this.sprite_.displayWidth - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
         this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE);
-    const isInGrid = this.grid_.isInGrid(
-        this.sprite_.x + dx * this.sprite_.displayWidth,
-        this.sprite_.y + dy * this.sprite_.displayHeight);
+    const isInGrid = this.grid_.isInGrid(newCenterX, newCenterY);
     if (isObstacleInTheWay || !isInGrid) {
       // Abort the move.
       return;

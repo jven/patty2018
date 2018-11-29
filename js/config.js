@@ -1,4 +1,14 @@
 const Config = {
+  /** The camera dimensions. */
+  CAMERA_WIDTH_PX: 800,
+  CAMERA_HEIGHT_PX: 600,
+
+  /** The dimensions of the world. */
+  WORLD_WIDTH_PX: 700,
+  WORLD_HEIGHT_PX: 800,
+  WORLD_WALL_TOP_HEIGHT_PX: 96,
+  WORLD_WALL_SIDE_WIDTH_PX: 10,
+
   /** The coordinates of the top-left corner of the grid. */
   GRID_TOP_LEFT_X: 100,
   GRID_TOP_LEFT_Y: 200,
@@ -21,6 +31,8 @@ const Config = {
 
   /** The number of frames per second to animate Patty when moving. */
   PATTY_ANIMATION_SPEED: 10,
+  /** How fast Patty moves. */
+  PATTY_MOVE_SPEED: 200,
   /** The width of each frame in the Patty sprite sheet. */
   PATTY_SPRITE_WIDTH: 24,
   /** The height of each frame in the Patty sprite sheet. */
