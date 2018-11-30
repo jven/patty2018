@@ -1,6 +1,5 @@
 class Pathery {
   constructor(scene, world, grid, tileStarts, tileEnds, tileTarget) {
-    this.scene_ = scene;
     this.world_ = world;
     this.grid_ = grid;
     this.tileStarts_ = tileStarts;
@@ -8,21 +7,17 @@ class Pathery {
     this.tileTarget_ = tileTarget;
     
     this.lastSolveTime_ = 0;
-    this.pathGraphics_ = null;
+    this.pathGraphics_ = scene.add.graphics();
   }
 
   update() {
     this.lastSolveTime_++;
     if (this.lastSolveTime_ >= Config.PATHERY_SOLVE_PERIOD) {
-      if (this.pathGraphics_) {
-        this.pathGraphics_.destroy();
-      }
+      this.pathGraphics_.clear();
       const path = this.solve_();
       if (!path) {
-        this.pathGraphics_ = null;
         return;
       }
-      this.pathGraphics_ = this.scene_.add.graphics();
       path.forEach(result => {
         const color = result.targetCount == 0 ? 0xF777FF : 0;
         this.pathGraphics_.fillStyle(color, 0.5);
