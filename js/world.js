@@ -74,7 +74,7 @@ class World {
   renderObjects_() {
     const piano = this.scene_.physics.add.sprite(
         Config.WORLD_WALL_SIDE_WIDTH_PX + Config.WORLD_PIANO_WIDTH_PX / 2,
-        Config.WORLD_HEIGHT_PX - Config.WORLD_PIANO_HEIGHT_PX / 2 - 50,
+        200,
         'piano');
     piano.setImmovable(true);
 
