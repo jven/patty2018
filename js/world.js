@@ -15,6 +15,8 @@ class World {
         'wood');
 
     this.renderWalls_();
+
+    this.renderObjects_();
   }
 
   renderWalls_() {
@@ -33,12 +35,14 @@ class World {
         Config.WORLD_WIDTH_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
         Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
         'walltopright');
+    topRightWall.setImmovable(true);
 
     // Top left
     const topLeftWall = this.scene_.physics.add.sprite(
         Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
         Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
         'walltopright');
+    topLeftWall.setImmovable(true);
     topLeftWall.flipX = -1;
 
     const rightWall = this.scene_.physics.add.existing(
@@ -65,6 +69,16 @@ class World {
     this.addObstacleSprite(topLeftWall);
     this.addObstacleSprite(leftWall);
     this.addObstacleSprite(rightWall);
+  }
+
+  renderObjects_() {
+    const piano = this.scene_.physics.add.sprite(
+        Config.WORLD_WALL_SIDE_WIDTH_PX + Config.WORLD_PIANO_WIDTH_PX / 2,
+        Config.WORLD_HEIGHT_PX - Config.WORLD_PIANO_HEIGHT_PX / 2 - 50,
+        'piano');
+    piano.setImmovable(true);
+
+    this.addObstacleSprite(piano);
   }
 
   addObstacleSprite(sprite) {

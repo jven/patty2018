@@ -10,6 +10,8 @@ const Config = {
   WORLD_WALL_SIDE_WIDTH_PX: 10,
   WORLD_WALL_TOP_RIGHT_WIDTH_PX: 10,
   WORLD_WALL_TOP_RIGHT_HEIGHT_PX: 64,
+  WORLD_PIANO_WIDTH_PX: 36,
+  WORLD_PIANO_HEIGHT_PX: 150,
 
   /** The coordinates of the top-left corner of the grid. */
   GRID_TOP_LEFT_X: 100,

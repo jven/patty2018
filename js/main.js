@@ -36,6 +36,7 @@ function preloadFn() {
   this.load.image('rugmiddle', 'img/rugmiddle.png');
 
   this.load.image('gift', 'img/crate.png');
+  this.load.image('piano', 'img/piano.png');
   this.load.image('target', 'img/target.png');
 }
 
