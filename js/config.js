@@ -40,5 +40,13 @@ const Config = {
   /** The height of each frame in the Patty sprite sheet. */
   PATTY_SPRITE_HEIGHT: 32,
   /** Patty's size as a multiple of the sprite dimensions above. */
-  PATTY_SCALE: 1.5
+  PATTY_SCALE: 1.25,
+
+  /** The square size to use when detecting collisions when solving Pathery. */
+  PATHERY_COLLISION_DETECTION_SIZE: 10,
+  /**
+   * The period with which to solve Pathery. A lower period solves Pathery more
+   * often.
+   */
+  PATHERY_SOLVE_PERIOD: 5
 };

@@ -3,6 +3,10 @@ class Grid {
     this.scene_ = scene;
 
     this.renderRug_();
+
+    const target = this.renderRugSprite_(6, 1, 'target');
+    target.displayWidth = Config.GRID_TILE_SIZE_PX;
+    target.displayHeight = Config.GRID_TILE_SIZE_PX;
   }
 
   renderRug_() {

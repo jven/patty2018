@@ -14,6 +14,7 @@ const config = {
 const game = new Phaser.Game(config);
 var blockList;
 var cursors;
+var pathery;
 var patty;
 var world;
 
@@ -35,6 +36,7 @@ function preloadFn() {
   this.load.image('rugmiddle', 'img/rugmiddle.png');
 
   this.load.image('gift', 'img/gift.png');
+  this.load.image('target', 'img/target.png');
 }
 
 function createFn() {
@@ -42,6 +44,15 @@ function createFn() {
 
   world = new World(this);
   grid = new Grid(this);
+
+  const tileStarts = [];
+  const tileEnds = [];
+  for (var tileY = 0; tileY < Config.GRID_HEIGHT_IN_TILES; tileY++) {
+    tileStarts.push({x: 0, y: tileY});
+    tileEnds.push({x: Config.GRID_WIDTH_IN_TILES - 1, y: tileY});
+  }
+  const tileTarget = {x: 6, y: 1};
+  pathery = new Pathery(this, world, grid, tileStarts, tileEnds, tileTarget);
 
   blockList = new BlockList(this, world, grid);
   blockList
@@ -67,4 +78,6 @@ function updateFn() {
   world.checkCollisions(patty.getSprite());
 
   patty.update();
+
+  pathery.update();
 }
