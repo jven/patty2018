@@ -8,6 +8,8 @@ const Config = {
   WORLD_HEIGHT_PX: 800,
   WORLD_WALL_TOP_HEIGHT_PX: 96,
   WORLD_WALL_SIDE_WIDTH_PX: 10,
+  WORLD_WALL_TOP_RIGHT_WIDTH_PX: 10,
+  WORLD_WALL_TOP_RIGHT_HEIGHT_PX: 64,
 
   /** The coordinates of the top-left corner of the grid. */
   GRID_TOP_LEFT_X: 100,

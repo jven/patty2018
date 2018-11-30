@@ -18,15 +18,53 @@ class World {
   }
 
   renderWalls_() {
-    this.addObstacleSprite(
-        this.scene_.physics.add.existing(
-            this.scene_.add.tileSprite(
-                Config.WORLD_WIDTH_PX / 2,
-                Config.WORLD_WALL_TOP_HEIGHT_PX / 2,
-                Config.WORLD_WIDTH_PX,
-                Config.WORLD_WALL_TOP_HEIGHT_PX,
-                'walltop'),
-            true /* static */));
+    // Top
+    const topWall = this.scene_.physics.add.existing(
+        this.scene_.add.tileSprite(
+            Config.WORLD_WIDTH_PX / 2,
+            Config.WORLD_WALL_TOP_HEIGHT_PX / 2,
+            Config.WORLD_WIDTH_PX,
+            Config.WORLD_WALL_TOP_HEIGHT_PX,
+            'walltop'),
+        true /* static */);
+
+    // Top right
+    const topRightWall = this.scene_.physics.add.sprite(
+        Config.WORLD_WIDTH_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
+        Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
+        'walltopright');
+
+    // Top left
+    const topLeftWall = this.scene_.physics.add.sprite(
+        Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
+        Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
+        'walltopright');
+    topLeftWall.flipX = -1;
+
+    const rightWall = this.scene_.physics.add.existing(
+        this.scene_.add.tileSprite(
+            Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX / 2,
+            (Config.WORLD_HEIGHT_PX + Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX) / 2,
+            Config.WORLD_WALL_SIDE_WIDTH_PX,
+            Config.WORLD_HEIGHT_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX,
+            'wallright'),
+        true /* static */);
+
+    const leftWall = this.scene_.physics.add.existing(
+        this.scene_.add.tileSprite(
+            Config.WORLD_WALL_SIDE_WIDTH_PX / 2,
+            (Config.WORLD_HEIGHT_PX + Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX) / 2,
+            Config.WORLD_WALL_SIDE_WIDTH_PX,
+            Config.WORLD_HEIGHT_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX,
+            'wallright'),
+        true /* static */);
+    leftWall.flipX = -1;
+    
+    this.addObstacleSprite(topWall);
+    this.addObstacleSprite(topRightWall);
+    this.addObstacleSprite(topLeftWall);
+    this.addObstacleSprite(leftWall);
+    this.addObstacleSprite(rightWall);
   }
 
   addObstacleSprite(sprite) {
