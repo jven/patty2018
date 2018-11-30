@@ -16,12 +16,17 @@ var blockList;
 var cursors;
 var pathery;
 var patty;
+var santa;
 var world;
 
 function preloadFn() {
   this.load.spritesheet('girl', 'img/fumiko.png', {
     frameWidth: Config.PATTY_SPRITE_WIDTH,
     frameHeight: Config.PATTY_SPRITE_HEIGHT
+  });
+  this.load.spritesheet('santa', 'img/santarun.png', {
+    frameWidth: Config.SANTA_SPRITE_WIDTH,
+    frameHeight: Config.SANTA_SPRITE_HEIGHT
   });
   
   this.load.image('wood', 'img/wood.png');
@@ -69,6 +74,10 @@ function createFn() {
   patty = new Patty(this, world, cursors);
   const pattyStart = grid.getTileCenter(8, 4);
   patty.teleportTo(pattyStart.x, pattyStart.y);
+
+  santa = new Santa(this, world);
+  const santaStart = grid.getTileCenter(9, 2);
+  santa.teleportTo(santaStart.x, santaStart.y);
 }
 
 function updateFn() {
@@ -81,4 +90,6 @@ function updateFn() {
   patty.update();
 
   pathery.update();
+  
+  santa.update();
 }
