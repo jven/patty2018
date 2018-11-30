@@ -24,7 +24,6 @@ class Pathery {
       }
       this.pathGraphics_ = this.scene_.add.graphics();
       path.forEach(result => {
-        console.log(result);
         const color = result.targetCount == 0 ? 0xF777FF : 0;
         this.pathGraphics_.fillStyle(color, 0.5);
         const center = this.grid_.getTileCenter(result.tile.x, result.tile.y);
