@@ -101,7 +101,7 @@ class Santa {
     const nextCenter = this.grid_.getTileCenter(nextTile.x, nextTile.y);
     this.scene_.tweens.add({
       targets: this.runSprite_,
-      duration: Config.SANTA_MOVE_DURATION,
+      duration: this.directorState_.getSantaMoveSpeed(),
       x: nextCenter.x,
       y: nextCenter.y
     });

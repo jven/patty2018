@@ -1,5 +1,6 @@
 class DirectorState {
-  constructor() {
+  constructor(directorKeys) {
+    this.directorKeys_ = directorKeys;
     this.isProductionRunning_ = false;
   }
 
@@ -9,5 +10,11 @@ class DirectorState {
 
   isProductionRunning() {
     return this.isProductionRunning_;
+  }
+
+  getSantaMoveSpeed() {
+    return this.directorKeys_.space.isDown
+        ? Config.SANTA_FAST_MOVE_DURATION
+        : Config.SANTA_MOVE_DURATION;
   }
 }

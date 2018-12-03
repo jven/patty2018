@@ -55,6 +55,7 @@ const Config = {
   SANTA_ANIMATION_SPEED: 15,
   /** How long it takes for Santa to move one tile. */
   SANTA_MOVE_DURATION: 200,
+  SANTA_FAST_MOVE_DURATION: 50,
 
   /** The square size to use when detecting collisions when solving Pathery. */
   PATHERY_COLLISION_DETECTION_SIZE: 10,

@@ -52,9 +52,9 @@ function preloadFn() {
 
 function createFn() {
   cursorKeys = this.input.keyboard.createCursorKeys();
-  directorKeys = this.input.keyboard.addKeys('N');
+  directorKeys = this.input.keyboard.addKeys('space');
 
-  const directorState = new DirectorState();
+  const directorState = new DirectorState(directorKeys);
   world = new World(this);
   grid = new Grid(this);
 
