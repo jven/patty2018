@@ -1,5 +1,5 @@
 class Grinch {
-  constructor(scene, grid, directorState) {
+  constructor(scene, grid, directorState, maxStamina) {
     this.sprite_ = scene.physics.add.sprite(0, 0, 'grinch');
     this.sprite_.displayWidth = Config.GRINCH_SPRITE_WIDTH
         * Config.GRINCH_SCALE;
@@ -24,7 +24,8 @@ class Grinch {
         directorState,
         this.sprite_,
         'grinchRunRight',
-        Config.GRINCH_MOVE_DURATION);
+        Config.GRINCH_MOVE_DURATION,
+        maxStamina);
   }
 
   hide() {

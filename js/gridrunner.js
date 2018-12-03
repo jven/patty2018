@@ -1,11 +1,19 @@
 class GridRunner {
-  constructor(scene, grid, directorState, sprite, runAnimation, moveDuration) {
+  constructor(
+      scene,
+      grid,
+      directorState,
+      sprite,
+      runAnimation,
+      moveDuration,
+      maxStamina) {
     this.scene_ = scene;
     this.grid_ = grid;
     this.sprite_ = sprite;
     this.directorState_ = directorState;
     this.runAnimation_ = runAnimation;
     this.moveDuration_ = moveDuration;
+    this.maxStamina_ = maxStamina;
 
     this.hide();
   }
@@ -25,6 +33,7 @@ class GridRunner {
     const newRunState = {
       path: path,
       index: 0,
+      stamina: this.maxStamina_,
       resolveFn: null
     };
     const runPromise = new Promise(function(resolve, reject) {
@@ -51,18 +60,24 @@ class GridRunner {
       return;
     }
 
-    if (this.runState_.index >= this.runState_.path.length) {
+    const path = this.runState_.path;
+    const currIdx = this.runState_.index;
+    if (currIdx >= path.length) {
       // Finished running!
       this.runState_.resolveFn(true /* finished */);
       this.hide();
       return;
     }
 
-    const currentTile = this.runState_.path[this.runState_.index].tile;
+    const currentTile = path[currIdx].tile;
     const currentCenter = this.grid_.getTileCenter(
         currentTile.x, currentTile.y);
     if (this.sprite_.x == currentCenter.x
         && this.sprite_.y == currentCenter.y) {
+      if (currIdx < path.length - 1
+          && path[currIdx].targetCount == path[currIdx + 1].targetCount) {
+        this.runState_.stamina--;
+      }
       this.runState_.index++;
       this.addNextTween_();
     }

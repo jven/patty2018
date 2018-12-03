@@ -84,7 +84,7 @@ function createFn() {
       .addBlockInGrid(1, 5, 'crate');
 
   santa = new Santa(this, grid, directorState);
-  grinch = new Grinch(this, grid, directorState);
+  grinch = new Grinch(this, grid, directorState, 30 /* maxStamina */);
   director = new Director(this, grid, pathery, santa, grinch, directorState);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
