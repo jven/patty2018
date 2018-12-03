@@ -69,14 +69,14 @@ function createFn() {
 
   blockList = new BlockList(this, world, grid, directorState);
   blockList
-      .addBlockInGrid(1, 1, 'crate')
-      .addBlockInGrid(3, 1, 'crate')
-      .addBlockInGrid(1, 3, 'crate')
+      .addBlockInGrid(8, 0, 'crate')
+      .addBlockInGrid(7, 1, 'crate')
+      .addBlockInGrid(6, 2, 'crate')
+      .addBlockInGrid(5, 1, 'crate')
+      .addBlockInGrid(4, 2, 'crate')
       .addBlockInGrid(3, 3, 'crate')
-      .addBlockInGrid(5, 5, 'crate')
-      .addBlockInGrid(6, 5, 'crate')
-      .addBlockInGrid(6, 6, 'crate')
-      .addBlockInGrid(7, 6, 'crate');
+      .addBlockInGrid(2, 4, 'crate')
+      .addBlockInGrid(1, 5, 'crate');
 
   santa = new Santa(this, world, grid);
   director = new Director(this, grid, pathery, santa, directorState);

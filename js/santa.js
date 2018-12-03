@@ -61,11 +61,12 @@ class Santa {
     };
     
     const center = this.grid_.getTileCenter(path[0].tile.x, path[0].tile.y);
-    this.runSprite_.x = center.x;
+    this.runSprite_.x = center.x - Config.GRID_TILE_SIZE_PX;
     this.runSprite_.y = center.y;
-    this.runSprite_.flipX = 1;
     this.runSprite_.visible = true;
     this.runSprite_.anims.play('santaRunRight');
+    
+    this.addNextTween_();
   }
 
   update() {
@@ -80,19 +81,27 @@ class Santa {
     if (this.runSprite_.x == currentCenter.x
         && this.runSprite_.y == currentCenter.y) {
       this.runState_.index++;
-      const nextTile = this.runState_.path[this.runState_.index].tile;
-      const nextCenter = this.grid_.getTileCenter(nextTile.x, nextTile.y);
-      this.scene_.tweens.add({
-        targets: this.runSprite_,
-        duration: Config.SANTA_MOVE_DURATION,
-        x: nextCenter.x,
-        y: nextCenter.y
-      });
-      if (nextCenter.x > currentCenter.x) {
-        this.runSprite_.flipX = false;
-      } else if (nextCenter.x < currentCenter.x) {
-        this.runSprite_.flipX = true;
-      }
+      this.addNextTween_();
+    }
+  }
+
+  addNextTween_() {
+    if (this.runState_.index >= this.runState_.path.length) {
+      return;
+    }
+
+    const nextTile = this.runState_.path[this.runState_.index].tile;
+    const nextCenter = this.grid_.getTileCenter(nextTile.x, nextTile.y);
+    this.scene_.tweens.add({
+      targets: this.runSprite_,
+      duration: Config.SANTA_MOVE_DURATION,
+      x: nextCenter.x,
+      y: nextCenter.y
+    });
+    if (nextCenter.x > this.runSprite_.x) {
+      this.runSprite_.flipX = false;
+    } else if (nextCenter.x < this.runSprite_.x) {
+      this.runSprite_.flipX = true;
     }
   }
 }
