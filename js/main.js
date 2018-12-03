@@ -41,7 +41,7 @@ function preloadFn() {
   this.load.image('rugtop', 'img/rugtop.png');
   this.load.image('rugmiddle', 'img/rugmiddle.png');
 
-  this.load.image('gift', 'img/crate.png');
+  this.load.image('crate', 'img/crate.png');
   this.load.image('piano', 'img/piano.png');
   this.load.image('target', 'img/target.png');
 }
@@ -65,14 +65,14 @@ function createFn() {
 
   blockList = new BlockList(this, world, grid, directorState);
   blockList
-      .addBlockInGrid(1, 1, 'gift')
-      .addBlockInGrid(3, 1, 'gift')
-      .addBlockInGrid(1, 3, 'gift')
-      .addBlockInGrid(3, 3, 'gift')
-      .addBlockInGrid(5, 5, 'gift')
-      .addBlockInGrid(6, 5, 'gift')
-      .addBlockInGrid(6, 6, 'gift')
-      .addBlockInGrid(7, 6, 'gift');
+      .addBlockInGrid(1, 1, 'crate')
+      .addBlockInGrid(3, 1, 'crate')
+      .addBlockInGrid(1, 3, 'crate')
+      .addBlockInGrid(3, 3, 'crate')
+      .addBlockInGrid(5, 5, 'crate')
+      .addBlockInGrid(6, 5, 'crate')
+      .addBlockInGrid(6, 6, 'crate')
+      .addBlockInGrid(7, 6, 'crate');
 
   patty = new Patty(this, world, cursorKeys);
   const pattyStart = grid.getTileCenter(8, 4);
