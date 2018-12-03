@@ -15,6 +15,7 @@ const game = new Phaser.Game(config);
 var blockList;
 var cursorKeys;
 var directorKeys;
+var grinch;
 var pathery;
 var patty;
 var santa;
@@ -32,6 +33,10 @@ function preloadFn() {
   this.load.spritesheet('santadead', 'img/santadead.png', {
     frameWidth: Config.SANTA_DEAD_SPRITE_WIDTH,
     frameHeight: Config.SANTA_DEAD_SPRITE_HEIGHT
+  });
+  this.load.spritesheet('grinch', 'img/grinch.png', {
+    frameWidth: Config.GRINCH_SPRITE_WIDTH,
+    frameHeight: Config.GRINCH_SPRITE_HEIGHT
   });
   
   this.load.image('wood', 'img/wood.png');
@@ -78,8 +83,9 @@ function createFn() {
       .addBlockInGrid(2, 4, 'crate')
       .addBlockInGrid(1, 5, 'crate');
 
-  santa = new Santa(this, world, grid, directorState);
-  director = new Director(this, grid, pathery, santa, directorState);
+  santa = new Santa(this, grid, directorState);
+  grinch = new Grinch(this, grid, directorState);
+  director = new Director(this, grid, pathery, santa, grinch, directorState);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
       director.toggleProductionRunning();
@@ -101,4 +107,5 @@ function updateFn() {
   patty.update();
 
   santa.update();
+  grinch.update();
 }

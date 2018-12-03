@@ -12,9 +12,9 @@ class DirectorState {
     return this.isProductionRunning_;
   }
 
-  getSantaTimeScale() {
+  getRunnerTimeScale() {
     return this.directorKeys_.space.isDown
-        ? Config.SANTA_FAST_MOVE_MULTIPLIER
+        ? Config.GRID_RUNNER_FAST_MULTIPLIER
         : 1;
   }
 }

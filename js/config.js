@@ -46,16 +46,26 @@ const Config = {
   /** Patty's size as a multiple of the sprite dimensions above. */
   PATTY_SCALE: 1.25,
 
-  /** The dimensions of each frame in the Santa sprites. */
+  /** The dimensions of each frame of the Santa sprites. */
   SANTA_RUN_SPRITE_WIDTH: 45,
   SANTA_RUN_SPRITE_HEIGHT: 56,
   SANTA_DEAD_SPRITE_WIDTH: 75,
   SANTA_DEAD_SPRITE_HEIGHT: 70,
   /** The number of frames per second to animate Santa when moving. */
   SANTA_ANIMATION_SPEED: 15,
-  /** How long it takes for Santa to move one tile. */
-  SANTA_MOVE_DURATION: 200,
-  SANTA_FAST_MOVE_MULTIPLIER: 4,
+  /** How long it takes Santa to run one tile. */
+  SANTA_MOVE_DURATION: 100,
+
+  /** The dimensions of each frame of the Grinch sprite. */
+  GRINCH_SPRITE_WIDTH: 59,
+  GRINCH_SPRITE_HEIGHT: 64,
+  /** The number of frames per second to animate the Grinch when moving. */
+  GRINCH_ANIMATION_SPEED: 10,
+  /** How long it takes the Grinch to run one tile. */
+  GRINCH_MOVE_DURATION: 300,
+
+  /** How fast runners move through the grid. */
+  GRID_RUNNER_FAST_MULTIPLIER: 4,
 
   /** The square size to use when detecting collisions when solving Pathery. */
   PATHERY_COLLISION_DETECTION_SIZE: 10,

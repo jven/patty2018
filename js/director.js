@@ -1,9 +1,10 @@
 class Director {
-  constructor(scene, grid, pathery, santa, directorState) {
+  constructor(scene, grid, pathery, santa, grinch, directorState) {
     this.scene_ = scene;
     this.grid_ = grid;
     this.pathery_ = pathery;
     this.santa_ = santa;
+    this.grinch_ = grinch;
     this.directorState_ = directorState;
   }
 
@@ -26,12 +27,14 @@ class Director {
     }
 
     this.directorState_.setIsProductionRunning(true);
-    this.santa_.runPath(path);
+    this.santa_.run(path);
+    this.grinch_.run(path);
   }
 
   endProduction_() {
     this.directorState_.setIsProductionRunning(false);
 
     this.santa_.hide();
+    this.grinch_.hide();
   }
 }
