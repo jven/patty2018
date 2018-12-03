@@ -4,7 +4,7 @@ class Patty {
     this.world_ = world;
     this.cursorKeys_ = cursorKeys;
 
-    this.sprite_ = scene.physics.add.sprite(100, 100, 'girl');
+    this.sprite_ = scene.physics.add.sprite(0, 0, 'girl');
     this.sprite_.displayWidth = Config.PATTY_SPRITE_WIDTH * Config.PATTY_SCALE;
     this.sprite_.displayHeight =
         Config.PATTY_SPRITE_HEIGHT * Config.PATTY_SCALE;

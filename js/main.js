@@ -25,9 +25,13 @@ function preloadFn() {
     frameWidth: Config.PATTY_SPRITE_WIDTH,
     frameHeight: Config.PATTY_SPRITE_HEIGHT
   });
-  this.load.spritesheet('santa', 'img/santarun.png', {
-    frameWidth: Config.SANTA_SPRITE_WIDTH,
-    frameHeight: Config.SANTA_SPRITE_HEIGHT
+  this.load.spritesheet('santarun', 'img/santarun.png', {
+    frameWidth: Config.SANTA_RUN_SPRITE_WIDTH,
+    frameHeight: Config.SANTA_RUN_SPRITE_HEIGHT
+  });
+  this.load.spritesheet('santadead', 'img/santadead.png', {
+    frameWidth: Config.SANTA_DEAD_SPRITE_WIDTH,
+    frameHeight: Config.SANTA_DEAD_SPRITE_HEIGHT
   });
   
   this.load.image('wood', 'img/wood.png');
@@ -74,20 +78,17 @@ function createFn() {
       .addBlockInGrid(6, 6, 'crate')
       .addBlockInGrid(7, 6, 'crate');
 
-  patty = new Patty(this, world, cursorKeys);
-  const pattyStart = grid.getTileCenter(8, 4);
-  patty.teleportTo(pattyStart.x, pattyStart.y);
-
   santa = new Santa(this, world);
-  const santaStart = grid.getTileCenter(9, 2);
-  santa.teleportTo(santaStart.x, santaStart.y);
-
-  director = new Director(this, pathery, santa, directorState);
+  director = new Director(this, grid, pathery, santa, directorState);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
       director.toggleProductionRunning();
     }
   });
+
+  patty = new Patty(this, world, cursorKeys);
+  const pattyStart = grid.getTileCenter(8, 4);
+  patty.teleportTo(pattyStart.x, pattyStart.y);
 }
 
 function updateFn() {
@@ -98,8 +99,4 @@ function updateFn() {
   world.checkCollisions(patty.getSprite());
 
   patty.update();
-
-  // pathery.update();
-  
-  santa.update();
 }

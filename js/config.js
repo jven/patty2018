@@ -47,8 +47,10 @@ const Config = {
   /** Patty's size as a multiple of the sprite dimensions above. */
   PATTY_SCALE: 1.25,
 
-  SANTA_SPRITE_WIDTH: 45,
-  SANTA_SPRITE_HEIGHT: 56,
+  SANTA_RUN_SPRITE_WIDTH: 45,
+  SANTA_RUN_SPRITE_HEIGHT: 56,
+  SANTA_DEAD_SPRITE_WIDTH: 75,
+  SANTA_DEAD_SPRITE_HEIGHT: 70,
   SANTA_ANIMATION_SPEED: 15,
 
   /** The square size to use when detecting collisions when solving Pathery. */
