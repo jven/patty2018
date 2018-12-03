@@ -13,7 +13,8 @@ const config = {
 };
 const game = new Phaser.Game(config);
 var blockList;
-var cursors;
+var cursorKeys;
+var directorKeys;
 var pathery;
 var patty;
 var santa;
@@ -46,8 +47,10 @@ function preloadFn() {
 }
 
 function createFn() {
-  cursors = this.input.keyboard.createCursorKeys();
+  cursorKeys = this.input.keyboard.createCursorKeys();
+  directorKeys = this.input.keyboard.addKeys('N');
 
+  const directorState = new DirectorState();
   world = new World(this);
   grid = new Grid(this);
 
@@ -60,7 +63,7 @@ function createFn() {
   const tileTarget = {x: 6, y: 1};
   pathery = new Pathery(this, world, grid, tileStarts, tileEnds, tileTarget);
 
-  blockList = new BlockList(this, world, grid);
+  blockList = new BlockList(this, world, grid, directorState);
   blockList
       .addBlockInGrid(1, 1, 'gift')
       .addBlockInGrid(3, 1, 'gift')
@@ -71,17 +74,24 @@ function createFn() {
       .addBlockInGrid(6, 6, 'gift')
       .addBlockInGrid(7, 6, 'gift');
 
-  patty = new Patty(this, world, cursors);
+  patty = new Patty(this, world, cursorKeys);
   const pattyStart = grid.getTileCenter(8, 4);
   patty.teleportTo(pattyStart.x, pattyStart.y);
 
   santa = new Santa(this, world);
   const santaStart = grid.getTileCenter(9, 2);
   santa.teleportTo(santaStart.x, santaStart.y);
+
+  director = new Director(this, pathery, santa, directorState);
+  this.input.keyboard.on('keydown', function(e) {
+    if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
+      director.toggleProductionRunning();
+    }
+  });
 }
 
 function updateFn() {
-  blockList.update(patty.getSprite(), cursors);
+  blockList.update(patty.getSprite(), cursorKeys);
 
   // Patty must move after checking for collisions to allow other sprites to
   // check for overlaps on the next update.
@@ -89,7 +99,7 @@ function updateFn() {
 
   patty.update();
 
-  pathery.update();
+  // pathery.update();
   
   santa.update();
 }

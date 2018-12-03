@@ -1,8 +1,9 @@
 class BlockList {
-  constructor(scene, world, grid) {
+  constructor(scene, world, grid, directorState) {
     this.scene_ = scene;
     this.world_ = world;
     this.grid_ = grid;
+    this.directorState_ = directorState;
     this.blocks_ = [];
     this.sprites_ = [];
     this.blockIndex_ = 0;
@@ -13,6 +14,7 @@ class BlockList {
         this.scene_,
         this.world_,
         this.grid_,
+        this.directorState_,
         centerX,
         centerY,
         width,

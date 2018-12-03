@@ -3,6 +3,9 @@ const Config = {
   CAMERA_WIDTH_PX: 800,
   CAMERA_HEIGHT_PX: 600,
 
+  /** The key code to toggle whether the production is running. */
+  DIRECTOR_PRODUCTION_RUNNING_KEY_CODE: 78, // N
+
   /** The dimensions of the world. */
   WORLD_WIDTH_PX: 630,
   WORLD_HEIGHT_PX: 700,

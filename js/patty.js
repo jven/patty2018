@@ -1,8 +1,8 @@
 class Patty {
-  constructor(scene, world, cursors) {
+  constructor(scene, world, cursorKeys) {
     this.scene_ = scene;
     this.world_ = world;
-    this.cursors_ = cursors;
+    this.cursorKeys_ = cursorKeys;
 
     this.sprite_ = scene.physics.add.sprite(100, 100, 'girl');
     this.sprite_.displayWidth = Config.PATTY_SPRITE_WIDTH * Config.PATTY_SCALE;
@@ -58,24 +58,24 @@ class Patty {
   }
 
   update() {
-    if (cursors.left.isDown) {
+    if (this.cursorKeys_.left.isDown) {
       this.sprite_.setVelocityX(-Config.PATTY_MOVE_SPEED);
       this.sprite_.setVelocityY(0);
       this.sprite_.flipX = true;
       this.sprite_.anims.play('moveRight', true /* ignoreIfPlaying */);
       this.standAnimation_ = 'standRight';
-    } else if (cursors.right.isDown) {
+    } else if (this.cursorKeys_.right.isDown) {
       this.sprite_.setVelocityX(Config.PATTY_MOVE_SPEED);
       this.sprite_.setVelocityY(0);
       this.sprite_.flipX = false;
       this.sprite_.anims.play('moveRight', true /* ignoreIfPlaying */);
       this.standAnimation_ = 'standRight';
-    } else if (cursors.up.isDown) {
+    } else if (this.cursorKeys_.up.isDown) {
       this.sprite_.setVelocityX(0);
       this.sprite_.setVelocityY(-Config.PATTY_MOVE_SPEED);
       this.sprite_.anims.play('moveUp', true /* ignoreIfPlaying */);
       this.standAnimation_ = 'standUp';
-    } else if (cursors.down.isDown) {
+    } else if (this.cursorKeys_.down.isDown) {
       this.sprite_.setVelocityX(0);
       this.sprite_.setVelocityY(Config.PATTY_MOVE_SPEED);
       this.sprite_.anims.play('moveDown', true /* ignoreIfPlaying */);

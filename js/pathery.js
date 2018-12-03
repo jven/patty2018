@@ -14,7 +14,7 @@ class Pathery {
     this.lastSolveTime_++;
     if (this.lastSolveTime_ >= Config.PATHERY_SOLVE_PERIOD) {
       this.pathGraphics_.clear();
-      const path = this.solve_();
+      const path = this.solve();
       if (!path) {
         return;
       }
@@ -33,7 +33,16 @@ class Pathery {
     }
   }
 
-  solve_() {
+  /**
+   * Returns an array of objects describing the shortest path through the grid.
+   * Each element of the returned array contains two properties: tile and
+   * targetCount. Tile i contains the x, y coordinates (in tiles) within the
+   * grid of the i^th step in the path. Target count i specifies how many
+   * targets have been reached after the i^th step in the path.
+   *
+   * Returns null if there is no path through the grid.
+   */
+  solve() {
     const results = {};
     const frontier = [];
 

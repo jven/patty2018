@@ -1,5 +1,14 @@
 class BlockState {
-  constructor(scene, world, grid, centerX, centerY, width, height, spriteKey) {
+  constructor(
+      scene,
+      world,
+      grid,
+      directorState,
+      centerX,
+      centerY,
+      width,
+      height,
+      spriteKey) {
     const sprite = scene.physics.add.image(
         centerX, centerY, spriteKey).setImmovable();
     sprite.displayWidth = width;
@@ -9,6 +18,7 @@ class BlockState {
     this.scene_ = scene;
     this.world_ = world;
     this.grid_ = grid;
+    this.directorState_ = directorState;
     this.sprite_ = sprite;
     this.force_ = 0;
     this.forceDirection_ = null;
@@ -64,13 +74,11 @@ class BlockState {
 
     const newCenterX = this.sprite_.x + dx * this.sprite_.displayWidth;
     const newCenterY = this.sprite_.y + dy * this.sprite_.displayHeight;
-    const isObstacleInTheWay = this.world_.anyObstacleInRegion(
+    if (!this.shouldMoveTo_(
         newCenterX,
         newCenterY,
         this.sprite_.displayWidth - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
-        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE);
-    const isInGrid = this.grid_.isInGrid(newCenterX, newCenterY);
-    if (isObstacleInTheWay || !isInGrid) {
+        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE)) {
       // Abort the move.
       return;
     }
@@ -102,5 +110,28 @@ class BlockState {
       return {label: 'down', dx: 0, dy: 1};
     }
     return null;
+  }
+
+  shouldMoveTo_(newCenterX, newCenterY, width, height) {
+    if (this.directorState_.isProductionRunning()) {
+      // The production is running, don't move.
+      return false;
+    }
+
+    if (!this.grid_.isInGrid(newCenterX, newCenterY)) {
+      // The given location is outside of the grid, don't move.
+      return false;
+    }
+
+    if (this.world_.anyObstacleInRegion(
+        newCenterX,
+        newCenterY,
+        this.sprite_.displayWidth - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
+        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE)) {
+      // There's something in the way, don't move.
+      return false;
+    }
+
+    return true;
   }
 }
