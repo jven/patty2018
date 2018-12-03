@@ -32,7 +32,7 @@ class Grinch {
   }
 
   run(path) {
-    this.gridRunner_.run(path);
+    return this.gridRunner_.run(path);
   }
 
   update() {

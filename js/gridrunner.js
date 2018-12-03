@@ -17,10 +17,20 @@ class GridRunner {
   }
 
   run(path) {
-    this.runState_ = {
+    if (this.runState_) {
+      console.error('Already running!');
+      return;
+    }
+
+    const newRunState = {
       path: path,
-      index: 0
+      index: 0,
+      resolveFn: null
     };
+    const runPromise = new Promise(function(resolve, reject) {
+      newRunState.resolveFn = resolve;
+    });
+    this.runState_ = newRunState;
 
     const center = this.grid_.getTileCenter(path[0].tile.x, path[0].tile.y);
     this.sprite_.x = center.x - Config.GRID_TILE_SIZE_PX;
@@ -29,6 +39,8 @@ class GridRunner {
     this.sprite_.anims.play(this.runAnimation_);
 
     this.addNextTween_();
+    
+    return runPromise;
   }
 
   update() {
@@ -40,8 +52,9 @@ class GridRunner {
     }
 
     if (this.runState_.index >= this.runState_.path.length) {
+      // Finished running!
+      this.runState_.resolveFn(true /* finished */);
       this.hide();
-      this.runState_ = null;
       return;
     }
 

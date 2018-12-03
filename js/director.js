@@ -27,8 +27,13 @@ class Director {
     }
 
     this.directorState_.setIsProductionRunning(true);
-    this.santa_.run(path);
-    this.grinch_.run(path);
+    this.santa_.run(path).then(santaFinished => {
+      if (santaFinished) {
+        this.grinch_.run(path).then(grinchFinished => {
+          this.endProduction_();
+        });
+      }
+    });
   }
 
   endProduction_() {

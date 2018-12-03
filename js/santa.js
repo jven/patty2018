@@ -54,7 +54,7 @@ class Santa {
 
   run(path) {
     this.deadSprite_.visible = false;
-    this.gridRunner_.run(path);
+    return this.gridRunner_.run(path);
   }
 
   update() {
