@@ -71,6 +71,9 @@ class Santa {
   }
 
   update() {
+    this.scene_.tweens.getTweensOf(this.runSprite_)
+        .forEach(t => t.setTimeScale(this.directorState_.getSantaTimeScale()));
+
     if (!this.runState_) {
       return;
     }
@@ -101,7 +104,7 @@ class Santa {
     const nextCenter = this.grid_.getTileCenter(nextTile.x, nextTile.y);
     this.scene_.tweens.add({
       targets: this.runSprite_,
-      duration: this.directorState_.getSantaMoveSpeed(),
+      duration: Config.SANTA_MOVE_DURATION,
       x: nextCenter.x,
       y: nextCenter.y
     });

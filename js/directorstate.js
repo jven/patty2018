@@ -12,9 +12,9 @@ class DirectorState {
     return this.isProductionRunning_;
   }
 
-  getSantaMoveSpeed() {
+  getSantaTimeScale() {
     return this.directorKeys_.space.isDown
-        ? Config.SANTA_FAST_MOVE_DURATION
-        : Config.SANTA_MOVE_DURATION;
+        ? Config.SANTA_FAST_MOVE_MULTIPLIER
+        : 1;
   }
 }
