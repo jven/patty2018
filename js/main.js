@@ -78,7 +78,7 @@ function createFn() {
       .addBlockInGrid(6, 6, 'crate')
       .addBlockInGrid(7, 6, 'crate');
 
-  santa = new Santa(this, world);
+  santa = new Santa(this, world, grid);
   director = new Director(this, grid, pathery, santa, directorState);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
@@ -99,4 +99,6 @@ function updateFn() {
   world.checkCollisions(patty.getSprite());
 
   patty.update();
+
+  santa.update();
 }

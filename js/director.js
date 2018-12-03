@@ -17,8 +17,6 @@ class Director {
   }
 
   startProduction_() {
-    this.directorState_.setIsProductionRunning(true);
-
     const path = this.pathery_.solve();
     if (!path) {
       const santaCenter = this.grid_.getTileCenter(0, 3);
@@ -27,9 +25,8 @@ class Director {
       return;
     }
 
-    const santaCenter = this.grid_.getTileCenter(0, 3);
-    this.santa_.dieAt(
-        santaCenter.x - 20, santaCenter.y);
+    this.directorState_.setIsProductionRunning(true);
+    this.santa_.runPath(path);
   }
 
   endProduction_() {

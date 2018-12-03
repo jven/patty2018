@@ -28,7 +28,7 @@ const Config = {
 
   /** The time needed for Patty to touch a block before it moves. */
   BLOCK_HYSTERESIS: 20,
-  /** The time it takes for the block to move. */
+  /** The time it takes for the block to move one tile. */
   BLOCK_MOVE_DURATION: 200,
   /**
    * The amount of allowance to give when checking for obstacles when moving
@@ -40,18 +40,21 @@ const Config = {
   PATTY_ANIMATION_SPEED: 10,
   /** How fast Patty moves. */
   PATTY_MOVE_SPEED: 200,
-  /** The width of each frame in the Patty sprite sheet. */
+  /** The dimensions of each frame in the Patty sprite sheet. */
   PATTY_SPRITE_WIDTH: 24,
-  /** The height of each frame in the Patty sprite sheet. */
   PATTY_SPRITE_HEIGHT: 32,
   /** Patty's size as a multiple of the sprite dimensions above. */
   PATTY_SCALE: 1.25,
 
+  /** The dimensions of each frame in the Santa sprites. */
   SANTA_RUN_SPRITE_WIDTH: 45,
   SANTA_RUN_SPRITE_HEIGHT: 56,
   SANTA_DEAD_SPRITE_WIDTH: 75,
   SANTA_DEAD_SPRITE_HEIGHT: 70,
+  /** The number of frames per second to animate Santa when moving. */
   SANTA_ANIMATION_SPEED: 15,
+  /** How long it takes for Santa to move one tile. */
+  SANTA_MOVE_DURATION: 200,
 
   /** The square size to use when detecting collisions when solving Pathery. */
   PATHERY_COLLISION_DETECTION_SIZE: 10,
