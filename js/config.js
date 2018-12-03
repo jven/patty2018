@@ -59,6 +59,7 @@ const Config = {
   /** The dimensions of each frame of the Grinch sprite. */
   GRINCH_SPRITE_WIDTH: 59,
   GRINCH_SPRITE_HEIGHT: 64,
+  GRINCH_SCALE: 0.8,
   /** The number of frames per second to animate the Grinch when moving. */
   GRINCH_ANIMATION_SPEED: 10,
   /** How long it takes the Grinch to run one tile. */

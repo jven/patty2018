@@ -1,8 +1,10 @@
 class Grinch {
   constructor(scene, grid, directorState) {
     this.sprite_ = scene.physics.add.sprite(0, 0, 'grinch');
-    this.sprite_.displayWidth = Config.GRINCH_SPRITE_WIDTH;
-    this.sprite_.displayHeight = Config.GRINCH_SPRITE_HEIGHT;
+    this.sprite_.displayWidth = Config.GRINCH_SPRITE_WIDTH
+        * Config.GRINCH_SCALE;
+    this.sprite_.displayHeight = Config.GRINCH_SPRITE_HEIGHT
+        * Config.GRINCH_SCALE;
     this.sprite_.setImmovable(true);
     this.sprite_.visible = false;
 
