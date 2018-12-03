@@ -78,7 +78,7 @@ function createFn() {
       .addBlockInGrid(2, 4, 'crate')
       .addBlockInGrid(1, 5, 'crate');
 
-  santa = new Santa(this, world, grid);
+  santa = new Santa(this, world, grid, directorState);
   director = new Director(this, grid, pathery, santa, directorState);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {

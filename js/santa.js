@@ -1,8 +1,9 @@
 class Santa {
-  constructor(scene, world, grid) {
+  constructor(scene, world, grid, directorState) {
     this.scene_ = scene;
     this.world_ = world;
     this.grid_ = grid;
+    this.directorState_ = directorState;
 
     this.runSprite_ = scene.physics.add.sprite(0, 0, 'santarun');
     this.runSprite_.displayWidth = Config.SANTA_RUN_SPRITE_WIDTH;
@@ -70,8 +71,14 @@ class Santa {
   }
 
   update() {
-    if (!this.runState_ || this.runState_.index >= this.runState_.path.length) {
+    if (!this.runState_) {
+      return;
+    }
+
+    if (this.runState_.index >= this.runState_.path.length) {
+      this.hide();
       this.runState_ = null;
+      this.directorState_.setIsProductionRunning(false);
       return;
     }
 
