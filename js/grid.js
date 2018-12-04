@@ -6,7 +6,7 @@ class Grid {
     this.renderRug_();
 
     const fireplaceCenter = this.getTileCenter(0, startY);
-    const fireplace = scene.add.sprite(
+    const fireplace = scene.physics.add.sprite(
         (fireplaceCenter.x - Config.GRID_TILE_SIZE_PX / 2
             - Config.WORLD_FIREPLACE_WIDTH_PX
             * Config.WORLD_FIREPLACE_SCALE / 2),
@@ -19,6 +19,7 @@ class Grid {
     fireplace.displayHeight = Config.WORLD_FIREPLACE_HEIGHT_PX
         * Config.WORLD_FIREPLACE_SCALE;
     fireplace.depth = Depths.OBJECTS;
+    fireplace.setImmovable(true);
     world.addObstacleSprite(fireplace);
 
     const target = this.renderSprite_(6, 1, 'target', Depths.TARGET);
