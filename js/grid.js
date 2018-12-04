@@ -32,7 +32,7 @@ class Grid {
     treeObstacle.displayWidth = Config.GRID_TILE_SIZE_PX;
     treeObstacle.displayHeight = Config.GRID_TILE_SIZE_PX;
     treeObstacle.setImmovable(true);
-    world.addObstacleSprite(treeObstacle);
+    world.addNonPathBlockingObstacleSprite(treeObstacle);
 
     const treeWidth = Config.TREE_SPRITE_WIDTH * Config.TREE_SCALE;
     const treeHeight = Config.TREE_SPRITE_HEIGHT * Config.TREE_SCALE;

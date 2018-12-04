@@ -2,6 +2,7 @@ class World {
   constructor(scene) {
     this.scene_ = scene;
     this.obstacleSprites_ = [];
+    this.nonBlockingObstacleSprites_ = [];
 
     scene.physics.world.setBounds(
         0, 0, Config.WORLD_WIDTH_PX, Config.WORLD_HEIGHT_PX);
@@ -92,11 +93,33 @@ class World {
     this.obstacleSprites_.push(sprite);
   }
 
+  addNonPathBlockingObstacleSprite(sprite) {
+    this.nonBlockingObstacleSprites_.push(sprite);
+  }
+
+  anyPathBlockingObstacleInRegion(centerX, centerY, width, height) {
+    return this.anyObstacleInRegion_(
+        this.obstacleSprites_,
+        centerX,
+        centerY,
+        width,
+        height);
+  }
+
   anyObstacleInRegion(centerX, centerY, width, height) {
+    return this.anyObstacleInRegion_(
+        this.obstacleSprites_.concat(this.nonBlockingObstacleSprites_),
+        centerX,
+        centerY,
+        width,
+        height);
+  }
+
+  anyObstacleInRegion_(obstacles, centerX, centerY, width, height) {
     const region = new Phaser.Geom.Rectangle(
         centerX - width / 2, centerY - height / 2, width, height);
-    for (var i = 0; i < this.obstacleSprites_.length; i++) {
-      const obstacleRect = this.obstacleSprites_[i].getBounds();
+    for (var i = 0; i < obstacles.length; i++) {
+      const obstacleRect = obstacles[i].getBounds();
       const intersection = Phaser.Geom.Rectangle.Intersection(
           region, obstacleRect);
       if (intersection.width || intersection.height) {
@@ -108,6 +131,8 @@ class World {
   }
 
   checkCollisions(sprite) {
-    this.scene_.physics.collide(sprite, this.obstacleSprites_);
+    this.scene_.physics.collide(
+        sprite,
+        this.obstacleSprites_.concat(this.nonBlockingObstacleSprites_));
   }
 }

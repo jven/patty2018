@@ -21,7 +21,7 @@ class Pathery {
     for (var tileX = 0; tileX < Config.GRID_WIDTH_IN_TILES; tileX++) {
       for (var tileY = 0; tileY < Config.GRID_HEIGHT_IN_TILES; tileY++) {
         const center = this.grid_.getTileCenter(tileX, tileY);
-        if (this.world_.anyObstacleInRegion(
+        if (this.world_.anyPathBlockingObstacleInRegion(
             center.x,
             center.y,
             Config.PATHERY_COLLISION_DETECTION_SIZE,
