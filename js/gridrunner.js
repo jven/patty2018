@@ -116,6 +116,7 @@ class GridRunner {
 
     if (this.runState_.stamina == 0) {
       // We fainted!
+      this.runState_.faintResolveFn();
       return;
     }
 
@@ -145,7 +146,6 @@ class GridRunner {
 
     // Update the next index and center in the state.
     this.runState_.nextIndex++;
-
     if (this.runState_.nextIndex > this.runState_.path.length) {
       // We're already done.
       this.runState_.nextCenter = null;

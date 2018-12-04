@@ -27,6 +27,19 @@ class Gift {
         - this.sprite_.displayHeight / 2;
   }
 
+  moveToVictory() {
+    this.spriteToFollow_ = null;
+    this.sprite_.visible = true;
+
+    const victory = this.grid_.getEndTiles()[0];
+    const center = this.grid_.getTileCenter(victory.x, victory.y);
+    this.sprite_.x = center.x;
+    this.sprite_.y = center.y;
+    this.sprite_.displayWidth = Config.GIFT_WIDTH_PX * Config.GIFT_VICTORY_SCALE;
+    this.sprite_.displayHeight
+        = Config.GIFT_HEIGHT_PX * Config.GIFT_VICTORY_SCALE;
+  }
+
   follow(spriteToFollow) {
     this.spriteToFollow_ = spriteToFollow;
     this.sprite_.visible = true;

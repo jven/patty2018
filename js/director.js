@@ -8,9 +8,16 @@ class Director {
     this.grinch_ = grinch;
     this.gift_ = gift;
     this.directorState_ = directorState;
+
+    this.reachedVictory_ = false;
   }
 
   toggleProductionRunning() {
+    if (this.reachedVictory_) {
+      // Disable toggling the production if victory was already reached.
+      return;
+    }
+
     if (this.directorState_.isProductionRunning()) {
       this.endProduction_();
       return;
@@ -35,12 +42,10 @@ class Director {
     });
     santaRun.finishPromise.then(() => {
       const grinchRun = this.grinch_.run(path);
-      grinchRun.targetPromise.then(() => {
-        this.gift_.follow(this.grinch_.getSprite());
-      });
-      grinchRun.finishPromise.then(() => {
-        this.endProduction_();
-      });
+      grinchRun.targetPromise.then(() =>
+          this.gift_.follow(this.grinch_.getSprite()));
+      grinchRun.finishPromise.then(() => this.endProduction_());
+      grinchRun.faintPromise.then(() => this.victoryCutscene_());
     });
     this.gift_.follow(this.santa_.getRunSprite());
   }
@@ -51,5 +56,9 @@ class Director {
     this.santa_.hide();
     this.grinch_.hide();
     this.gift_.hide();
+  }
+
+  victoryCutscene_() {
+    this.gift_.moveToVictory();
   }
 }

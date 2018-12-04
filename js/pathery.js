@@ -123,9 +123,8 @@ class Pathery {
     }
     const path = [];
     while (currentResult != null) {
-      if (currentResult.parentResult != null
-          && currentResult.targetCount
-              == currentResult.parentResult.targetCount) {
+      if (!currentResult.parentResult || currentResult.targetCount
+          == currentResult.parentResult.targetCount) {
         // Don't include the target twice in the path.
         path.push({
           tile: currentResult.tile,
