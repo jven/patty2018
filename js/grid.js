@@ -129,6 +129,10 @@ class Grid {
       return null;
     }
 
+    return this.getTileCenterOffGrid(tileX, tileY);
+  }
+
+  getTileCenterOffGrid(tileX, tileY) {
     return {
       x: Config.GRID_TOP_LEFT_X + Config.GRID_TILE_SIZE_PX * (tileX + 0.5),
       y: Config.GRID_TOP_LEFT_Y + Config.GRID_TILE_SIZE_PX * (tileY + 0.5)

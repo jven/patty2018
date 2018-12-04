@@ -7,8 +7,8 @@ const Config = {
   DIRECTOR_PRODUCTION_RUNNING_KEY_CODE: 78, // N
 
   /** The dimensions of the world. */
-  WORLD_WIDTH_PX: 630,
-  WORLD_HEIGHT_PX: 640,
+  WORLD_WIDTH_PX: 640,
+  WORLD_HEIGHT_PX: 615,
   WORLD_WALL_TOP_HEIGHT_PX: 96,
   WORLD_WALL_SIDE_WIDTH_PX: 10,
   WORLD_WALL_TOP_RIGHT_WIDTH_PX: 10,
@@ -20,8 +20,8 @@ const Config = {
   WORLD_FIREPLACE_SCALE: 0.57,
 
   /** The coordinates of the top-left corner of the grid. */
-  GRID_TOP_LEFT_X: 40,
-  GRID_TOP_LEFT_Y: 250,
+  GRID_TOP_LEFT_X: 50,
+  GRID_TOP_LEFT_Y: 225,
   /** The size of the tiles in the grid, in pixels. */
   GRID_TILE_SIZE_PX: 50,
   /** The width of the grid, in number of tiles. */

@@ -8,7 +8,8 @@ class BlockState {
       centerY,
       width,
       height,
-      spriteKey) {
+      spriteKey,
+      canMoveOffGrid) {
     const sprite = scene.physics.add.image(
         centerX, centerY, spriteKey).setImmovable();
     sprite.displayWidth = width;
@@ -23,6 +24,7 @@ class BlockState {
     this.sprite_ = sprite;
     this.force_ = 0;
     this.forceDirection_ = null;
+    this.canMoveOffGrid_ = canMoveOffGrid;
   }
 
   getIndex() {
@@ -119,7 +121,8 @@ class BlockState {
       return false;
     }
 
-    if (!this.grid_.isInGrid(newCenterX, newCenterY)) {
+    if (!this.canMoveOffGrid_
+        && !this.grid_.isInGrid(newCenterX, newCenterY)) {
       // The given location is outside of the grid, don't move.
       return false;
     }
