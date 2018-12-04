@@ -1,11 +1,12 @@
 class Director {
-  constructor(scene, grid, pathery, santa, grinch, directorState) {
+  constructor(scene, grid, pathery, santa, grinch, directorState, startY) {
     this.scene_ = scene;
     this.grid_ = grid;
     this.pathery_ = pathery;
     this.santa_ = santa;
     this.grinch_ = grinch;
     this.directorState_ = directorState;
+    this.startY_ = startY;
   }
 
   toggleProductionRunning() {
@@ -20,9 +21,8 @@ class Director {
   startProduction_() {
     const path = this.pathery_.solve();
     if (!path) {
-      const santaCenter = this.grid_.getTileCenter(0, 3);
-      this.santa_.dieAt(
-          santaCenter.x - Config.GRID_TILE_SIZE_PX, santaCenter.y);
+      const santaCenter = this.grid_.getTileCenter(0, this.startY_);
+      this.santa_.dieAt(santaCenter.x, santaCenter.y);
       return;
     }
 

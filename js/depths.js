@@ -12,7 +12,10 @@ const Depths = {
 
   GRINCH: 80,
   SANTA: 90,
-  STAMINA_TEXT: 95,
 
-  PATTY: 100
+  PATTY: 100,
+
+  TREE: 110,
+
+  STAMINA_TEXT: 200
 }

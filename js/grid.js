@@ -1,30 +1,36 @@
 class Grid {
-  constructor(scene, world, startY, endY) {
+  constructor(scene, world, startY, endY, targetTile) {
     this.scene_ = scene;
     this.world_ = world;
 
     this.renderRug_();
 
     const fireplaceCenter = this.getTileCenter(0, startY);
+    const fireplaceWidth = Config.WORLD_FIREPLACE_WIDTH_PX
+        * Config.WORLD_FIREPLACE_SCALE;
+    const fireplaceHeight = Config.WORLD_FIREPLACE_HEIGHT_PX
+        * Config.WORLD_FIREPLACE_SCALE;
     const fireplace = scene.physics.add.sprite(
-        (fireplaceCenter.x - Config.GRID_TILE_SIZE_PX / 2
-            - Config.WORLD_FIREPLACE_WIDTH_PX
-            * Config.WORLD_FIREPLACE_SCALE / 2),
+        (fireplaceCenter.x - Config.GRID_TILE_SIZE_PX / 2 - fireplaceWidth / 2),
         (fireplaceCenter.y + Config.GRID_TILE_SIZE_PX / 2
-            - Config.WORLD_FIREPLACE_HEIGHT_PX
-            * Config.WORLD_FIREPLACE_SCALE / 2),
+            - fireplaceHeight / 2),
         'fireplace');
-    fireplace.displayWidth = Config.WORLD_FIREPLACE_WIDTH_PX
-        * Config.WORLD_FIREPLACE_SCALE;
-    fireplace.displayHeight = Config.WORLD_FIREPLACE_HEIGHT_PX
-        * Config.WORLD_FIREPLACE_SCALE;
+    fireplace.displayWidth = fireplaceWidth;
+    fireplace.displayHeight = fireplaceHeight;
     fireplace.depth = Depths.OBJECTS;
     fireplace.setImmovable(true);
     world.addObstacleSprite(fireplace);
 
-    const target = this.renderSprite_(6, 1, 'target', Depths.TARGET);
-    target.displayWidth = Config.GRID_TILE_SIZE_PX;
-    target.displayHeight = Config.GRID_TILE_SIZE_PX;
+    const treeCenter = this.getTileCenter(targetTile.x, targetTile.y);
+    const treeWidth = Config.TREE_SPRITE_WIDTH * Config.TREE_SCALE;
+    const treeHeight = Config.TREE_SPRITE_HEIGHT * Config.TREE_SCALE;
+    const tree = scene.add.sprite(
+        treeCenter.x,
+        treeCenter.y + Config.GRID_TILE_SIZE_PX / 2 - treeHeight / 2,
+        'tree');
+    tree.displayWidth = treeWidth;
+    tree.displayHeight = treeHeight;
+    tree.depth = Depths.TREE;
   }
 
   renderRug_() {

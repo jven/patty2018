@@ -38,6 +38,10 @@ function preloadFn() {
     frameWidth: Config.GRINCH_SPRITE_WIDTH,
     frameHeight: Config.GRINCH_SPRITE_HEIGHT
   });
+  this.load.spritesheet('tree', 'img/tree.png', {
+    frameWidth: Config.TREE_SPRITE_WIDTH,
+    frameHeight: Config.TREE_SPRITE_HEIGHT
+  });
   
   this.load.image('wood', 'img/wood.png');
 
@@ -63,7 +67,8 @@ function createFn() {
 
   const directorState = new DirectorState(directorKeys);
   world = new World(this);
-  grid = new Grid(this, world, 4 /* startY */, 1 /* endY */);
+  grid = new Grid(
+      this, world, 4 /* startY */, 1 /* endY */, {x: 6, y: 1} /* targetTile */);
   pathery = new Pathery(
       this,
       world,
@@ -85,7 +90,8 @@ function createFn() {
 
   santa = new Santa(this, grid, directorState);
   grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
-  director = new Director(this, grid, pathery, santa, grinch, directorState);
+  director = new Director(
+      this, grid, pathery, santa, grinch, directorState, 4 /* startY */);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
       director.toggleProductionRunning();

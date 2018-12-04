@@ -29,6 +29,11 @@ const Config = {
   /** The height of the grid, in number of tiles. */
   GRID_HEIGHT_IN_TILES: 7,
 
+  /** The dimensions of the tree. */
+  TREE_SPRITE_WIDTH: 97,
+  TREE_SPRITE_HEIGHT: 140,
+  TREE_SCALE: 0.7,
+
   /** The time needed for Patty to touch a block before it moves. */
   BLOCK_HYSTERESIS: 20,
   /** The time it takes for the block to move one tile. */
