@@ -79,10 +79,14 @@ class World {
   }
 
   renderObjects_() {
+    const pianoWidth = Config.WORLD_PIANO_WIDTH_PX * Config.WORLD_PIANO_SCALE;
+    const pianoHeight = Config.WORLD_PIANO_HEIGHT_PX * Config.WORLD_PIANO_SCALE;
     const piano = this.scene_.physics.add.sprite(
-        Config.WORLD_WALL_SIDE_WIDTH_PX + Config.WORLD_PIANO_WIDTH_PX / 2,
+        Config.WORLD_WALL_SIDE_WIDTH_PX + pianoWidth / 2,
         200,
         'piano');
+    piano.displayWidth = pianoWidth;
+    piano.displayHeight = pianoHeight;
     piano.depth = Depths.OBJECTS;
     piano.setImmovable(true);
 
