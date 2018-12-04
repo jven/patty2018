@@ -30,16 +30,12 @@ class GridRunner {
   }
 
   hide() {
+    // Don't clear the path markers here to give them time to finish animating
+    // after the production.
     this.staminaText_.visible = false;
     this.scene_.tweens.killTweensOf(this.sprite_);
     this.runState_ = null;
     this.sprite_.visible = false;
-
-    this.pathMarkers_.forEach(pathMarker => {
-      this.scene_.tweens.killTweensOf(pathMarker);
-      pathMarker.destroy();
-    });
-    this.pathMarkers_ = [];
   }
 
   run(path) {
@@ -48,9 +44,26 @@ class GridRunner {
       return;
     }
 
+    // Clear any existing path markers.
+    this.pathMarkers_.forEach(pathMarker => {
+      this.scene_.tweens.killTweensOf(pathMarker);
+      pathMarker.destroy();
+    });
+    this.pathMarkers_ = [];
+
+    // Move the sprite to the start.
+    const startCenter = this.grid_.getTileCenter(
+        path[0].tile.x, path[0].tile.y);
+    this.sprite_.x = startCenter.x - Config.GRID_TILE_SIZE_PX;
+    this.sprite_.y = startCenter.y;
+    this.sprite_.visible = true;
+    this.sprite_.anims.play(this.runAnimation_);
+
+    // Initialize the new state and make the first step.
     const newRunState = {
       path: path,
-      index: 0,
+      nextIndex: -1,
+      nextCenter: null,
       stamina: this.maxStamina_,
       resolveFn: null
     };
@@ -58,14 +71,7 @@ class GridRunner {
       newRunState.resolveFn = resolve;
     });
     this.runState_ = newRunState;
-
-    const center = this.grid_.getTileCenter(path[0].tile.x, path[0].tile.y);
-    this.sprite_.x = center.x - Config.GRID_TILE_SIZE_PX;
-    this.sprite_.y = center.y;
-    this.sprite_.visible = true;
-    this.sprite_.anims.play(this.runAnimation_);
-
-    this.addNextTween_();
+    this.makeNextStep_();
     
     return runPromise;
   }
@@ -78,15 +84,14 @@ class GridRunner {
       return;
     }
 
-    const path = this.runState_.path;
-    const currIdx = this.runState_.index;
-    if (currIdx >= path.length) {
-      // Finished running!
+    if (!this.runState_.nextCenter) {
+      // We finished running!
       this.runState_.resolveFn(true /* finished */);
       this.hide();
       return;
     }
 
+    // Update the stamina text.
     if (this.runState_.stamina >= 0) {
       this.staminaText_.visible = true;
       this.staminaText_.x = this.sprite_.x - 5;
@@ -96,28 +101,43 @@ class GridRunner {
       this.staminaText_.visible = false;
     }
 
-    const currentTile = path[currIdx].tile;
-    const currentCenter = this.grid_.getTileCenter(
-        currentTile.x, currentTile.y);
-    if (this.sprite_.x == currentCenter.x
-        && this.sprite_.y == currentCenter.y) {
-      this.addPathMarker_(currentTile);
-      if (currIdx < path.length - 1
-          && path[currIdx].targetCount == path[currIdx + 1].targetCount) {
-        this.runState_.stamina--;
-      }
-      this.runState_.index++;
-      this.addNextTween_();
+    if (this.sprite_.x == this.runState_.nextCenter.x
+        && this.sprite_.y == this.runState_.nextCenter.y) {
+      // We reached the next center, make the next step.
+      this.addPathMarker_();
+      this.runState_.stamina--;
+      this.makeNextStep_();
     }
   }
 
-  addNextTween_() {
-    if (this.runState_.index >= this.runState_.path.length) {
+  makeNextStep_() {
+    if (!this.runState_ ||
+        this.runState_.nextIndex > this.runState_.path.length) {
+      console.error('Unexpected call to makeNextStep_.');
       return;
     }
 
-    const nextTile = this.runState_.path[this.runState_.index].tile;
-    const nextCenter = this.grid_.getTileCenter(nextTile.x, nextTile.y);
+    // Update the next index and center in the state.
+    this.runState_.nextIndex++;
+
+    if (this.runState_.nextIndex > this.runState_.path.length) {
+      // We're already done.
+      this.runState_.nextCenter = null;
+      return
+    }
+
+    var nextCenter = {};
+    if (this.runState_.nextIndex == this.runState_.path.length) {
+      // Run off the right side of the grid.
+      nextCenter.x = this.sprite_.x + Config.GRID_TILE_SIZE_PX;
+      nextCenter.y = this.sprite_.y;
+    } else {
+      const nextTile = this.runState_.path[this.runState_.nextIndex].tile;
+      nextCenter = this.grid_.getTileCenter(nextTile.x, nextTile.y);
+    }
+    this.runState_.nextCenter = nextCenter;
+
+    // Add a tween to the next center.
     this.scene_.tweens.add({
       targets: this.sprite_,
       duration: this.moveDuration_,
@@ -131,7 +151,13 @@ class GridRunner {
     }
   }
 
-  addPathMarker_(tile) {
+  addPathMarker_() {
+    if (!this.runState_ ||
+        this.runState_.nextIndex >= this.runState_.path.length) {
+      return;
+    }
+
+    const tile = this.runState_.path[this.runState_.nextIndex].tile;
     const center = this.grid_.getTileCenter(tile.x, tile.y);
     const pathMarker = this.scene_.add.sprite(center.x, center.y, 'pathmarker');
     pathMarker.alpha = Config.GRID_RUNNER_PATH_MARKER_ALPHA;

@@ -126,10 +126,15 @@ class Pathery {
     }
     const path = [];
     while (currentResult != null) {
-      path.push({
-        tile: currentResult.tile,
-        targetCount: currentResult.targetCount
-      });
+      if (currentResult.parentResult != null
+          && currentResult.targetCount
+              == currentResult.parentResult.targetCount) {
+        // Don't include the target twice in the path.
+        path.push({
+          tile: currentResult.tile,
+          targetCount: currentResult.targetCount
+        });
+      }
       currentResult = currentResult.parentResult;
     }
     return path;
