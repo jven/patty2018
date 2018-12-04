@@ -33,11 +33,12 @@ class Gift {
 
     const victory = this.grid_.getEndTiles()[0];
     const center = this.grid_.getTileCenter(victory.x, victory.y);
-    this.sprite_.x = center.x;
-    this.sprite_.y = center.y;
     this.sprite_.displayWidth = Config.GIFT_WIDTH_PX * Config.GIFT_VICTORY_SCALE;
     this.sprite_.displayHeight
         = Config.GIFT_HEIGHT_PX * Config.GIFT_VICTORY_SCALE;
+    this.sprite_.x = center.x;
+    this.sprite_.y = center.y + Config.GRID_TILE_SIZE_PX / 2
+        - this.sprite_.displayHeight / 2;
   }
 
   follow(spriteToFollow) {

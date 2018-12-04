@@ -39,7 +39,7 @@ const Config = {
   GIFT_WIDTH_PX: 256,
   GIFT_HEIGHT_PX: 256,
   GIFT_SCALE: 0.1,
-  GIFT_VICTORY_SCALE: 0.2,
+  GIFT_VICTORY_SCALE: 0.15,
 
   /** The time needed for Patty to touch a block before it moves. */
   BLOCK_HYSTERESIS: 20,
@@ -72,13 +72,20 @@ const Config = {
   SANTA_MOVE_DURATION: 300,
 
   /** The dimensions of each frame of the Grinch sprite. */
-  GRINCH_SPRITE_WIDTH: 59,
-  GRINCH_SPRITE_HEIGHT: 64,
-  GRINCH_SCALE: 0.8,
+  GRINCH_RUN_SPRITE_WIDTH: 59,
+  GRINCH_RUN_SPRITE_HEIGHT: 64,
+  GRINCH_RUN_SCALE: 0.8,
+  GRINCH_FAINT_SPRITE_WIDTH: 31,
+  GRINCH_FAINT_SPRITE_HEIGHT: 74,
+  GRINCH_FAINT_SCALE: 0.8,
   /** The number of frames per second to animate the Grinch when moving. */
   GRINCH_ANIMATION_SPEED: 20,
   /** How long it takes the Grinch to run one tile. */
   GRINCH_MOVE_DURATION: 300,
+  /** How long it takes the Grinch to faint. */
+  GRINCH_FAINT_DURATION: 1000,
+  /** How long to wait before the Grinch faints. */
+  GRINCH_FAINT_DELAY: 1000,
 
   /** How fast runners move through the grid. */
   GRID_RUNNER_FAST_MULTIPLIER: 15,

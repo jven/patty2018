@@ -35,14 +35,15 @@ function preloadFn() {
     frameWidth: Config.SANTA_DEAD_SPRITE_WIDTH,
     frameHeight: Config.SANTA_DEAD_SPRITE_HEIGHT
   });
-  this.load.spritesheet('grinch', 'img/grinch.png', {
-    frameWidth: Config.GRINCH_SPRITE_WIDTH,
-    frameHeight: Config.GRINCH_SPRITE_HEIGHT
+  this.load.spritesheet('grinchrun', 'img/grinchrun.png', {
+    frameWidth: Config.GRINCH_RUN_SPRITE_WIDTH,
+    frameHeight: Config.GRINCH_RUN_SPRITE_HEIGHT
   });
   this.load.spritesheet('tree', 'img/tree.png', {
     frameWidth: Config.TREE_SPRITE_WIDTH,
     frameHeight: Config.TREE_SPRITE_HEIGHT
   });
+  this.load.image('grinchfaint', 'img/grinchfaint.png');
   
   this.load.image('wood', 'img/wood.png');
 
@@ -85,7 +86,7 @@ function createFn() {
       .addBlockInGrid(1, 5, 'crate');
 
   santa = new Santa(this, grid, directorState);
-  grinch = new Grinch(this, grid, directorState, 39 /* maxStamina */);
+  grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
   gift = new Gift(this, grid);
   director = new Director(
       this, grid, pathery, santa, grinch, gift, directorState);

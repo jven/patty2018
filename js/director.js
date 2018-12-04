@@ -43,7 +43,7 @@ class Director {
     santaRun.finishPromise.then(() => {
       const grinchRun = this.grinch_.run(path);
       grinchRun.targetPromise.then(() =>
-          this.gift_.follow(this.grinch_.getSprite()));
+          this.gift_.follow(this.grinch_.getRunSprite()));
       grinchRun.finishPromise.then(() => this.endProduction_());
       grinchRun.faintPromise.then(() => this.victoryCutscene_());
     });
@@ -59,6 +59,8 @@ class Director {
   }
 
   victoryCutscene_() {
+    this.reachedVictory_ = true;
+    this.grinch_.faint();
     this.gift_.moveToVictory();
   }
 }

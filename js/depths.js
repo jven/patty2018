@@ -9,14 +9,13 @@ const Depths = {
   OBJECTS: 30,
 
   BLOCKS: 40,
+  GRINCH: 50,
+  SANTA: 60,
 
-  GRINCH: 80,
-  SANTA: 90,
+  PATTY: 80,
 
-  PATTY: 100,
-
-  TREE: 110,
-  GIFT: 120,
+  TREE: 90,
+  GIFT: 100,
 
   STAMINA_TEXT: 200
 }
