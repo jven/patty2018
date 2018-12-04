@@ -8,7 +8,7 @@ const Config = {
 
   /** The dimensions of the world. */
   WORLD_WIDTH_PX: 630,
-  WORLD_HEIGHT_PX: 700,
+  WORLD_HEIGHT_PX: 640,
   WORLD_WALL_TOP_HEIGHT_PX: 96,
   WORLD_WALL_SIDE_WIDTH_PX: 10,
   WORLD_WALL_TOP_RIGHT_WIDTH_PX: 10,
@@ -21,7 +21,7 @@ const Config = {
 
   /** The coordinates of the top-left corner of the grid. */
   GRID_TOP_LEFT_X: 40,
-  GRID_TOP_LEFT_Y: 300,
+  GRID_TOP_LEFT_Y: 250,
   /** The size of the tiles in the grid, in pixels. */
   GRID_TILE_SIZE_PX: 50,
   /** The width of the grid, in number of tiles. */
