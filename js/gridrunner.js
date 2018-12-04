@@ -17,6 +17,7 @@ class GridRunner {
     this.maxStamina_ = maxStamina;
 
     this.staminaText_ = scene.add.text(0, 0, '');
+    this.staminaText_.depth = Depths.STAMINA_TEXT;
     this.staminaText_.setColor('yellow');
     this.staminaText_.setFontSize(25);
     this.staminaText_.setStroke('black', 3);
@@ -88,9 +89,8 @@ class GridRunner {
 
     if (this.runState_.stamina >= 0) {
       this.staminaText_.visible = true;
-      this.staminaText_.x = this.sprite_.x;
-      this.staminaText_.y = this.sprite_.y - this.sprite_.displayHeight
-          - Config.GRID_RUNNER_STAMINA_TEXT_DISTANCE;
+      this.staminaText_.x = this.sprite_.x - 5;
+      this.staminaText_.y = this.sprite_.y - this.sprite_.displayHeight - 5;
       this.staminaText_.text = this.runState_.stamina;
     } else {
       this.staminaText_.visible = false;
@@ -134,7 +134,15 @@ class GridRunner {
   addPathMarker_(tile) {
     const center = this.grid_.getTileCenter(tile.x, tile.y);
     const pathMarker = this.scene_.add.sprite(center.x, center.y, 'pathmarker');
+    pathMarker.alpha = Config.GRID_RUNNER_PATH_MARKER_ALPHA;
     pathMarker.depth = Depths.PATH_MARKER;
+
+    this.scene_.tweens.add({
+      targets: pathMarker,
+      duration: Config.GRID_RUNNER_PATH_MARKER_FADE_DURATION,
+      alpha: 0
+    });
+
     this.pathMarkers_.push(pathMarker);
   }
 }

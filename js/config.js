@@ -70,7 +70,8 @@ const Config = {
 
   /** How fast runners move through the grid. */
   GRID_RUNNER_FAST_MULTIPLIER: 7,
-  GRID_RUNNER_STAMINA_TEXT_DISTANCE: 5,
+  GRID_RUNNER_PATH_MARKER_ALPHA: 0.4,
+  GRID_RUNNER_PATH_MARKER_FADE_DURATION: 500,
 
   /** The square size to use when detecting collisions when solving Pathery. */
   PATHERY_COLLISION_DETECTION_SIZE: 10
