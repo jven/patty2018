@@ -14,9 +14,8 @@ class Grid {
     const fireplaceHeight = Config.WORLD_FIREPLACE_HEIGHT_PX
         * Config.WORLD_FIREPLACE_SCALE;
     const fireplace = scene.physics.add.sprite(
-        (fireplaceCenter.x - Config.GRID_TILE_SIZE_PX / 2 - fireplaceWidth / 2),
-        (fireplaceCenter.y + Config.GRID_TILE_SIZE_PX / 2
-            - fireplaceHeight / 2),
+        Config.WORLD_WALL_SIDE_WIDTH_PX + fireplaceWidth / 2,
+        fireplaceCenter.y + Config.GRID_TILE_SIZE_PX / 2 - fireplaceHeight / 2,
         'fireplace');
     fireplace.displayWidth = fireplaceWidth;
     fireplace.displayHeight = fireplaceHeight;
