@@ -1,7 +1,8 @@
 const config = {
+  parent: 'game',
   type: Phaser.AUTO,
-  width: Config.CAMERA_WIDTH_PX,
-  height: Config.CAMERA_HEIGHT_PX,
+  width: window.innerWidth,
+  height: window.innerHeight,
   physics: {
     default: 'arcade'
   },
@@ -65,6 +66,10 @@ function preloadFn() {
 }
 
 function createFn() {
+  this.events.on('resize', (width, height) => {
+    this.cameras.resize(width, height);
+  }, this);
+
   cursorKeys = this.input.keyboard.createCursorKeys();
   directorKeys = this.input.keyboard.addKeys('space');
 
@@ -114,3 +119,7 @@ function updateFn() {
   grinch.update();
   gift.update();
 }
+
+window.addEventListener('resize', () => {
+  game.resize(window.innerWidth, window.innerHeight);
+});

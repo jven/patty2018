@@ -1,8 +1,4 @@
 const Config = {
-  /** The camera dimensions. */
-  CAMERA_WIDTH_PX: 800,
-  CAMERA_HEIGHT_PX: 600,
-
   /** The key code to toggle whether the production is running. */
   DIRECTOR_PRODUCTION_RUNNING_KEY_CODE: 78, // N
 
