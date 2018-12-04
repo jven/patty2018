@@ -22,7 +22,7 @@ class Director {
   startProduction_() {
     const path = this.pathery_.solve();
     if (!path) {
-      const startTile = this.grid_.getStartTile();
+      const startTile = this.grid_.getStartTiles()[0];
       const santaCenter = this.grid_.getTileCenter(startTile.x, startTile.y);
       this.santa_.dieAt(santaCenter.x, santaCenter.y);
       return;
