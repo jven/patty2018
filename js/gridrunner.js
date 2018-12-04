@@ -15,12 +15,15 @@ class GridRunner {
     this.runAnimation_ = runAnimation;
     this.moveDuration_ = moveDuration;
     this.maxStamina_ = maxStamina;
+
     this.staminaText_ = scene.add.text(0, 0, '');
     this.staminaText_.setColor('yellow');
     this.staminaText_.setFontSize(25);
     this.staminaText_.setStroke('black', 3);
     this.staminaText_.setStyle({'font-weight': 'bold'});
-    this.staminaText_.visible = false;
+
+    this.runState_ = null;
+    this.pathMarkers_ = [];
 
     this.hide();
   }
@@ -30,6 +33,12 @@ class GridRunner {
     this.scene_.tweens.killTweensOf(this.sprite_);
     this.runState_ = null;
     this.sprite_.visible = false;
+
+    this.pathMarkers_.forEach(pathMarker => {
+      this.scene_.tweens.killTweensOf(pathMarker);
+      pathMarker.destroy();
+    });
+    this.pathMarkers_ = [];
   }
 
   run(path) {
@@ -92,6 +101,7 @@ class GridRunner {
         currentTile.x, currentTile.y);
     if (this.sprite_.x == currentCenter.x
         && this.sprite_.y == currentCenter.y) {
+      this.addPathMarker_(currentTile);
       if (currIdx < path.length - 1
           && path[currIdx].targetCount == path[currIdx + 1].targetCount) {
         this.runState_.stamina--;
@@ -119,5 +129,12 @@ class GridRunner {
     } else if (nextCenter.x < this.sprite_.x) {
       this.sprite_.flipX = true;
     }
+  }
+
+  addPathMarker_(tile) {
+    const center = this.grid_.getTileCenter(tile.x, tile.y);
+    const pathMarker = this.scene_.add.sprite(center.x, center.y, 'pathmarker');
+    pathMarker.depth = Depths.PATH_MARKER;
+    this.pathMarkers_.push(pathMarker);
   }
 }

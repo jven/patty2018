@@ -69,14 +69,9 @@ const Config = {
   GRINCH_MOVE_DURATION: 150,
 
   /** How fast runners move through the grid. */
-  GRID_RUNNER_FAST_MULTIPLIER: 5,
+  GRID_RUNNER_FAST_MULTIPLIER: 7,
   GRID_RUNNER_STAMINA_TEXT_DISTANCE: 5,
 
   /** The square size to use when detecting collisions when solving Pathery. */
-  PATHERY_COLLISION_DETECTION_SIZE: 10,
-  /**
-   * The period with which to solve Pathery. A lower period solves Pathery more
-   * often.
-   */
-  PATHERY_SOLVE_PERIOD: 5
+  PATHERY_COLLISION_DETECTION_SIZE: 10
 };

@@ -3,12 +3,14 @@ class Santa {
     this.runSprite_ = scene.physics.add.sprite(0, 0, 'santarun');
     this.runSprite_.displayWidth = Config.SANTA_RUN_SPRITE_WIDTH;
     this.runSprite_.displayHeight = Config.SANTA_RUN_SPRITE_HEIGHT;
+    this.runSprite_.depth = Depths.SANTA;
     this.runSprite_.setImmovable(true);
     this.runSprite_.visible = false;
 
     this.deadSprite_ = scene.physics.add.sprite(0, 0, 'santadead');
     this.deadSprite_.displayWidth = Config.SANTA_DEAD_SPRITE_WIDTH;
     this.deadSprite_.displayHeight = Config.SANTA_DEAD_SPRITE_HEIGHT;
+    this.deadSprite_.depth = Depths.SANTA;
     this.deadSprite_.setImmovable(true);
     this.deadSprite_.visible = false;
 

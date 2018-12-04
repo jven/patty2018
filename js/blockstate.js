@@ -13,6 +13,7 @@ class BlockState {
         centerX, centerY, spriteKey).setImmovable();
     sprite.displayWidth = width;
     sprite.displayHeight = height;
+    sprite.depth = Depths.BLOCKS;
     sprite.setCollideWorldBounds(true);
 
     this.scene_ = scene;

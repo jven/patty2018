@@ -5,6 +5,7 @@ class Grinch {
         * Config.GRINCH_SCALE;
     this.sprite_.displayHeight = Config.GRINCH_SPRITE_HEIGHT
         * Config.GRINCH_SCALE;
+    this.sprite_.depth = Depths.GRINCH;
     this.sprite_.setImmovable(true);
     this.sprite_.visible = false;
 

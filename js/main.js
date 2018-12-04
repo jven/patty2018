@@ -49,6 +49,7 @@ function preloadFn() {
   this.load.image('rugleft', 'img/rugleft.png');
   this.load.image('rugtop', 'img/rugtop.png');
   this.load.image('rugmiddle', 'img/rugmiddle.png');
+  this.load.image('pathmarker', 'img/pathmarker.png');
 
   this.load.image('crate', 'img/crate.png');
   this.load.image('piano', 'img/piano.png');

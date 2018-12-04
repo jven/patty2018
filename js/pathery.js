@@ -5,32 +5,6 @@ class Pathery {
     this.tileStarts_ = tileStarts;
     this.tileEnds_ = tileEnds;
     this.tileTarget_ = tileTarget;
-    
-    this.lastSolveTime_ = 0;
-    this.pathGraphics_ = scene.add.graphics();
-  }
-
-  update() {
-    this.lastSolveTime_++;
-    if (this.lastSolveTime_ >= Config.PATHERY_SOLVE_PERIOD) {
-      this.pathGraphics_.clear();
-      const path = this.solve();
-      if (!path) {
-        return;
-      }
-      path.forEach(result => {
-        const color = result.targetCount == 0 ? 0xF777FF : 0;
-        this.pathGraphics_.fillStyle(color, 0.5);
-        const center = this.grid_.getTileCenter(result.tile.x, result.tile.y);
-        this.pathGraphics_.fillRect(
-            center.x - Config.GRID_TILE_SIZE_PX / 2,
-            center.y - Config.GRID_TILE_SIZE_PX / 2,
-            Config.GRID_TILE_SIZE_PX,
-            Config.GRID_TILE_SIZE_PX);
-      });
-
-      this.lastSolveTime_ = 0;
-    }
   }
 
   /**

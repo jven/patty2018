@@ -7,12 +7,13 @@ class World {
         0, 0, Config.WORLD_WIDTH_PX, Config.WORLD_HEIGHT_PX);
 
     // Render the floor.
-    scene.add.tileSprite(
+    const floor = scene.add.tileSprite(
         Config.WORLD_WIDTH_PX / 2,
         Config.WORLD_HEIGHT_PX / 2,
         Config.WORLD_WIDTH_PX,
         Config.WORLD_HEIGHT_PX,
         'wood');
+    floor.depth = Depths.FLOOR;
 
     this.renderWalls_();
 
@@ -29,12 +30,14 @@ class World {
             Config.WORLD_WALL_TOP_HEIGHT_PX,
             'walltop'),
         true /* static */);
+    topWall.depth = Depths.FLOOR;
 
     // Top right
     const topRightWall = this.scene_.physics.add.sprite(
         Config.WORLD_WIDTH_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
         Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
         'walltopright');
+    topRightWall.depth = Depths.FLOOR;
     topRightWall.setImmovable(true);
 
     // Top left
@@ -42,6 +45,7 @@ class World {
         Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
         Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
         'walltopright');
+    topLeftWall.depth = Depths.FLOOR;
     topLeftWall.setImmovable(true);
     topLeftWall.flipX = -1;
 
@@ -53,6 +57,7 @@ class World {
             Config.WORLD_HEIGHT_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX,
             'wallright'),
         true /* static */);
+    rightWall.depth = Depths.FLOOR;
 
     const leftWall = this.scene_.physics.add.existing(
         this.scene_.add.tileSprite(
@@ -62,6 +67,7 @@ class World {
             Config.WORLD_HEIGHT_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX,
             'wallright'),
         true /* static */);
+    leftWall.depth = Depths.FLOOR;
     leftWall.flipX = -1;
     
     this.addObstacleSprite(topWall);
@@ -76,6 +82,7 @@ class World {
         Config.WORLD_WALL_SIDE_WIDTH_PX + Config.WORLD_PIANO_WIDTH_PX / 2,
         200,
         'piano');
+    piano.depth = Depths.OBJECTS;
     piano.setImmovable(true);
 
     this.addObstacleSprite(piano);

@@ -8,6 +8,7 @@ class Patty {
     this.sprite_.displayWidth = Config.PATTY_SPRITE_WIDTH * Config.PATTY_SCALE;
     this.sprite_.displayHeight =
         Config.PATTY_SPRITE_HEIGHT * Config.PATTY_SCALE;
+    this.sprite_.depth = Depths.PATTY;
     this.sprite_.setCollideWorldBounds(true);
 
     this.standAnimation_ = 'standDown';
