@@ -39,6 +39,7 @@ class Gift {
     this.sprite_.x = center.x;
     this.sprite_.y = center.y + Config.GRID_TILE_SIZE_PX / 2
         - this.sprite_.displayHeight / 2;
+    this.sprite_.depth = Depths.GIFT_VICTORY;
   }
 
   follow(spriteToFollow) {

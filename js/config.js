@@ -39,7 +39,7 @@ const Config = {
   GIFT_WIDTH_PX: 256,
   GIFT_HEIGHT_PX: 256,
   GIFT_SCALE: 0.1,
-  GIFT_VICTORY_SCALE: 0.15,
+  GIFT_VICTORY_SCALE: 0.2,
 
   /** The time needed for Patty to touch a block before it moves. */
   BLOCK_HYSTERESIS: 20,

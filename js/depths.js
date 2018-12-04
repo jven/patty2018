@@ -9,6 +9,8 @@ const Depths = {
   OBJECTS: 30,
 
   BLOCKS: 40,
+  GIFT_VICTORY: 45,
+
   GRINCH: 50,
   SANTA: 60,
 
