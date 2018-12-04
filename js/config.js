@@ -33,6 +33,7 @@ const Config = {
   TREE_SPRITE_WIDTH: 97,
   TREE_SPRITE_HEIGHT: 140,
   TREE_SCALE: 0.7,
+  TREE_ANIMATION_SPEED: 5,
 
   /** The time needed for Patty to touch a block before it moves. */
   BLOCK_HYSTERESIS: 20,

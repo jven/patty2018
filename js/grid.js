@@ -31,6 +31,17 @@ class Grid {
     tree.displayWidth = treeWidth;
     tree.displayHeight = treeHeight;
     tree.depth = Depths.TREE;
+
+    scene.anims.create({
+      key: 'treeTwinkle',
+      frames: this.scene_.anims.generateFrameNumbers('tree', {
+        start: 0,
+        end: 1
+      }),
+      frameRate: Config.TREE_ANIMATION_SPEED,
+      repeat: -1
+    });
+    tree.anims.play('treeTwinkle');
   }
 
   renderRug_() {
