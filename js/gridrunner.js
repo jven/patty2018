@@ -16,6 +16,10 @@ class GridRunner {
     this.moveDuration_ = moveDuration;
     this.maxStamina_ = maxStamina;
     this.staminaText_ = scene.add.text(0, 0, '');
+    this.staminaText_.setColor('yellow');
+    this.staminaText_.setFontSize(25);
+    this.staminaText_.setStroke('black', 3);
+    this.staminaText_.setStyle({'font-weight': 'bold'});
     this.staminaText_.visible = false;
 
     this.hide();
