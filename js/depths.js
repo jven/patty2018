@@ -16,6 +16,7 @@ const Depths = {
   PATTY: 100,
 
   TREE: 110,
+  GIFT: 120,
 
   STAMINA_TEXT: 200
 }

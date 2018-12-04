@@ -15,6 +15,7 @@ const game = new Phaser.Game(config);
 var blockList;
 var cursorKeys;
 var directorKeys;
+var gift;
 var grinch;
 var pathery;
 var patty;
@@ -56,6 +57,7 @@ function preloadFn() {
   this.load.image('pathmarker', 'img/pathmarker.png');
 
   this.load.image('crate', 'img/crate.png');
+  this.load.image('gift', 'img/gift.png');
   this.load.image('piano', 'img/piano.png');
   this.load.image('fireplace', 'img/fireplace.png');
   this.load.image('target', 'img/target.png');
@@ -69,13 +71,7 @@ function createFn() {
   world = new World(this);
   grid = new Grid(
       this, world, 4 /* startY */, 1 /* endY */, {x: 6, y: 1} /* targetTile */);
-  pathery = new Pathery(
-      this,
-      world,
-      grid,
-      [{x: 0, y: 4}] /* tileStarts */,
-      [{x: 10, y: 1}] /* tileEnds */,
-      {x: 6, y: 1} /* tileTarget */);
+  pathery = new Pathery(world, grid);
 
   blockList = new BlockList(this, world, grid, directorState);
   blockList
@@ -90,8 +86,9 @@ function createFn() {
 
   santa = new Santa(this, grid, directorState);
   grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
+  gift = new Gift(this, grid);
   director = new Director(
-      this, grid, pathery, santa, grinch, directorState, 4 /* startY */);
+      this, grid, pathery, santa, grinch, gift, directorState);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
       director.toggleProductionRunning();
@@ -114,4 +111,5 @@ function updateFn() {
 
   santa.update();
   grinch.update();
+  gift.update();
 }

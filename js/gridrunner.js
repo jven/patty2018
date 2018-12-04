@@ -63,17 +63,25 @@ class GridRunner {
     const newRunState = {
       path: path,
       nextIndex: -1,
+      nextTile: null,
       nextCenter: null,
       stamina: this.maxStamina_,
-      resolveFn: null
+      targetResolveFn: null,
+      finishResolveFn: null
     };
-    const runPromise = new Promise(function(resolve, reject) {
-      newRunState.resolveFn = resolve;
+    const targetPromise = new Promise(function(resolve, reject) {
+      newRunState.targetResolveFn = resolve;
+    });
+    const finishPromise = new Promise(function(resolve, reject) {
+      newRunState.finishResolveFn = resolve;
     });
     this.runState_ = newRunState;
     this.makeNextStep_();
     
-    return runPromise;
+    return {
+      targetPromise: targetPromise,
+      finishPromise: finishPromise
+    };
   }
 
   update() {
@@ -86,7 +94,7 @@ class GridRunner {
 
     if (!this.runState_.nextCenter) {
       // We finished running!
-      this.runState_.resolveFn(true /* finished */);
+      this.runState_.finishResolveFn();
       this.hide();
       return;
     }
@@ -103,6 +111,14 @@ class GridRunner {
 
     if (this.sprite_.x == this.runState_.nextCenter.x
         && this.sprite_.y == this.runState_.nextCenter.y) {
+      // We reached the target.
+      const targetTile = this.grid_.getTargetTile();
+      if (this.runState_.nextTile
+          && this.runState_.nextTile.x == targetTile.x
+          && this.runState_.nextTile.y == targetTile.y) {
+        this.runState_.targetResolveFn();
+      }
+
       // We reached the next center, make the next step.
       this.addPathMarker_();
       this.runState_.stamina--;
@@ -123,18 +139,20 @@ class GridRunner {
     if (this.runState_.nextIndex > this.runState_.path.length) {
       // We're already done.
       this.runState_.nextCenter = null;
-      return
+      return;
     }
 
+    var nextTile = null;
     var nextCenter = {};
     if (this.runState_.nextIndex == this.runState_.path.length) {
       // Run off the right side of the grid.
       nextCenter.x = this.sprite_.x + Config.GRID_TILE_SIZE_PX;
       nextCenter.y = this.sprite_.y;
     } else {
-      const nextTile = this.runState_.path[this.runState_.nextIndex].tile;
+      nextTile = this.runState_.path[this.runState_.nextIndex].tile;
       nextCenter = this.grid_.getTileCenter(nextTile.x, nextTile.y);
     }
+    this.runState_.nextTile = nextTile;
     this.runState_.nextCenter = nextCenter;
 
     // Add a tween to the next center.

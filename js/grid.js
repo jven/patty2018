@@ -2,6 +2,9 @@ class Grid {
   constructor(scene, world, startY, endY, targetTile) {
     this.scene_ = scene;
     this.world_ = world;
+    this.startY_ = startY;
+    this.endY_ = endY;
+    this.targetTile_ = targetTile;
 
     this.renderRug_();
 
@@ -96,6 +99,18 @@ class Grid {
     const sprite = this.scene_.add.sprite(center.x, center.y, key);
     sprite.depth = depth;
     return sprite;
+  }
+
+  getStartTiles() {
+    return [{x: 0, y: this.startY_}];
+  }
+
+  getEndTiles() {
+    return [{x: Config.GRID_WIDTH_IN_TILES - 1, y: this.endY_}];
+  }
+
+  getTargetTile() {
+    return this.targetTile_;
   }
 
   getTileCenter(tileX, tileY) {

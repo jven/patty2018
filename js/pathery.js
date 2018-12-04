@@ -1,10 +1,7 @@
 class Pathery {
-  constructor(scene, world, grid, tileStarts, tileEnds, tileTarget) {
+  constructor(world, grid) {
     this.world_ = world;
     this.grid_ = grid;
-    this.tileStarts_ = tileStarts;
-    this.tileEnds_ = tileEnds;
-    this.tileTarget_ = tileTarget;
   }
 
   /**
@@ -47,7 +44,7 @@ class Pathery {
     }
 
     // Initially visit the end tiles.
-    this.tileEnds_.forEach(tileEnd => {
+    this.grid_.getEndTiles().forEach(tileEnd => {
       this.visit_(
           results,
           frontier,
@@ -60,7 +57,7 @@ class Pathery {
     while (frontier.length) {
       const tileKey = frontier.splice(0, 1)[0];
       const result = results[tileKey];
-      if (tileKey == this.tileKey_(this.tileTarget_, 1)) {
+      if (tileKey == this.tileKey_(this.grid_.getTargetTile(), 1)) {
         // If on the target with target count 1, visit the target again with
         // count 0.
         this.visit_(
@@ -79,7 +76,7 @@ class Pathery {
     // Find the start tile with minimal distance.
     var bestTileStart = null;
     var bestDistance = 99999;
-    this.tileStarts_.forEach(tileStart => {
+    this.grid_.getStartTiles().forEach(tileStart => {
       const tileKey = this.tileKey_(tileStart, 0 /* targetCount */);
       const result = results[tileKey];
       if (result && result.distance < bestDistance) {

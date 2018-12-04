@@ -42,6 +42,10 @@ class Santa {
         -1 /* maxStamina */);
   }
 
+  getRunSprite() {
+    return this.runSprite_;
+  }
+
   hide() {
     this.gridRunner_.hide();
     this.deadSprite_.visible = false;

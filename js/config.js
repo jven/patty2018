@@ -35,6 +35,11 @@ const Config = {
   TREE_SCALE: 0.7,
   TREE_ANIMATION_SPEED: 5,
 
+  /** The dimensions of the gift. */
+  GIFT_WIDTH_PX: 256,
+  GIFT_HEIGHT_PX: 256,
+  GIFT_SCALE: 0.1,
+
   /** The time needed for Patty to touch a block before it moves. */
   BLOCK_HYSTERESIS: 20,
   /** The time it takes for the block to move one tile. */

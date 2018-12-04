@@ -29,6 +29,10 @@ class Grinch {
         maxStamina);
   }
 
+  getSprite() {
+    return this.sprite_;
+  }
+
   hide() {
     this.gridRunner_.hide();
   }
