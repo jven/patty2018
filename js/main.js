@@ -77,7 +77,7 @@ function createFn() {
   blockList
       .addBlockInGrid(8, 0, 'crate')
       .addBlockInGrid(7, 1, 'crate')
-      .addBlockInGrid(6, 2, 'crate')
+      .addBlockInGrid(7, 2, 'crate')
       .addBlockInGrid(5, 1, 'crate')
       .addBlockInGrid(4, 2, 'crate')
       .addBlockInGrid(3, 3, 'crate')
