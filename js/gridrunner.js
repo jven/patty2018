@@ -67,10 +67,14 @@ class GridRunner {
       nextCenter: null,
       stamina: this.maxStamina_,
       targetResolveFn: null,
+      faintResolveFn: null,
       finishResolveFn: null
     };
     const targetPromise = new Promise(function(resolve, reject) {
       newRunState.targetResolveFn = resolve;
+    });
+    const faintPromise = new Promise(function(resolve, reject) {
+      newRunState.faintResolveFn = resolve;
     });
     const finishPromise = new Promise(function(resolve, reject) {
       newRunState.finishResolveFn = resolve;
@@ -80,6 +84,7 @@ class GridRunner {
     
     return {
       targetPromise: targetPromise,
+      faintPromise: faintPromise,
       finishPromise: finishPromise
     };
   }
@@ -107,6 +112,11 @@ class GridRunner {
       this.staminaText_.text = this.runState_.stamina;
     } else {
       this.staminaText_.visible = false;
+    }
+
+    if (this.runState_.stamina == 0) {
+      // We fainted!
+      return;
     }
 
     if (this.sprite_.x == this.runState_.nextCenter.x
@@ -139,6 +149,11 @@ class GridRunner {
     if (this.runState_.nextIndex > this.runState_.path.length) {
       // We're already done.
       this.runState_.nextCenter = null;
+      return;
+    }
+
+    if (this.runState_.stamina == 0) {
+      // We fainted.
       return;
     }
 

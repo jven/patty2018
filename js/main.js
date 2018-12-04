@@ -85,7 +85,7 @@ function createFn() {
       .addBlockInGrid(1, 5, 'crate');
 
   santa = new Santa(this, grid, directorState);
-  grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
+  grinch = new Grinch(this, grid, directorState, 39 /* maxStamina */);
   gift = new Gift(this, grid);
   director = new Director(
       this, grid, pathery, santa, grinch, gift, directorState);
