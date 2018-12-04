@@ -52,6 +52,7 @@ function preloadFn() {
 
   this.load.image('crate', 'img/crate.png');
   this.load.image('piano', 'img/piano.png');
+  this.load.image('fireplace', 'img/fireplace.png');
   this.load.image('target', 'img/target.png');
 }
 
@@ -61,16 +62,14 @@ function createFn() {
 
   const directorState = new DirectorState(directorKeys);
   world = new World(this);
-  grid = new Grid(this);
-
-  const tileStarts = [];
-  const tileEnds = [];
-  for (var tileY = 0; tileY < Config.GRID_HEIGHT_IN_TILES; tileY++) {
-    tileStarts.push({x: 0, y: tileY});
-    tileEnds.push({x: Config.GRID_WIDTH_IN_TILES - 1, y: tileY});
-  }
-  const tileTarget = {x: 6, y: 1};
-  pathery = new Pathery(this, world, grid, tileStarts, tileEnds, tileTarget);
+  grid = new Grid(this, world, 4 /* startY */, 1 /* endY */);
+  pathery = new Pathery(
+      this,
+      world,
+      grid,
+      [{x: 0, y: 4}] /* tileStarts */,
+      [{x: 10, y: 1}] /* tileEnds */,
+      {x: 6, y: 1} /* tileTarget */);
 
   blockList = new BlockList(this, world, grid, directorState);
   blockList
@@ -84,7 +83,7 @@ function createFn() {
       .addBlockInGrid(1, 5, 'crate');
 
   santa = new Santa(this, grid, directorState);
-  grinch = new Grinch(this, grid, directorState, 30 /* maxStamina */);
+  grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
   director = new Director(this, grid, pathery, santa, grinch, directorState);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {

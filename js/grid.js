@@ -1,22 +1,38 @@
 class Grid {
-  constructor(scene) {
+  constructor(scene, world, startY, endY) {
     this.scene_ = scene;
+    this.world_ = world;
 
     this.renderRug_();
 
-    const target = this.renderRugSprite_(6, 1, 'target');
+    const fireplaceCenter = this.getTileCenter(0, startY);
+    const fireplace = scene.add.sprite(
+        (fireplaceCenter.x - Config.GRID_TILE_SIZE_PX / 2
+            - Config.WORLD_FIREPLACE_WIDTH_PX
+            * Config.WORLD_FIREPLACE_SCALE / 2),
+        (fireplaceCenter.y + Config.GRID_TILE_SIZE_PX / 2
+            - Config.WORLD_FIREPLACE_HEIGHT_PX
+            * Config.WORLD_FIREPLACE_SCALE / 2),
+        'fireplace');
+    fireplace.displayWidth = Config.WORLD_FIREPLACE_WIDTH_PX
+        * Config.WORLD_FIREPLACE_SCALE;
+    fireplace.displayHeight = Config.WORLD_FIREPLACE_HEIGHT_PX
+        * Config.WORLD_FIREPLACE_SCALE;
+    world.addObstacleSprite(fireplace);
+
+    const target = this.renderSprite_(6, 1, 'target');
     target.displayWidth = Config.GRID_TILE_SIZE_PX;
     target.displayHeight = Config.GRID_TILE_SIZE_PX;
   }
 
   renderRug_() {
     // Render the corners.
-    this.renderRugSprite_(0, 0, 'rugtopleft');
-    this.renderRugSprite_(
+    this.renderSprite_(0, 0, 'rugtopleft');
+    this.renderSprite_(
         Config.GRID_WIDTH_IN_TILES - 1, 0, 'rugtopleft').flipX = -1;
-    this.renderRugSprite_(
+    this.renderSprite_(
         0, Config.GRID_HEIGHT_IN_TILES - 1, 'rugtopleft').flipY = -1;
-    const bottomRight = this.renderRugSprite_(
+    const bottomRight = this.renderSprite_(
         Config.GRID_WIDTH_IN_TILES - 1,
         Config.GRID_HEIGHT_IN_TILES - 1,
         'rugtopleft');
@@ -25,25 +41,25 @@ class Grid {
 
     // Render the sides.
     for (var tileX = 1; tileX < Config.GRID_WIDTH_IN_TILES - 1; tileX++) {
-      this.renderRugSprite_(tileX, 0, 'rugtop');
-      this.renderRugSprite_(
+      this.renderSprite_(tileX, 0, 'rugtop');
+      this.renderSprite_(
           tileX, Config.GRID_HEIGHT_IN_TILES - 1, 'rugtop').flipY = -1;
     }
     for (var tileY = 1; tileY < Config.GRID_HEIGHT_IN_TILES - 1; tileY++) {
-      this.renderRugSprite_(0, tileY, 'rugleft');
-      this.renderRugSprite_(
+      this.renderSprite_(0, tileY, 'rugleft');
+      this.renderSprite_(
           Config.GRID_WIDTH_IN_TILES - 1, tileY, 'rugleft').flipX = -1;
     }
 
     // Render the middle.
     for (var tileX = 1; tileX < Config.GRID_WIDTH_IN_TILES - 1; tileX++) {
       for (var tileY = 1; tileY < Config.GRID_HEIGHT_IN_TILES - 1; tileY++) {
-        this.renderRugSprite_(tileX, tileY, 'rugmiddle');
+        this.renderSprite_(tileX, tileY, 'rugmiddle');
       }
     }
   }
 
-  renderRugSprite_(tileX, tileY, key) {
+  renderSprite_(tileX, tileY, key) {
     const center = this.getTileCenter(tileX, tileY);
     return this.scene_.add.sprite(center.x, center.y, key);
   }

@@ -15,6 +15,9 @@ const Config = {
   WORLD_WALL_TOP_RIGHT_HEIGHT_PX: 64,
   WORLD_PIANO_WIDTH_PX: 36,
   WORLD_PIANO_HEIGHT_PX: 150,
+  WORLD_FIREPLACE_WIDTH_PX: 64,
+  WORLD_FIREPLACE_HEIGHT_PX: 175,
+  WORLD_FIREPLACE_SCALE: 0.57,
 
   /** The coordinates of the top-left corner of the grid. */
   GRID_TOP_LEFT_X: 40,
@@ -61,12 +64,13 @@ const Config = {
   GRINCH_SPRITE_HEIGHT: 64,
   GRINCH_SCALE: 0.8,
   /** The number of frames per second to animate the Grinch when moving. */
-  GRINCH_ANIMATION_SPEED: 10,
+  GRINCH_ANIMATION_SPEED: 20,
   /** How long it takes the Grinch to run one tile. */
   GRINCH_MOVE_DURATION: 150,
 
   /** How fast runners move through the grid. */
   GRID_RUNNER_FAST_MULTIPLIER: 5,
+  GRID_RUNNER_STAMINA_TEXT_DISTANCE: 5,
 
   /** The square size to use when detecting collisions when solving Pathery. */
   PATHERY_COLLISION_DETECTION_SIZE: 10,

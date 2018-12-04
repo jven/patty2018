@@ -37,7 +37,7 @@ class Santa {
         this.runSprite_,
         'santaRunRight',
         Config.SANTA_MOVE_DURATION,
-        1000000 /* maxStamina */);
+        -1 /* maxStamina */);
   }
 
   hide() {

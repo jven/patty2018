@@ -1,4 +1,5 @@
 class GridRunner {
+  /** Pass -1 to stamina to not render it. */
   constructor(
       scene,
       grid,
@@ -14,11 +15,14 @@ class GridRunner {
     this.runAnimation_ = runAnimation;
     this.moveDuration_ = moveDuration;
     this.maxStamina_ = maxStamina;
+    this.staminaText_ = scene.add.text(0, 0, '');
+    this.staminaText_.visible = false;
 
     this.hide();
   }
 
   hide() {
+    this.staminaText_.visible = false;
     this.scene_.tweens.killTweensOf(this.sprite_);
     this.runState_ = null;
     this.sprite_.visible = false;
@@ -67,6 +71,16 @@ class GridRunner {
       this.runState_.resolveFn(true /* finished */);
       this.hide();
       return;
+    }
+
+    if (this.runState_.stamina >= 0) {
+      this.staminaText_.visible = true;
+      this.staminaText_.x = this.sprite_.x;
+      this.staminaText_.y = this.sprite_.y - this.sprite_.displayHeight
+          - Config.GRID_RUNNER_STAMINA_TEXT_DISTANCE;
+      this.staminaText_.text = this.runState_.stamina;
+    } else {
+      this.staminaText_.visible = false;
     }
 
     const currentTile = path[currIdx].tile;
