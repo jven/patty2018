@@ -120,7 +120,6 @@ class World {
   }
 
   addNonPathBlockingObstacleSprite(sprite) {
-    console.log('hi');
     this.nonBlockingObstacleSprites_.push(sprite);
   }
 
