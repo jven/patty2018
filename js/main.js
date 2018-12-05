@@ -137,7 +137,7 @@ function resetPuzzle(
   blockList.reset();
   blockList.addBlockInGrid(8, 0, 'crate');
   blockList.addBlockInGrid(7, 1, 'crate');
-  blockList.addBlockInGrid(6, 2, 'crate');
+  blockList.addBlockInGrid(7, 2, 'crate');
   blockList.addBlockInGrid(5, 1, 'crate');
   blockList.addBlockInGrid(4, 2, 'crate');
   blockList.addBlockInGrid(3, 3, 'crate');
