@@ -6,14 +6,10 @@ class BlockState {
       directorState,
       centerX,
       centerY,
-      width,
-      height,
       spriteKey,
       canMoveOffGrid) {
     const sprite = scene.physics.add.image(
         centerX, centerY, spriteKey).setImmovable();
-    sprite.displayWidth = width;
-    sprite.displayHeight = height;
     sprite.depth = Depths.BLOCKS;
     sprite.setCollideWorldBounds(true);
 
@@ -75,13 +71,13 @@ class BlockState {
       return;
     }
 
-    const newCenterX = this.sprite_.x + dx * this.sprite_.displayWidth;
-    const newCenterY = this.sprite_.y + dy * this.sprite_.displayHeight;
+    const newCenterX = this.sprite_.x + dx * Config.GRID_TILE_SIZE_PX;
+    const newCenterY = this.sprite_.y + dy * Config.GRID_TILE_SIZE_PX;
     if (!this.shouldMoveTo_(
         newCenterX,
         newCenterY,
-        this.sprite_.displayWidth - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
-        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE)) {
+        Config.GRID_TILE_SIZE_PX - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
+        Config.GRID_TILE_SIZE_PX - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE)) {
       // Abort the move.
       return;
     }
@@ -91,10 +87,10 @@ class BlockState {
       duration: Config.BLOCK_MOVE_DURATION
     };
     if (dx != 0) {
-      tween.x = this.sprite_.x + dx * this.sprite_.displayWidth;
+      tween.x = newCenterX;
     }
     if (dy != 0) {
-      tween.y = this.sprite_.y + dy * this.sprite_.displayHeight;
+      tween.y = newCenterY;
     }
     this.scene_.tweens.add(tween);
   }
@@ -128,10 +124,7 @@ class BlockState {
     }
 
     if (this.world_.anyObstacleInRegion(
-        newCenterX,
-        newCenterY,
-        this.sprite_.displayWidth - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE,
-        this.sprite_.displayHeight - Config.BLOCK_MOVE_OBSTACLE_ALLOWANCE)) {
+        newCenterX, newCenterY, width, height)) {
       // There's something in the way, don't move.
       return false;
     }

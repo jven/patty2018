@@ -1,8 +1,8 @@
 const config = {
   parent: 'game',
   type: Phaser.AUTO,
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: window.innerWidth - 50,
+  height: window.innerHeight - 50,
   physics: {
     default: 'arcade'
   },
@@ -63,6 +63,7 @@ function preloadFn() {
   this.load.image('piano', 'img/piano.png');
   this.load.image('fireplace', 'img/fireplace.png');
   this.load.image('target', 'img/target.png');
+  this.load.image('bench', 'img/bench.png');
 }
 
 function createFn() {
@@ -88,7 +89,7 @@ function createFn() {
       .addBlockInGrid(4, 2, 'crate')
       .addBlockInGrid(3, 3, 'crate')
       .addBlockInGrid(2, 4, 'crate')
-      .addBlockOffGrid(0, -1, 'crate');
+      .addBlockOffGrid(0, -1, 'bench');
 
   santa = new Santa(this, grid, directorState);
   grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
@@ -121,5 +122,5 @@ function updateFn() {
 }
 
 window.addEventListener('resize', () => {
-  game.resize(window.innerWidth, window.innerHeight);
+  game.resize(window.innerWidth - 50, window.innerHeight - 50);
 });
