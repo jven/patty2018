@@ -20,7 +20,6 @@ class GridRunner {
     this.staminaText_.setColor('yellow');
     this.staminaText_.setFontSize(25);
     this.staminaText_.setStroke('black', 3);
-    this.staminaText_.setStyle({'font-weight': 'bold'});
 
     this.runState_ = null;
 

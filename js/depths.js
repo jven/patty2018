@@ -21,5 +21,6 @@ const Depths = {
 
   HEART: 150,
 
-  STAMINA_TEXT: 200
+  INSTRUCTIONS_TEXT: 200,
+  STAMINA_TEXT: 300
 }

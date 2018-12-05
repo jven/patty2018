@@ -93,6 +93,18 @@ function createFn() {
   });
 
   resetWithPresetPuzzle();
+
+  // Show instructions at the top.
+  const instructions = this.add.text(
+      0,
+      Config.WORLD_HEIGHT_PX + 10,
+      'Move with the arrow keys.' +
+          '\nPress N to get your gift from Santa!' +
+          '\nHold Space to make him go faster.' +
+          '\nPress R to start over.');
+  instructions.depth = Depths.INSTRUCTIONS_TEXT;
+  instructions.setColor('white');
+  instructions.setFontSize(20);
 }
 
 function updateFn() {
@@ -115,8 +127,8 @@ function resetWithPresetPuzzle() {
       1 /* endY */,
       6 /* targetX */,
       1 /* targetY */,
-      8 /* pattyX */,
-      4 /* pattyY */,
+      7 /* pattyX */,
+      3 /* pattyY */,
       40 /* grinchMaxStamina */);
 }
 
