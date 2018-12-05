@@ -12,6 +12,11 @@ class Director {
     this.reachedVictory_ = false;
   }
 
+  reset() {
+    this.reachedVictory_ = false;
+    this.directorState_.setIsProductionRunning(false);
+  }
+
   toggleProductionRunning() {
     if (this.reachedVictory_) {
       // Disable toggling the production if victory was already reached.

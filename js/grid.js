@@ -1,19 +1,40 @@
 class Grid {
-  constructor(scene, world, startY, endY, targetTile) {
+  constructor(scene, world) {
     this.scene_ = scene;
     this.world_ = world;
+    
+    this.startY_ = null;
+    this.endY_ = null;
+    this.targetTile_ = null;
+
+    this.fireplace_ = null;
+    this.treeObstacle_ = null;
+    this.tree_ = null;
+
+    this.renderRug_();
+  }
+
+  reset(startY, endY, targetTile) {
     this.startY_ = startY;
     this.endY_ = endY;
     this.targetTile_ = targetTile;
 
-    this.renderRug_();
+    if (this.fireplace_) {
+      this.fireplace_.destroy();
+    }
+    if (this.treeObstacle_) {
+      this.treeObstacle_.destroy();
+    }
+    if (this.tree_) {
+      this.tree_.destroy();
+    }
 
     const fireplaceCenter = this.getTileCenter(0, startY);
     const fireplaceWidth = Config.WORLD_FIREPLACE_WIDTH_PX
         * Config.WORLD_FIREPLACE_SCALE;
     const fireplaceHeight = Config.WORLD_FIREPLACE_HEIGHT_PX
         * Config.WORLD_FIREPLACE_SCALE;
-    const fireplace = scene.physics.add.sprite(
+    const fireplace = this.scene_.physics.add.sprite(
         Config.WORLD_WALL_SIDE_WIDTH_PX + fireplaceWidth / 2,
         fireplaceCenter.y + Config.GRID_TILE_SIZE_PX / 2 - fireplaceHeight / 2,
         'fireplace');
@@ -21,11 +42,11 @@ class Grid {
     fireplace.displayHeight = fireplaceHeight;
     fireplace.depth = Depths.OBJECTS;
     fireplace.setImmovable(true);
-    world.addObstacleSprite(fireplace);
+    this.world_.addObstacleSprite(fireplace);
 
     const treeCenter = this.getTileCenter(targetTile.x, targetTile.y);
     
-    const treeObstacle = scene.physics.add.sprite(
+    const treeObstacle = this.scene_.physics.add.sprite(
         treeCenter.x, treeCenter.y, 'crate');
     treeObstacle.alpha = 0;
     treeObstacle.displayWidth = Config.GRID_TILE_SIZE_PX;
@@ -35,7 +56,7 @@ class Grid {
 
     const treeWidth = Config.TREE_SPRITE_WIDTH * Config.TREE_SCALE;
     const treeHeight = Config.TREE_SPRITE_HEIGHT * Config.TREE_SCALE;
-    const tree = scene.add.sprite(
+    const tree = this.scene_.add.sprite(
         treeCenter.x,
         treeCenter.y + Config.GRID_TILE_SIZE_PX / 2 - treeHeight / 2,
         'tree');
@@ -43,7 +64,7 @@ class Grid {
     tree.displayHeight = treeHeight;
     tree.depth = Depths.TREE;
 
-    scene.anims.create({
+    this.scene_.anims.create({
       key: 'treeTwinkle',
       frames: this.scene_.anims.generateFrameNumbers('tree', {
         start: 0,
@@ -53,6 +74,10 @@ class Grid {
       repeat: -1
     });
     tree.anims.play('treeTwinkle');
+
+    this.fireplace_ = fireplace;
+    this.treeObstacle_ = treeObstacle;
+    this.tree_ = tree;
   }
 
   renderRug_() {

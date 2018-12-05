@@ -1,6 +1,7 @@
 const Config = {
   /** The key code to toggle whether the production is running. */
   DIRECTOR_PRODUCTION_RUNNING_KEY_CODE: 78, // N
+  RESET_KEY_CODE: 82, // R
 
   /** The dimensions of the world. */
   WORLD_WIDTH_PX: 640,

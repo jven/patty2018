@@ -1,6 +1,7 @@
 class World {
   constructor(scene) {
     this.scene_ = scene;
+    this.nonResettableObstacles_ = [];
     this.obstacleSprites_ = [];
     this.nonBlockingObstacleSprites_ = [];
 
@@ -19,6 +20,11 @@ class World {
     this.renderWalls_();
 
     this.renderObjects_();
+  }
+
+  reset() {
+    this.obstacleSprites_ = [];
+    this.nonBlockingObstacleSprites_ = [];
   }
 
   renderWalls_() {
@@ -71,11 +77,11 @@ class World {
     leftWall.depth = Depths.FLOOR;
     leftWall.flipX = -1;
     
-    this.addObstacleSprite(topWall);
-    this.addObstacleSprite(topRightWall);
-    this.addObstacleSprite(topLeftWall);
-    this.addObstacleSprite(leftWall);
-    this.addObstacleSprite(rightWall);
+    this.addNonResettableObstacleSprite_(topWall);
+    this.addNonResettableObstacleSprite_(topRightWall);
+    this.addNonResettableObstacleSprite_(topLeftWall);
+    this.addNonResettableObstacleSprite_(leftWall);
+    this.addNonResettableObstacleSprite_(rightWall);
   }
 
   renderObjects_() {
@@ -90,7 +96,11 @@ class World {
     piano.depth = Depths.OBJECTS;
     piano.setImmovable(true);
 
-    this.addObstacleSprite(piano);
+    this.addNonResettableObstacleSprite_(piano);
+  }
+
+  addNonResettableObstacleSprite_(sprite) {
+    this.nonResettableObstacles_.push(sprite);
   }
 
   addObstacleSprite(sprite) {
@@ -103,7 +113,7 @@ class World {
 
   anyPathBlockingObstacleInRegion(centerX, centerY, width, height) {
     return this.anyObstacleInRegion_(
-        this.obstacleSprites_,
+        this.obstacleSprites_.concat(this.nonResettableObstacles_),
         centerX,
         centerY,
         width,
@@ -112,7 +122,9 @@ class World {
 
   anyObstacleInRegion(centerX, centerY, width, height) {
     return this.anyObstacleInRegion_(
-        this.obstacleSprites_.concat(this.nonBlockingObstacleSprites_),
+        this.obstacleSprites_
+            .concat(this.nonBlockingObstacleSprites_)
+            .concat(this.nonResettableObstacles_),
         centerX,
         centerY,
         width,
@@ -137,6 +149,8 @@ class World {
   checkCollisions(sprite) {
     this.scene_.physics.collide(
         sprite,
-        this.obstacleSprites_.concat(this.nonBlockingObstacleSprites_));
+        this.obstacleSprites_
+            .concat(this.nonBlockingObstacleSprites_)
+            .concat(this.nonResettableObstacles_));
   }
 }

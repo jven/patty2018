@@ -40,12 +40,17 @@ class Grinch {
         directorState,
         this.runSprite_,
         'grinchRunRight',
-        Config.GRINCH_MOVE_DURATION,
-        maxStamina);
+        Config.GRINCH_MOVE_DURATION);
   }
 
   getRunSprite() {
     return this.runSprite_;
+  }
+
+  reset(maxStamina) {
+    this.gridRunner_.setMaxStamina(maxStamina);
+    this.faintSprite_.angle = 0;
+    this.hide();
   }
 
   hide() {

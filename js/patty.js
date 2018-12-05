@@ -1,8 +1,8 @@
 class Patty {
-  constructor(scene, world, justin, cursorKeys) {
+  constructor(scene, world, grid, cursorKeys) {
     this.scene_ = scene;
     this.world_ = world;
-    this.justin_ = justin;
+    this.grid_ = grid;
     this.cursorKeys_ = cursorKeys;
 
     this.sprite_ = scene.physics.add.sprite(0, 0, 'girl');
@@ -13,17 +13,21 @@ class Patty {
     this.sprite_.setCollideWorldBounds(true);
 
     this.heartTimer_ = 0;
-
     this.standAnimation_ = 'standDown';
+    this.justin_ = null;
 
     this.createAnimations_();
 
     scene.cameras.main.startFollow(this.sprite_);
   }
 
-  teleportTo(x, y) {
-    this.sprite_.x = x;
-    this.sprite_.y = y;
+  reset(tileX, tileY, justin) {
+    const center = this.grid_.getTileCenter(tileX, tileY);
+    this.sprite_.x = center.x;
+    this.sprite_.y = center.y;
+    this.heartTimer_ = 0;
+    this.standAnimation_ = 'standDown';
+    this.justin_ = justin;
   }
 
   getSprite() {
@@ -62,6 +66,11 @@ class Patty {
   }
 
   update() {
+    if (!this.justin_) {
+      // Hehe.
+      return;
+    }
+
     if (this.cursorKeys_.left.isDown) {
       this.sprite_.setVelocityX(-Config.PATTY_MOVE_SPEED);
       this.sprite_.setVelocityY(0);

@@ -6,15 +6,14 @@ class GridRunner {
       directorState,
       sprite,
       runAnimation,
-      moveDuration,
-      maxStamina) {
+      moveDuration) {
     this.scene_ = scene;
     this.grid_ = grid;
     this.sprite_ = sprite;
     this.directorState_ = directorState;
     this.runAnimation_ = runAnimation;
     this.moveDuration_ = moveDuration;
-    this.maxStamina_ = maxStamina;
+    this.maxStamina_ = -1;
 
     this.staminaText_ = scene.add.text(0, 0, '');
     this.staminaText_.depth = Depths.STAMINA_TEXT;
@@ -26,6 +25,10 @@ class GridRunner {
     this.runState_ = null;
 
     this.hide();
+  }
+
+  setMaxStamina(maxStamina) {
+    this.maxStamina_ = maxStamina;
   }
 
   hide() {

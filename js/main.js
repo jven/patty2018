@@ -65,43 +65,34 @@ function preloadFn() {
 }
 
 function createFn() {
-  this.events.on('resize', (width, height) => {
-    this.cameras.resize(width, height);
-  }, this);
-
   cursorKeys = this.input.keyboard.createCursorKeys();
   directorKeys = this.input.keyboard.addKeys('space');
 
   const directorState = new DirectorState(directorKeys);
   world = new World(this);
-  grid = new Grid(
-      this, world, 4 /* startY */, 1 /* endY */, {x: 6, y: 1} /* targetTile */);
+  grid = new Grid(this, world);
   pathery = new Pathery(world, grid);
-
   blockList = new BlockList(this, world, grid, directorState);
-  blockList.addBlockInGrid(8, 0, 'crate');
-  blockList.addBlockInGrid(7, 1, 'crate');
-  blockList.addBlockInGrid(6, 2, 'crate');
-  blockList.addBlockInGrid(5, 1, 'crate');
-  blockList.addBlockInGrid(4, 2, 'crate');
-  blockList.addBlockInGrid(3, 3, 'crate');
-  blockList.addBlockInGrid(2, 4, 'crate');
-  const justin = blockList.addBlockOffGrid(0, -1, 'bench');
-
   santa = new Santa(this, grid, directorState);
-  grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
+  grinch = new Grinch(this, grid, directorState);
   gift = new Gift(this, grid);
   director = new Director(
       this, grid, pathery, santa, grinch, gift, directorState);
+  patty = new Patty(this, world, grid, cursorKeys);
+
+  this.events.on('resize', (width, height) => {
+    this.cameras.resize(width, height);
+  }, this);
   this.input.keyboard.on('keydown', function(e) {
     if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
       director.toggleProductionRunning();
     }
+    if (e.keyCode == Config.RESET_KEY_CODE) {
+      resetWithPresetPuzzle();
+    }
   });
 
-  patty = new Patty(this, world, justin, cursorKeys);
-  const pattyStart = grid.getTileCenter(8, 4);
-  patty.teleportTo(pattyStart.x, pattyStart.y);
+  resetWithPresetPuzzle();
 }
 
 function updateFn() {
@@ -116,6 +107,38 @@ function updateFn() {
   santa.update();
   grinch.update();
   gift.update();
+}
+
+function resetWithPresetPuzzle() {
+  resetPuzzle(
+      4 /* startY */,
+      1 /* endY */,
+      6 /* targetX */,
+      1 /* targetY */,
+      8 /* pattyX */,
+      4 /* pattyY */,
+      40 /* grinchMaxStamina */);
+}
+
+function resetPuzzle(
+    startY, endY, targetX, targetY, pattyX, pattyY, grinchMaxStamina) {
+  world.reset();
+  grid.reset(startY, endY, {x: targetX, y: targetY});
+  blockList.reset();
+  blockList.addBlockInGrid(8, 0, 'crate');
+  blockList.addBlockInGrid(7, 1, 'crate');
+  blockList.addBlockInGrid(6, 2, 'crate');
+  blockList.addBlockInGrid(5, 1, 'crate');
+  blockList.addBlockInGrid(4, 2, 'crate');
+  blockList.addBlockInGrid(3, 3, 'crate');
+  blockList.addBlockInGrid(2, 4, 'crate');
+  const justin = blockList.addBlockOffGrid(0, -1, 'bench');
+
+  santa.hide();
+  grinch.reset(grinchMaxStamina);
+  gift.hide();
+  director.reset();
+  patty.reset(pattyX, pattyY, justin);
 }
 
 window.addEventListener('resize', () => {

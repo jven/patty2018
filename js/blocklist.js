@@ -9,6 +9,13 @@ class BlockList {
     this.blockIndex_ = 0;
   }
 
+  reset() {
+    this.sprites_.forEach(s => s.destroy());
+    this.blocks_ = [];
+    this.sprites_ = [];
+    this.blockIndex_ = 0;
+  }
+
   addBlock_(centerX, centerY, spriteKey, canMoveOffGrid) {
     const blockState = new BlockState(
         this.scene_,
