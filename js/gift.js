@@ -6,6 +6,10 @@ class Gift {
     this.spriteToFollow_ = null;
   }
 
+  getSprite() {
+    return this.sprite_;
+  }
+
   hide() {
     this.spriteToFollow_ = null;
     this.sprite_.visible = false;

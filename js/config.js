@@ -104,5 +104,10 @@ const Config = {
   GRID_RUNNER_PATH_MARKER_FADE_DURATION: 1000,
 
   /** The square size to use when detecting collisions when solving Pathery. */
-  PATHERY_COLLISION_DETECTION_SIZE: 10
+  PATHERY_COLLISION_DETECTION_SIZE: 10,
+
+  /** How long to flash during the victory cutscene. */
+  VICTORY_FLASH_DURATION: 1000,
+  /** How close Patty needs to be to the gift to show the victory cutscene. */
+  VICTORY_GIFT_PATTY_PROXIMITY: 45
 };

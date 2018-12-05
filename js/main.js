@@ -16,11 +16,13 @@ const game = new Phaser.Game(config);
 var blockList;
 var cursorKeys;
 var directorKeys;
+var directorState;
 var gift;
 var grinch;
 var pathery;
 var patty;
 var santa;
+var victoryCutscene;
 var world;
 
 function preloadFn() {
@@ -69,17 +71,18 @@ function createFn() {
   cursorKeys = this.input.keyboard.createCursorKeys();
   directorKeys = this.input.keyboard.addKeys('space');
 
-  const directorState = new DirectorState(directorKeys);
+  directorState = new DirectorState(directorKeys);
   world = new World(this);
   grid = new Grid(this, world);
   pathery = new Pathery(world, grid);
   blockList = new BlockList(this, world, grid, directorState);
   santa = new Santa(this, grid, directorState);
   grinch = new Grinch(this, grid, directorState);
+  patty = new Patty(this, world, grid, cursorKeys);
   gift = new Gift(this, grid);
   director = new Director(
       this, grid, pathery, santa, grinch, gift, directorState);
-  patty = new Patty(this, world, grid, cursorKeys);
+  victoryCutscene = new VictoryCutscene(this, patty, gift, directorState);
 
   this.events.on('resize', (width, height) => {
     this.cameras.resize(width, height);
@@ -108,22 +111,26 @@ function updateFn() {
   santa.update();
   grinch.update();
   gift.update();
+  victoryCutscene.update();
 }
 
 function resetWithPresetPuzzle() {
+  if (directorState.isVictorious()) {
+    // Don't reset if we're victorious.
+    return;
+  }
   resetPuzzle(
       4 /* startY */,
       1 /* endY */,
       6 /* targetX */,
       1 /* targetY */,
-      5 /* pattyX */,
+      3 /* pattyX */,
       4 /* pattyY */,
       40 /* grinchMaxStamina */);
 }
 
 function resetPuzzle(
     startY, endY, targetX, targetY, pattyX, pattyY, grinchMaxStamina) {
-
   world.reset();
   grid.reset(startY, endY, {x: targetX, y: targetY});
   

@@ -1,6 +1,12 @@
 class Director {
   constructor(
-      scene, grid, pathery, santa, grinch, gift, directorState) {
+      scene,
+      grid,
+      pathery,
+      santa,
+      grinch,
+      gift,
+      directorState) {
     this.scene_ = scene;
     this.grid_ = grid;
     this.pathery_ = pathery;
@@ -8,18 +14,15 @@ class Director {
     this.grinch_ = grinch;
     this.gift_ = gift;
     this.directorState_ = directorState;
-
-    this.reachedVictory_ = false;
   }
 
   reset() {
-    this.reachedVictory_ = false;
     this.directorState_.setIsProductionRunning(false);
   }
 
   toggleProductionRunning() {
-    if (this.reachedVictory_) {
-      // Disable toggling the production if victory was already reached.
+    if (this.directorState_.isVictorious()) {
+      // Disable toggling the production if we're victorious.
       return;
     }
 
@@ -50,7 +53,7 @@ class Director {
       grinchRun.targetPromise.then(() =>
           this.gift_.follow(this.grinch_.getRunSprite()));
       grinchRun.finishPromise.then(() => this.endProduction_());
-      grinchRun.faintPromise.then(() => this.victoryCutscene_());
+      grinchRun.faintPromise.then(() => this.markVictorious_());
     });
     this.gift_.follow(this.santa_.getRunSprite());
   }
@@ -63,8 +66,9 @@ class Director {
     this.gift_.hide();
   }
 
-  victoryCutscene_() {
-    this.reachedVictory_ = true;
+  markVictorious_() {
+    this.directorState_.markVictorious();
+
     this.grinch_.faint();
     this.gift_.moveToVictory();
   }

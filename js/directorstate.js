@@ -2,6 +2,15 @@ class DirectorState {
   constructor(directorKeys) {
     this.directorKeys_ = directorKeys;
     this.isProductionRunning_ = false;
+    this.isVictorious_ = false;
+  }
+
+  markVictorious() {
+    this.isVictorious_ = true;
+  }
+
+  isVictorious() {
+    return this.isVictorious_;
   }
 
   setIsProductionRunning(isProductionRunning) {
