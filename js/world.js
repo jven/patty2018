@@ -22,10 +22,9 @@ class World {
     this.renderObjects_();
   }
 
-  reset(gapTopY, gapBottomY) {
+  reset() {
     this.obstacleSprites_ = [];
     this.nonBlockingObstacleSprites_ = [];
-    this.renderRightWall_(gapTopY, gapBottomY);
   }
 
   renderWalls_() {
@@ -72,7 +71,7 @@ class World {
     this.addNonResettableObstacleSprite_(leftWall);
   }
 
-  renderRightWall_(gapTopY, gapBottomY) {
+  renderRightWall(gapTopY, gapBottomY) {
     const rightWallTop = this.scene_.physics.add.existing(
         this.scene_.add.tileSprite(
             Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX / 2,
@@ -121,6 +120,7 @@ class World {
   }
 
   addNonPathBlockingObstacleSprite(sprite) {
+    console.log('hi');
     this.nonBlockingObstacleSprites_.push(sprite);
   }
 

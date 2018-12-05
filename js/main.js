@@ -133,10 +133,12 @@ function resetWithPresetPuzzle() {
 
 function resetPuzzle(
     startY, endY, targetX, targetY, pattyX, pattyY, grinchMaxStamina) {
-  grid.reset(startY, endY, {x: targetX, y: targetY});
 
+  world.reset();
+  grid.reset(startY, endY, {x: targetX, y: targetY});
+  
   const rightWallGapCenter = grid.getTileCenter(0, endY);
-  world.reset(
+  world.renderRightWall(
       rightWallGapCenter.y - Config.GRID_TILE_SIZE_PX / 2,
       rightWallGapCenter.y + Config.GRID_TILE_SIZE_PX / 2);
   blockList.reset();

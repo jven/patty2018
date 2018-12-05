@@ -59,14 +59,13 @@ class Grid {
     this.world_.addObstacleSprite(fireplace);
 
     const treeCenter = this.getTileCenter(targetTile.x, targetTile.y);
-    
     const treeObstacle = this.scene_.physics.add.sprite(
         treeCenter.x, treeCenter.y, 'crate');
     treeObstacle.alpha = 0;
     treeObstacle.displayWidth = Config.GRID_TILE_SIZE_PX;
     treeObstacle.displayHeight = Config.GRID_TILE_SIZE_PX;
     treeObstacle.setImmovable(true);
-    world.addNonPathBlockingObstacleSprite(treeObstacle);
+    this.world_.addNonPathBlockingObstacleSprite(treeObstacle);
 
     const treeWidth = Config.TREE_SPRITE_WIDTH * Config.TREE_SCALE;
     const treeHeight = Config.TREE_SPRITE_HEIGHT * Config.TREE_SCALE;
