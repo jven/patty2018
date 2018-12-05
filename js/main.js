@@ -109,13 +109,11 @@ function createFn() {
 
 function updateFn() {
   blockList.update(patty.getSprite(), cursorKeys);
-
   // Patty must move after checking for collisions to allow other sprites to
   // check for overlaps on the next update.
   world.checkCollisions(patty.getSprite());
 
   patty.update();
-
   santa.update();
   grinch.update();
   gift.update();
@@ -150,7 +148,16 @@ function resetPuzzle(
   grinch.reset(grinchMaxStamina);
   gift.hide();
   director.reset();
-  patty.reset(pattyX, pattyY, justin);
+  patty.reset(justin);
+
+  const pattyBounds = patty.getSprite().getBounds();
+  if (world.anyObstacleInRegion(
+      pattyBounds.centerX,
+      pattyBounds.centerY,
+      pattyBounds.width,
+      pattyBounds.height)) {
+    patty.teleportTo(pattyX, pattyY);
+  }
 }
 
 window.addEventListener('resize', () => {

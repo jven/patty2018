@@ -21,13 +21,16 @@ class Patty {
     scene.cameras.main.startFollow(this.sprite_);
   }
 
-  reset(tileX, tileY, justin) {
+  reset(justin) {
+    this.heartTimer_ = 0;
+    this.justin_ = justin;
+  }
+
+  teleportTo(tileX, tileY) {
     const center = this.grid_.getTileCenter(tileX, tileY);
     this.sprite_.x = center.x;
     this.sprite_.y = center.y;
-    this.heartTimer_ = 0;
     this.standAnimation_ = 'standDown';
-    this.justin_ = justin;
   }
 
   getSprite() {
