@@ -1,7 +1,8 @@
 class Patty {
-  constructor(scene, world, cursorKeys) {
+  constructor(scene, world, justin, cursorKeys) {
     this.scene_ = scene;
     this.world_ = world;
+    this.justin_ = justin;
     this.cursorKeys_ = cursorKeys;
 
     this.sprite_ = scene.physics.add.sprite(0, 0, 'girl');
@@ -89,7 +90,13 @@ class Patty {
       this.sprite_.anims.play(this.standAnimation_);
     }
 
-    this.heartTimer_++;
+    if (Math.abs(this.sprite_.x - this.justin_.x)
+        + Math.abs(this.sprite_.y - this.justin_.y)
+        < Config.PATTY_JUSTIN_HEART_PROXIMITY) {
+      this.heartTimer_++;
+    } else {
+      this.heartTimer_ = 0;
+    }
     if (this.heartTimer_ >= Config.PATTY_HEART_PERIOD) {
       const randX = Math.floor(Math.random() * 2 * Config.PATTY_HEART_SPREAD);
       const randY = Math.floor(Math.random() * 2 * Config.PATTY_HEART_SPREAD);

@@ -27,7 +27,7 @@ class BlockList {
     this.world_.addObstacleSprite(sprite);
 
     this.blockIndex_++;
-    return this;
+    return sprite;
   }
 
   addBlockOffGrid(tileX, tileY, spriteKey, width, height) {

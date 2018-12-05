@@ -79,15 +79,14 @@ function createFn() {
   pathery = new Pathery(world, grid);
 
   blockList = new BlockList(this, world, grid, directorState);
-  blockList
-      .addBlockInGrid(8, 0, 'crate')
-      .addBlockInGrid(7, 1, 'crate')
-      .addBlockInGrid(6, 2, 'crate')
-      .addBlockInGrid(5, 1, 'crate')
-      .addBlockInGrid(4, 2, 'crate')
-      .addBlockInGrid(3, 3, 'crate')
-      .addBlockInGrid(2, 4, 'crate')
-      .addBlockOffGrid(0, -1, 'bench');
+  blockList.addBlockInGrid(8, 0, 'crate');
+  blockList.addBlockInGrid(7, 1, 'crate');
+  blockList.addBlockInGrid(6, 2, 'crate');
+  blockList.addBlockInGrid(5, 1, 'crate');
+  blockList.addBlockInGrid(4, 2, 'crate');
+  blockList.addBlockInGrid(3, 3, 'crate');
+  blockList.addBlockInGrid(2, 4, 'crate');
+  const justin = blockList.addBlockOffGrid(0, -1, 'bench');
 
   santa = new Santa(this, grid, directorState);
   grinch = new Grinch(this, grid, directorState, 40 /* maxStamina */);
@@ -100,7 +99,7 @@ function createFn() {
     }
   });
 
-  patty = new Patty(this, world, cursorKeys);
+  patty = new Patty(this, world, justin, cursorKeys);
   const pattyStart = grid.getTileCenter(8, 4);
   patty.teleportTo(pattyStart.x, pattyStart.y);
 }
