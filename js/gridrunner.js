@@ -24,7 +24,6 @@ class GridRunner {
     this.staminaText_.setStyle({'font-weight': 'bold'});
 
     this.runState_ = null;
-    this.pathMarkers_ = [];
 
     this.hide();
   }
@@ -43,13 +42,6 @@ class GridRunner {
       console.error('Already running!');
       return;
     }
-
-    // Clear any existing path markers.
-    this.pathMarkers_.forEach(pathMarker => {
-      this.scene_.tweens.killTweensOf(pathMarker);
-      pathMarker.destroy();
-    });
-    this.pathMarkers_ = [];
 
     // Move the sprite to the start.
     const startCenter = this.grid_.getTileCenter(
@@ -196,12 +188,13 @@ class GridRunner {
     pathMarker.alpha = Config.GRID_RUNNER_PATH_MARKER_ALPHA;
     pathMarker.depth = Depths.PATH_MARKER;
 
-    this.scene_.tweens.add({
+    const pathMarkerTween = this.scene_.tweens.add({
       targets: pathMarker,
       duration: Config.GRID_RUNNER_PATH_MARKER_FADE_DURATION,
       alpha: 0
     });
-
-    this.pathMarkers_.push(pathMarker);
+    pathMarkerTween.setCallback('onComplete', function() {
+      pathMarker.destroy();
+    }, [] /* params */);
   }
 }

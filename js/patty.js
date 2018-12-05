@@ -110,12 +110,15 @@ class Patty {
       heartSprite.displayWidth = Config.PATTY_HEART_WIDTH_PX;
       heartSprite.displayHeight = Config.PATTY_HEART_HEIGHT_PX;
       heartSprite.depth = Depths.HEART;
-      this.scene_.tweens.add({
+      const heartTween = this.scene_.tweens.add({
         targets: heartSprite,
         duration: Config.PATTY_HEART_FLOAT_DURATION,
         y: heartSpriteCenter.y - Config.PATTY_HEART_FLOAT_DISTANCE,
         alpha: 0
       });
+      heartTween.setCallback('onComplete', function() {
+        heartSprite.destroy();
+      }, [] /* params */);
       this.heartTimer_ = 0;
     }
   }
