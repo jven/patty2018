@@ -10,6 +10,7 @@ class Grid {
     this.fireplace_ = null;
     this.treeObstacle_ = null;
     this.tree_ = null;
+    this.glow_ = null;
 
     this.renderRug_();
 
@@ -37,6 +38,9 @@ class Grid {
     }
     if (this.tree_) {
       this.tree_.destroy();
+    }
+    if (this.glow_) {
+      this.glow_.destroy();
     }
 
     const fireplaceCenter = this.getTileCenter(0, startY);
@@ -75,9 +79,16 @@ class Grid {
     tree.depth = Depths.TREE;
     tree.anims.play('treeTwinkle');
 
+    const glowCenter = this.getTileCenter(0, endY);
+    const glow = this.scene_.add.sprite(0, 0, 'glow');
+    glow.x = Config.WORLD_WIDTH_PX - glow.displayWidth / 2;
+    glow.y = glowCenter.y;
+    glow.depth = Depths.GLOW;
+
     this.fireplace_ = fireplace;
     this.treeObstacle_ = treeObstacle;
     this.tree_ = tree;
+    this.glow_ = glow;
   }
 
   renderRug_() {

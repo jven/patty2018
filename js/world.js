@@ -22,13 +22,13 @@ class World {
     this.renderObjects_();
   }
 
-  reset() {
+  reset(gapTopY, gapBottomY) {
     this.obstacleSprites_ = [];
     this.nonBlockingObstacleSprites_ = [];
+    this.renderRightWall_(gapTopY, gapBottomY);
   }
 
   renderWalls_() {
-    // Top
     const topWall = this.scene_.physics.add.existing(
         this.scene_.add.tileSprite(
             Config.WORLD_WIDTH_PX / 2,
@@ -39,7 +39,6 @@ class World {
         true /* static */);
     topWall.depth = Depths.FLOOR;
 
-    // Top right
     const topRightWall = this.scene_.physics.add.sprite(
         Config.WORLD_WIDTH_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
         Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
@@ -47,7 +46,6 @@ class World {
     topRightWall.depth = Depths.FLOOR;
     topRightWall.setImmovable(true);
 
-    // Top left
     const topLeftWall = this.scene_.physics.add.sprite(
         Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX / 2,
         Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX / 2,
@@ -56,22 +54,13 @@ class World {
     topLeftWall.setImmovable(true);
     topLeftWall.flipX = -1;
 
-    const rightWall = this.scene_.physics.add.existing(
-        this.scene_.add.tileSprite(
-            Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX / 2,
-            (Config.WORLD_HEIGHT_PX + Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX) / 2,
-            Config.WORLD_WALL_SIDE_WIDTH_PX,
-            Config.WORLD_HEIGHT_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX,
-            'wallright'),
-        true /* static */);
-    rightWall.depth = Depths.FLOOR;
-
     const leftWall = this.scene_.physics.add.existing(
         this.scene_.add.tileSprite(
             Config.WORLD_WALL_SIDE_WIDTH_PX / 2,
-            (Config.WORLD_HEIGHT_PX + Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX) / 2,
+            (Config.WORLD_HEIGHT_PX
+                + Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX) / 2,
             Config.WORLD_WALL_SIDE_WIDTH_PX,
-            Config.WORLD_HEIGHT_PX - Config.WORLD_WALL_TOP_RIGHT_WIDTH_PX,
+            Config.WORLD_HEIGHT_PX - Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX,
             'wallright'),
         true /* static */);
     leftWall.depth = Depths.FLOOR;
@@ -81,7 +70,31 @@ class World {
     this.addNonResettableObstacleSprite_(topRightWall);
     this.addNonResettableObstacleSprite_(topLeftWall);
     this.addNonResettableObstacleSprite_(leftWall);
-    this.addNonResettableObstacleSprite_(rightWall);
+  }
+
+  renderRightWall_(gapTopY, gapBottomY) {
+    const rightWallTop = this.scene_.physics.add.existing(
+        this.scene_.add.tileSprite(
+            Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX / 2,
+            (gapTopY + Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX) / 2,
+            Config.WORLD_WALL_SIDE_WIDTH_PX,
+            gapTopY - Config.WORLD_WALL_TOP_RIGHT_HEIGHT_PX,
+            'wallright'),
+        true /* static */);
+    rightWallTop.depth = Depths.FLOOR;
+
+    const rightWallBottom = this.scene_.physics.add.existing(
+        this.scene_.add.tileSprite(
+            Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX / 2,
+            (Config.WORLD_HEIGHT_PX + gapBottomY) / 2,
+            Config.WORLD_WALL_SIDE_WIDTH_PX,
+            Config.WORLD_HEIGHT_PX - gapBottomY,
+            'wallright'),
+        true /* static */);
+    rightWallBottom.depth = Depths.FLOOR;
+
+    this.addObstacleSprite(rightWallTop);
+    this.addObstacleSprite(rightWallBottom);
   }
 
   renderObjects_() {

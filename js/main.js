@@ -49,6 +49,7 @@ function preloadFn() {
   this.load.image('crate', 'img/crate.png');
   this.load.image('fireplace', 'img/fireplace.png');
   this.load.image('gift', 'img/gift.png');
+  this.load.image('glow', 'img/glow.png');
   this.load.image('grinchfaint', 'img/grinchfaint.png');
   this.load.image('heart', 'img/heart.png');
   this.load.image('pathmarker', 'img/pathmarker.png');
@@ -132,8 +133,12 @@ function resetWithPresetPuzzle() {
 
 function resetPuzzle(
     startY, endY, targetX, targetY, pattyX, pattyY, grinchMaxStamina) {
-  world.reset();
   grid.reset(startY, endY, {x: targetX, y: targetY});
+
+  const rightWallGapCenter = grid.getTileCenter(0, endY);
+  world.reset(
+      rightWallGapCenter.y - Config.GRID_TILE_SIZE_PX / 2,
+      rightWallGapCenter.y + Config.GRID_TILE_SIZE_PX / 2);
   blockList.reset();
   blockList.addBlockInGrid(8, 0, 'crate');
   blockList.addBlockInGrid(7, 1, 'crate');
