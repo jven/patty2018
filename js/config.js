@@ -57,6 +57,17 @@ const Config = {
   PATTY_SPRITE_HEIGHT: 32,
   /** Patty's size as a multiple of the sprite dimensions above. */
   PATTY_SCALE: 1.25,
+  /** How often to show hearts over Patty when near Justin. */
+  PATTY_HEART_PERIOD: 6,
+  /** How long it takes for the hearts to float up. */
+  PATTY_HEART_FLOAT_DURATION: 500,
+  /** How far the hearts should float up. */
+  PATTY_HEART_FLOAT_DISTANCE: 15,
+  /** How much the hearts spread from Patty's head. */
+  PATTY_HEART_SPREAD: 15,
+  /** How dimensions of the hearts. */
+  PATTY_HEART_WIDTH_PX: 10,
+  PATTY_HEART_HEIGHT_PX: 10,
 
   /** The dimensions of each frame of the Santa sprites. */
   SANTA_RUN_SPRITE_WIDTH: 45,

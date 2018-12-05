@@ -44,26 +44,24 @@ function preloadFn() {
     frameWidth: Config.TREE_SPRITE_WIDTH,
     frameHeight: Config.TREE_SPRITE_HEIGHT
   });
-  this.load.image('grinchfaint', 'img/grinchfaint.png');
-  
-  this.load.image('wood', 'img/wood.png');
 
+  this.load.image('bench', 'img/bench.png');
+  this.load.image('crate', 'img/crate.png');
+  this.load.image('fireplace', 'img/fireplace.png');
+  this.load.image('gift', 'img/gift.png');
+  this.load.image('grinchfaint', 'img/grinchfaint.png');
+  this.load.image('heart', 'img/heart.png');
+  this.load.image('pathmarker', 'img/pathmarker.png');
+  this.load.image('piano', 'img/piano.png');
+  this.load.image('rugleft', 'img/rugleft.png');
+  this.load.image('rugmiddle', 'img/rugmiddle.png');
+  this.load.image('rugtop', 'img/rugtop.png');
+  this.load.image('rugtopleft', 'img/rugtopleft.png');
+  this.load.image('target', 'img/target.png');
+  this.load.image('wallright', 'img/wallright.png');
   this.load.image('walltop', 'img/walltop.png');
   this.load.image('walltopright', 'img/walltopright.png');
-  this.load.image('wallright', 'img/wallright.png');
-
-  this.load.image('rugtopleft', 'img/rugtopleft.png');
-  this.load.image('rugleft', 'img/rugleft.png');
-  this.load.image('rugtop', 'img/rugtop.png');
-  this.load.image('rugmiddle', 'img/rugmiddle.png');
-  this.load.image('pathmarker', 'img/pathmarker.png');
-
-  this.load.image('crate', 'img/crate.png');
-  this.load.image('gift', 'img/gift.png');
-  this.load.image('piano', 'img/piano.png');
-  this.load.image('fireplace', 'img/fireplace.png');
-  this.load.image('target', 'img/target.png');
-  this.load.image('bench', 'img/bench.png');
+  this.load.image('wood', 'img/wood.png');
 }
 
 function createFn() {

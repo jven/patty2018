@@ -19,5 +19,7 @@ const Depths = {
   TREE: 90,
   GIFT: 100,
 
+  HEART: 150,
+
   STAMINA_TEXT: 200
 }

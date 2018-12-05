@@ -11,6 +11,8 @@ class Patty {
     this.sprite_.depth = Depths.PATTY;
     this.sprite_.setCollideWorldBounds(true);
 
+    this.heartTimer_ = 0;
+
     this.standAnimation_ = 'standDown';
 
     this.createAnimations_();
@@ -85,6 +87,29 @@ class Patty {
       this.sprite_.setVelocityX(0);
       this.sprite_.setVelocityY(0);
       this.sprite_.anims.play(this.standAnimation_);
+    }
+
+    this.heartTimer_++;
+    if (this.heartTimer_ >= Config.PATTY_HEART_PERIOD) {
+      const randX = Math.floor(Math.random() * 2 * Config.PATTY_HEART_SPREAD);
+      const randY = Math.floor(Math.random() * 2 * Config.PATTY_HEART_SPREAD);
+      const heartSpriteCenter = {
+        x: this.sprite_.x + randX - Config.PATTY_HEART_SPREAD,
+        y: this.sprite_.y - this.sprite_.displayHeight / 2 + randY
+            - Config.PATTY_HEART_SPREAD
+      };
+      const heartSprite = this.scene_.add.sprite(
+          heartSpriteCenter.x, heartSpriteCenter.y, 'heart');
+      heartSprite.displayWidth = Config.PATTY_HEART_WIDTH_PX;
+      heartSprite.displayHeight = Config.PATTY_HEART_HEIGHT_PX;
+      heartSprite.depth = Depths.HEART;
+      this.scene_.tweens.add({
+        targets: heartSprite,
+        duration: Config.PATTY_HEART_FLOAT_DURATION,
+        y: heartSpriteCenter.y - Config.PATTY_HEART_FLOAT_DISTANCE,
+        alpha: 0
+      });
+      this.heartTimer_ = 0;
     }
   }
 }
