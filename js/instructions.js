@@ -4,6 +4,7 @@ class Instructions {
     const f = Instructions.addText_;
     const normalColor = 'white';
     const keyColor = 'orange';
+    const giftColor = 'yellow';
     const lineHeight = 25;
     
     var top = Config.WORLD_HEIGHT_PX + 10;
@@ -15,10 +16,12 @@ class Instructions {
     
     top += lineHeight;
     f(s, 'Press', 0, top, normalColor);
-    f(s, 'N', 71, top, keyColor);
-    f(s, 'to get your gift from', 93, top, normalColor);
-    f(s, 'Santa', 358, top, '#ec0000');
-    f(s, '!', 420, top, normalColor);
+    f(s, 'G', 71, top, keyColor);
+    f(s, 'to get your', 93, top, normalColor);
+    f(s, 'gift', 237, top, giftColor);
+    f(s, 'from', 296, top, normalColor);
+    f(s, 'Santa', 357, top, '#ec0000');
+    f(s, '!', 419, top, normalColor);
 
     top += lineHeight;
     f(s, 'Hold', 0, top, normalColor);
@@ -28,7 +31,9 @@ class Instructions {
     top += lineHeight;
     f(s, 'Don\'t let the', 0, top, normalColor);
     f(s, 'Grinch', 168, top, '#6bef08');
-    f(s, 'run away with your gift.', 252, top, normalColor);
+    f(s, 'run away with your', 252, top, normalColor);
+    f(s, 'gift', 479, top, giftColor);
+    f(s, '.', 529, top, normalColor);
 
     top += lineHeight;
     f(s, 'Press', 0, top, normalColor);
