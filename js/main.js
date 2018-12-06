@@ -139,13 +139,13 @@ function resetPuzzle(
       rightWallGapCenter.y - Config.GRID_TILE_SIZE_PX / 2,
       rightWallGapCenter.y + Config.GRID_TILE_SIZE_PX / 2);
   blockList.reset();
-  blockList.addBlockInGrid(8, 0, 'crate');
+  blockList.addBlockInGrid(1, 2, 'crate');
+  blockList.addBlockInGrid(2, 4, 'crate');
+  blockList.addBlockInGrid(4, 6, 'crate');
   blockList.addBlockInGrid(7, 1, 'crate');
   blockList.addBlockInGrid(7, 2, 'crate');
-  blockList.addBlockInGrid(5, 1, 'crate');
-  blockList.addBlockInGrid(4, 2, 'crate');
-  blockList.addBlockInGrid(3, 3, 'crate');
-  blockList.addBlockInGrid(2, 4, 'crate');
+  blockList.addBlockInGrid(8, 5, 'crate');
+  blockList.addBlockInGrid(9, 4, 'crate');
   const justin = blockList.addBlockOffGrid(0, -1, 'bench');
 
   santa.hide();
