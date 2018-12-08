@@ -57,6 +57,7 @@ function main() {
     this.load.image('gift', 'img/gift.png');
     this.load.image('glow', 'img/glow.png');
     this.load.image('grinchfaint', 'img/grinchfaint.png');
+    this.load.image('hamilton', 'img/hamilton.png');
     this.load.image('heart', 'img/heart.png');
     this.load.image('pathmarker', 'img/pathmarker.png');
     this.load.image('piano', 'img/piano.png');
@@ -65,11 +66,13 @@ function main() {
     this.load.image('rugtop', 'img/rugtop.png');
     this.load.image('rugtopleft', 'img/rugtopleft.png');
     this.load.image('target', 'img/target.png');
+    this.load.image('wallframe1', 'img/wallframe1.png');
     this.load.image('wallright', 'img/wallright.png');
     this.load.image('walltop', 'img/walltop.png');
     this.load.image('walltopright', 'img/walltopright.png');
     this.load.image('wood', 'img/wood.png');
     this.load.image('welcome', 'img/welcome.png');
+    this.load.image('window', 'img/window.png');
   }
 
   function createFn() {

@@ -143,6 +143,18 @@ class World {
         - Config.WORLD_BEHIND_COUNTER_HEIGHT_PX;
     counterObstacle.setImmovable(true);
 
+    const snowWindow = this.scene_.add.sprite(
+        counter.x, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'window');
+    snowWindow.depth = Depths.OBJECTS;
+
+    const wallFrame1 = this.scene_.add.sprite(
+        counter.x - 87, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'wallframe1');
+    wallFrame1.depth = Depths.OBJECTS;
+
+    const hamilton = this.scene_.add.sprite(
+        counter.x - 160, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'hamilton');
+    hamilton.depth = Depths.OBJECTS;
+
     this.addNonResettableObstacleSprite_(piano);
     this.addNonResettableObstacleSprite_(flowers);
     this.addNonResettableObstacleSprite_(bookcase);
