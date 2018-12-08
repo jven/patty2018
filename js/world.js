@@ -108,7 +108,39 @@ class World {
     piano.depth = Depths.OBJECTS;
     piano.setImmovable(true);
 
+    const flowers1 = this.scene_.physics.add.sprite(
+        Config.WORLD_WALL_SIDE_WIDTH_PX + Config.WORLD_FLOWERS_WIDTH_PX / 2,
+        Config.WORLD_HEIGHT_PX - Config.WORLD_FLOWERS_HEIGHT_PX / 2,
+        'flowers');
+    flowers1.depth = Depths.OBJECTS;
+    flowers1.setImmovable(true);
+
+    const flowers2 = this.scene_.physics.add.sprite(
+        Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX
+            - Config.WORLD_FLOWERS_WIDTH_PX / 2,
+        Config.WORLD_HEIGHT_PX - Config.WORLD_FLOWERS_HEIGHT_PX / 2,
+        'flowers');
+    flowers2.depth = Depths.OBJECTS;
+    flowers2.setImmovable(true);
+
+    const bookcaseWidth = Config.WORLD_BOOKCASE_WIDTH_PX
+        * Config.WORLD_BOOKCASE_SCALE;
+    const bookcaseHeight = Config.WORLD_BOOKCASE_HEIGHT_PX
+        * Config.WORLD_BOOKCASE_SCALE;
+    const bookcase = this.scene_.physics.add.sprite(
+        Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX
+            - bookcaseWidth / 2,
+        100,
+        'bookcase');
+    bookcase.displayWidth = bookcaseWidth;
+    bookcase.displayHeight = bookcaseHeight;
+    bookcase.depth = Depths.OBJECTS;
+    bookcase.setImmovable(true);
+
     this.addNonResettableObstacleSprite_(piano);
+    this.addNonResettableObstacleSprite_(flowers1);
+    this.addNonResettableObstacleSprite_(flowers2);
+    this.addNonResettableObstacleSprite_(bookcase);
   }
 
   addNonResettableObstacleSprite_(sprite) {

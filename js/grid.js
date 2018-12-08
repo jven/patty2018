@@ -78,11 +78,16 @@ class Grid {
     tree.depth = Depths.TREE;
     tree.anims.play('treeTwinkle');
 
-    const glowCenter = this.getTileCenter(0, endY);
+    const endCenter = this.getTileCenter(0, endY);
     const glow = this.scene_.add.sprite(0, 0, 'glow');
     glow.x = Config.WORLD_WIDTH_PX - glow.displayWidth / 2;
-    glow.y = glowCenter.y;
+    glow.y = endCenter.y;
     glow.depth = Depths.GLOW;
+
+    const welcome = this.scene_.add.sprite(0, 0, 'welcome');
+    welcome.x = Config.WORLD_WIDTH_PX - welcome.displayWidth / 2 - 10;
+    welcome.y = endCenter.y;
+    welcome.depth = Depths.OBJECTS;
 
     this.fireplace_ = fireplace;
     this.treeObstacle_ = treeObstacle;

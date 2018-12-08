@@ -49,8 +49,10 @@ function main() {
     });
 
     this.load.image('bench', 'img/bench.png');
+    this.load.image('bookcase', 'img/bookcase.png');
     this.load.image('crate', 'img/crate.png');
     this.load.image('fireplace', 'img/fireplace.png');
+    this.load.image('flowers', 'img/flowers.png');
     this.load.image('gift', 'img/gift.png');
     this.load.image('glow', 'img/glow.png');
     this.load.image('grinchfaint', 'img/grinchfaint.png');
@@ -66,6 +68,7 @@ function main() {
     this.load.image('walltop', 'img/walltop.png');
     this.load.image('walltopright', 'img/walltopright.png');
     this.load.image('wood', 'img/wood.png');
+    this.load.image('welcome', 'img/welcome.png');
   }
 
   function createFn() {
