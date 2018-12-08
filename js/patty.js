@@ -17,8 +17,6 @@ class Patty {
     this.justin_ = null;
 
     this.createAnimations_();
-
-    scene.cameras.main.startFollow(this.sprite_);
   }
 
   reset(justin) {

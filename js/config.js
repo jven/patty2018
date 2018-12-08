@@ -3,6 +3,10 @@ const Config = {
   DIRECTOR_PRODUCTION_RUNNING_KEY_CODE: 71, // G
   RESET_KEY_CODE: 82, // R
 
+  /** The dimensions of the camera. */
+  CAMERA_WIDTH_PX: 1300,
+  CAMERA_HEIGHT_PX: 620,
+
   /** The dimensions of the world. */
   WORLD_WIDTH_PX: 640,
   WORLD_HEIGHT_PX: 615,

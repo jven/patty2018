@@ -2,8 +2,8 @@ function main() {
   const config = {
     parent: 'game',
     type: Phaser.AUTO,
-    width: window.innerWidth - 50,
-    height: window.innerHeight - 50,
+    width: Config.CAMERA_WIDTH_PX,
+    height: Config.CAMERA_HEIGHT_PX,
     physics: {
       default: 'arcade'
     },
@@ -92,9 +92,9 @@ function main() {
         this, grid, pathery, santa, grinch, gift, directorState);
     victoryCutscene = new VictoryCutscene(this, patty, gift, directorState);
 
-    this.events.on('resize', (width, height) => {
-      this.cameras.resize(width, height);
-    }, this);
+    // this.events.on('resize', (width, height) => {
+    //   this.cameras.resize(width, height);
+    // }, this);
     this.input.keyboard.on('keydown', function(e) {
       if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
         director.toggleProductionRunning();
@@ -172,9 +172,9 @@ function main() {
     }
   }
 
-  window.addEventListener('resize', () => {
-    game.resize(window.innerWidth - 50, window.innerHeight - 50);
-  });
+  // window.addEventListener('resize', () => {
+  //   game.resize(window.innerWidth - 50, window.innerHeight - 50);
+  // });
 }
 
 window.onload = main;
