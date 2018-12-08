@@ -131,7 +131,7 @@ class World {
     flowers.depth = Depths.OBJECTS;
     flowers.setImmovable(true);
 
-    const counter = this.scene_.physics.add.sprite(310, 150, 'counter');
+    const counter = this.scene_.physics.add.sprite(310, 140, 'counter');
     counter.depth = Depths.OBJECTS_IN_FRONT;
     const counterObstacle = this.scene_.physics.add.sprite(
         counter.x,

@@ -27,7 +27,7 @@ const Config = {
   WORLD_BOOKCASE_SCALE: 1.5,
   WORLD_WELCOME_WIDTH_PX: 29,
   WORLD_WELCOME_HEIGHT_PX: 48,
-  WORLD_BEHIND_COUNTER_HEIGHT_PX: 40,
+  WORLD_BEHIND_COUNTER_HEIGHT_PX: 50,
 
   /** The coordinates of the top-left corner of the grid. */
   GRID_TOP_LEFT_X: 50,
@@ -52,7 +52,8 @@ const Config = {
   GIFT_VICTORY_SCALE: 0.2,
 
   /** The time needed for Patty to touch a block before it moves. */
-  BLOCK_HYSTERESIS: 15,
+  BLOCK_HYSTERESIS: 20,
+  BLOCK_OFF_GRID_HYSTERESIS: 25,
   /** The time it takes for the block to move one tile. */
   BLOCK_MOVE_DURATION: 200,
   /**

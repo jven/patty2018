@@ -7,6 +7,7 @@ class BlockState {
       centerX,
       centerY,
       spriteKey,
+      hysteresis,
       canMoveOffGrid) {
     const sprite = scene.physics.add.image(
         centerX, centerY, spriteKey).setImmovable();
@@ -20,6 +21,7 @@ class BlockState {
     this.sprite_ = sprite;
     this.force_ = 0;
     this.forceDirection_ = null;
+    this.hysteresis_ = hysteresis;
     this.canMoveOffGrid_ = canMoveOffGrid;
   }
 
@@ -48,7 +50,7 @@ class BlockState {
     }
 
     this.force_++;
-    if (this.force_ >= Config.BLOCK_HYSTERESIS) {
+    if (this.force_ >= this.hysteresis_) {
       this.moveAwayFrom_();
       this.force_ = 0;
     }
