@@ -108,21 +108,6 @@ class World {
     piano.depth = Depths.OBJECTS;
     piano.setImmovable(true);
 
-    const flowers1 = this.scene_.physics.add.sprite(
-        Config.WORLD_WALL_SIDE_WIDTH_PX + Config.WORLD_FLOWERS_WIDTH_PX / 2,
-        Config.WORLD_HEIGHT_PX - Config.WORLD_FLOWERS_HEIGHT_PX / 2,
-        'flowers');
-    flowers1.depth = Depths.OBJECTS;
-    flowers1.setImmovable(true);
-
-    const flowers2 = this.scene_.physics.add.sprite(
-        Config.WORLD_WIDTH_PX - Config.WORLD_WALL_SIDE_WIDTH_PX
-            - Config.WORLD_FLOWERS_WIDTH_PX / 2,
-        Config.WORLD_HEIGHT_PX - Config.WORLD_FLOWERS_HEIGHT_PX / 2,
-        'flowers');
-    flowers2.depth = Depths.OBJECTS;
-    flowers2.setImmovable(true);
-
     const bookcaseWidth = Config.WORLD_BOOKCASE_WIDTH_PX
         * Config.WORLD_BOOKCASE_SCALE;
     const bookcaseHeight = Config.WORLD_BOOKCASE_HEIGHT_PX
@@ -137,10 +122,31 @@ class World {
     bookcase.depth = Depths.OBJECTS;
     bookcase.setImmovable(true);
 
+    const flowers = this.scene_.physics.add.sprite(
+        bookcase.x - bookcase.displayWidth / 2
+            - Config.WORLD_FLOWERS_WIDTH_PX / 2 - 10,
+        bookcase.y + bookcase.displayHeight / 2
+            - Config.WORLD_FLOWERS_HEIGHT_PX / 2,
+        'flowers');
+    flowers.depth = Depths.OBJECTS;
+    flowers.setImmovable(true);
+
+    const counter = this.scene_.physics.add.sprite(310, 150, 'counter');
+    counter.depth = Depths.OBJECTS_IN_FRONT;
+    const counterObstacle = this.scene_.physics.add.sprite(
+        counter.x,
+        counter.y + Config.WORLD_BEHIND_COUNTER_HEIGHT_PX / 2,
+        'crate');
+    counterObstacle.alpha = 0;
+    counterObstacle.displayWidth = counter.displayWidth;
+    counterObstacle.displayHeight = counter.displayHeight
+        - Config.WORLD_BEHIND_COUNTER_HEIGHT_PX;
+    counterObstacle.setImmovable(true);
+
     this.addNonResettableObstacleSprite_(piano);
-    this.addNonResettableObstacleSprite_(flowers1);
-    this.addNonResettableObstacleSprite_(flowers2);
+    this.addNonResettableObstacleSprite_(flowers);
     this.addNonResettableObstacleSprite_(bookcase);
+    this.addNonResettableObstacleSprite_(counterObstacle);
   }
 
   addNonResettableObstacleSprite_(sprite) {

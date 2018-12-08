@@ -50,6 +50,7 @@ function main() {
 
     this.load.image('bench', 'img/bench.png');
     this.load.image('bookcase', 'img/bookcase.png');
+    this.load.image('counter', 'img/counter.png');
     this.load.image('crate', 'img/crate.png');
     this.load.image('fireplace', 'img/fireplace.png');
     this.load.image('flowers', 'img/flowers.png');

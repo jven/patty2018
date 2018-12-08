@@ -75,7 +75,7 @@ class Grid {
         'tree');
     tree.displayWidth = treeWidth;
     tree.displayHeight = treeHeight;
-    tree.depth = Depths.TREE;
+    tree.depth = Depths.OBJECTS_IN_FRONT;
     tree.anims.play('treeTwinkle');
 
     const endCenter = this.getTileCenter(0, endY);

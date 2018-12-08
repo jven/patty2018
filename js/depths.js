@@ -16,7 +16,7 @@ const Depths = {
 
   PATTY: 80,
 
-  TREE: 90,
+  OBJECTS_IN_FRONT: 90,
   GIFT: 100,
 
   HEART: 150,
