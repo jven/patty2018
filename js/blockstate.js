@@ -14,8 +14,6 @@ class BlockState {
         + sprite.displayWidth / 2);
     sprite.y = (centerY - Config.GRID_TILE_SIZE_PX / 2
         + sprite.displayHeight / 2);
-    console.log(sprite.x);
-    console.log(sprite.y);
     sprite.depth = Depths.BLOCKS;
     sprite.setImmovable();
     sprite.setCollideWorldBounds(true);
