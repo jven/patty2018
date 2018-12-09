@@ -155,6 +155,10 @@ class World {
         counter.x - 160, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'hamilton');
     hamilton.depth = Depths.OBJECTS;
 
+    const liam = this.scene_.add.sprite(
+        counter.x + 80, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'liam');
+    liam.depth = Depths.OBJECTS;
+
     this.addNonResettableObstacleSprite_(piano);
     this.addNonResettableObstacleSprite_(flowers);
     this.addNonResettableObstacleSprite_(bookcase);

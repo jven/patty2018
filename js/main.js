@@ -60,6 +60,7 @@ function main() {
     this.load.image('hamilton', 'img/hamilton.png');
     this.load.image('heart', 'img/heart.png');
     this.load.image('justin', 'img/justin2.png');
+    this.load.image('liam', 'img/liam.png');
     this.load.image('pathmarker', 'img/pathmarker.png');
     this.load.image('piano', 'img/piano.png');
     this.load.image('rugleft', 'img/rugleft.png');
