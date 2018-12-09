@@ -38,7 +38,7 @@ class BlockList {
     return sprite;
   }
 
-  addBlockOffGrid(tileX, tileY, spriteKey, width, height) {
+  addBlockOffGrid(tileX, tileY, spriteKey) {
     const center = this.grid_.getTileCenterOffGrid(tileX, tileY);
     return this.addBlock_(
         center.x,

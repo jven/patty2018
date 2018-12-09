@@ -59,6 +59,7 @@ function main() {
     this.load.image('grinchfaint', 'img/grinchfaint.png');
     this.load.image('hamilton', 'img/hamilton.png');
     this.load.image('heart', 'img/heart.png');
+    this.load.image('justin', 'img/justin.png');
     this.load.image('pathmarker', 'img/pathmarker.png');
     this.load.image('piano', 'img/piano.png');
     this.load.image('rugleft', 'img/rugleft.png');
@@ -100,7 +101,7 @@ function main() {
         director.toggleProductionRunning();
       }
       if (e.keyCode == Config.RESET_KEY_CODE) {
-        resetWithPresetPuzzle();
+        // resetWithPresetPuzzle();
       }
     });
 
@@ -154,7 +155,7 @@ function main() {
     blockList.addBlockInGrid(7, 2, 'crate');
     blockList.addBlockInGrid(8, 5, 'crate');
     blockList.addBlockInGrid(9, 4, 'crate');
-    const justin = blockList.addBlockOffGrid(0, -1, 'bench');
+    const justin = blockList.addBlockOffGrid(0, -1, 'justin');
 
     santa.hide();
     grinch.reset(grinchMaxStamina);

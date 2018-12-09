@@ -35,11 +35,6 @@ class Instructions {
     f(s, 'run away with your', left + 252, top, normalColor);
     f(s, 'gift', left + 479, top, giftColor);
     f(s, '.', left + 529, top, normalColor);
-
-    top += lineHeight;
-    f(s, 'Press', left, top, normalColor);
-    f(s, 'R', left + 71, top, keyColor);
-    f(s, 'to start over.', left + 93, top, normalColor);
   }
 
   static addText_(scene, s, x, y, color) {

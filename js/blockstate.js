@@ -9,9 +9,15 @@ class BlockState {
       spriteKey,
       hysteresis,
       canMoveOffGrid) {
-    const sprite = scene.physics.add.image(
-        centerX, centerY, spriteKey).setImmovable();
+    const sprite = scene.physics.add.image(0, 0, spriteKey);
+    sprite.x = (centerX - Config.GRID_TILE_SIZE_PX / 2
+        + sprite.displayWidth / 2);
+    sprite.y = (centerY - Config.GRID_TILE_SIZE_PX / 2
+        + sprite.displayHeight / 2);
+    console.log(sprite.x);
+    console.log(sprite.y);
     sprite.depth = Depths.BLOCKS;
+    sprite.setImmovable();
     sprite.setCollideWorldBounds(true);
 
     this.scene_ = scene;
