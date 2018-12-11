@@ -68,7 +68,6 @@ function main() {
     this.load.image('rugmiddle', 'img/rugmiddle.png');
     this.load.image('rugtop', 'img/rugtop.png');
     this.load.image('rugtopleft', 'img/rugtopleft.png');
-    this.load.image('target', 'img/target.png');
     this.load.image('fam', 'img/fam.png');
     this.load.image('wallright', 'img/wallright.png');
     this.load.image('walltop', 'img/walltop.png');
