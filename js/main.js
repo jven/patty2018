@@ -27,7 +27,7 @@ function main() {
   var world;
 
   function preloadFn() {
-    this.load.spritesheet('girl', 'img/fumiko.png', {
+    this.load.spritesheet('girl', 'img/patty.png', {
       frameWidth: Config.PATTY_SPRITE_WIDTH,
       frameHeight: Config.PATTY_SPRITE_HEIGHT
     });
