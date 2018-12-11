@@ -50,6 +50,7 @@ function main() {
     });
 
     this.load.image('acadia', 'img/acadia.png');
+    this.load.image('bkb', 'img/bkb.png');
     this.load.image('bookcase', 'img/bookcase.png');
     this.load.image('counter', 'img/counter.png');
     this.load.image('crate', 'img/crate.png');

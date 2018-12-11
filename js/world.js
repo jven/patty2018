@@ -160,8 +160,12 @@ class World {
     acadia.depth = Depths.OBJECTS;
 
     const liam = this.scene_.add.sprite(
-        counter.x + 80, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'liam');
+        counter.x + 87, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'liam');
     liam.depth = Depths.OBJECTS;
+
+    const bkb = this.scene_.add.sprite(
+        counter.x + 166, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'bkb');
+    bkb.depth = Depths.OBJECTS;
 
     this.addNonResettableObstacleSprite_(piano);
     this.addNonResettableObstacleSprite_(flowers);
