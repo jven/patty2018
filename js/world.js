@@ -147,13 +147,17 @@ class World {
         counter.x, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'window');
     snowWindow.depth = Depths.OBJECTS;
 
-    const wallFrame1 = this.scene_.add.sprite(
-        counter.x - 87, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'wallframe1');
-    wallFrame1.depth = Depths.OBJECTS;
+    const fam = this.scene_.add.sprite(
+        counter.x - 83, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'fam');
+    fam.depth = Depths.OBJECTS;
 
     const hamilton = this.scene_.add.sprite(
-        counter.x - 160, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'hamilton');
+        counter.x - 148, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'hamilton');
     hamilton.depth = Depths.OBJECTS;
+
+    const acadia = this.scene_.add.sprite(
+        79, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'acadia');
+    acadia.depth = Depths.OBJECTS;
 
     const liam = this.scene_.add.sprite(
         counter.x + 80, Config.WORLD_WALL_TOP_HEIGHT_PX / 2, 'liam');

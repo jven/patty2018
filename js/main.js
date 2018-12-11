@@ -49,6 +49,7 @@ function main() {
       frameHeight: Config.TREE_SPRITE_HEIGHT
     });
 
+    this.load.image('acadia', 'img/acadia.png');
     this.load.image('bench', 'img/bench.png');
     this.load.image('bookcase', 'img/bookcase.png');
     this.load.image('counter', 'img/counter.png');
@@ -69,7 +70,7 @@ function main() {
     this.load.image('rugtop', 'img/rugtop.png');
     this.load.image('rugtopleft', 'img/rugtopleft.png');
     this.load.image('target', 'img/target.png');
-    this.load.image('wallframe1', 'img/wallframe1.png');
+    this.load.image('fam', 'img/fam.png');
     this.load.image('wallright', 'img/wallright.png');
     this.load.image('walltop', 'img/walltop.png');
     this.load.image('walltopright', 'img/walltopright.png');
