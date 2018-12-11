@@ -61,7 +61,7 @@ function main() {
     this.load.image('grinchfaint', 'img/grinchfaint.png');
     this.load.image('hamilton', 'img/hamilton.png');
     this.load.image('heart', 'img/heart.png');
-    this.load.image('justin', 'img/justin3.png');
+    this.load.image('justin', 'img/justin.png');
     this.load.image('liam', 'img/liam.png');
     this.load.image('pathmarker', 'img/pathmarker.png');
     this.load.image('piano', 'img/piano.png');
