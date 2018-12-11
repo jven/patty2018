@@ -2,9 +2,10 @@ const Config = {
   /** The key code to toggle whether the production is running. */
   DIRECTOR_PRODUCTION_RUNNING_KEY_CODE: 71, // G
   RESET_KEY_CODE: 82, // R
+  TOGGLE_INSTRUCTIONS_KEY_CODE: 73, // I
 
   /** The dimensions of the camera. */
-  CAMERA_WIDTH_PX: 1300,
+  CAMERA_WIDTH_PX: 650,
   CAMERA_HEIGHT_PX: 620,
 
   /** The dimensions of the world. */

@@ -20,6 +20,7 @@ function main() {
   var directorState;
   var gift;
   var grinch;
+  var instructions;
   var pathery;
   var patty;
   var santa;
@@ -93,10 +94,8 @@ function main() {
     director = new Director(
         this, grid, pathery, santa, grinch, gift, directorState);
     victoryCutscene = new VictoryCutscene(this, patty, gift, directorState);
+    instructions = new Instructions(this);
 
-    // this.events.on('resize', (width, height) => {
-    //   this.cameras.resize(width, height);
-    // }, this);
     this.input.keyboard.on('keydown', function(e) {
       if (e.keyCode == Config.DIRECTOR_PRODUCTION_RUNNING_KEY_CODE) {
         director.toggleProductionRunning();
@@ -104,11 +103,12 @@ function main() {
       if (e.keyCode == Config.RESET_KEY_CODE) {
         // resetWithPresetPuzzle();
       }
+      if (e.keyCode == Config.TOGGLE_INSTRUCTIONS_KEY_CODE) {
+        instructions.toggleVisibility();
+      }
     });
 
     resetWithPresetPuzzle();
-
-    Instructions.show(this);
   }
 
   function updateFn() {
@@ -173,10 +173,6 @@ function main() {
       patty.teleportTo(pattyX, pattyY);
     }
   }
-
-  // window.addEventListener('resize', () => {
-  //   game.resize(window.innerWidth - 50, window.innerHeight - 50);
-  // });
 }
 
 window.onload = main;
