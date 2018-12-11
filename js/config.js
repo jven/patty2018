@@ -30,7 +30,7 @@ const Config = {
   WORLD_BEHIND_COUNTER_HEIGHT_PX: 50,
 
   /** The coordinates of the top-left corner of the grid. */
-  GRID_TOP_LEFT_X: 50,
+  GRID_TOP_LEFT_X: 49,
   GRID_TOP_LEFT_Y: 225,
   /** The size of the tiles in the grid, in pixels. */
   GRID_TILE_SIZE_PX: 50,
