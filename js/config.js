@@ -125,5 +125,11 @@ const Config = {
   /** How close Patty needs to be to the gift to show the victory cutscene. */
   VICTORY_GIFT_PATTY_PROXIMITY: 45,
   /** How long it takes the victory Cathy text to pulse on (and off). */
-  VICTORY_CATHY_TEXT_PULSATE_DURATION: 1000
+  VICTORY_CATHY_TEXT_PULSATE_DURATION: 1000,
+  /** How big the confetti is. */
+  VICTORY_CONFETTI_SCALE: 0.5,
+  /** How often to make new confetti. */
+  VICTORY_CONFETTI_FREQUENCY: 300,
+  /** How long it takes the confetti to fall. */
+  VICTORY_CONFETTI_DURATION: 15000
 };

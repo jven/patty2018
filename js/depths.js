@@ -27,5 +27,7 @@ const Depths = {
   INSTRUCTIONS_TEXT: 200,
   STAMINA_TEXT: 300,
   
+  CONFETTI: 390,
+  CATHY_TEXT: 395,
   FLASH: 400
 }

@@ -1,9 +1,10 @@
 class VictoryCutscene {
-  constructor(scene, patty, gift, directorState) {
+  constructor(scene, patty, gift, directorState, confettiSpriteKeys) {
     this.scene_ = scene;
     this.patty_ = patty;
     this.gift_ = gift;
     this.directorState_ = directorState;
+    this.confettiSpriteKeys_ = confettiSpriteKeys;
 
     this.flashGraphics_ = scene.add.graphics();
     this.flashGraphics_.fillStyle(0xffffff);
@@ -12,14 +13,14 @@ class VictoryCutscene {
     this.flashGraphics_.visible = false;
 
     this.cathyText_ = scene.add.text(
-        80,
-        Config.WORLD_HEIGHT_PX / 2,
-        'Tell Cathy you solved it! :)');
+        53,
+        185,
+        'Yay! Tell Cathy you solved it!');
     this.cathyText_.setColor('#ffffcc');
     this.cathyText_.setFontSize(30);
     this.cathyText_.setStroke('black', 5);
     this.cathyText_.fontWeight = 'bold';
-    this.cathyText_.depth = Depths.FLASH;
+    this.cathyText_.depth = Depths.CATHY_TEXT;
     this.cathyText_.visible = false;
 
     this.playing_ = false;
@@ -49,8 +50,10 @@ class VictoryCutscene {
     });
     flashTween.setCallback('onComplete', function() {
       this.flashGraphics_.destroy();
-      this.pulsateCathyText_();
     }, [] /* params */, this);
+    
+    this.pulsateCathyText_();
+    this.spawnRandomConfetti_();
   }
 
   pulsateCathyText_() {
@@ -75,5 +78,40 @@ class VictoryCutscene {
               [] /* params */);
         },
         [] /* params */)
+  }
+
+  spawnRandomConfetti_() {
+    const x = Math.floor(Math.random() * Config.WORLD_WIDTH_PX);
+    let endAngle = (Math.random() * 360 * 3) + 90;
+    if (Math.random() < 0.5) {
+      endAngle *= -1;
+    }
+    const keyIndex = Math.floor(
+        Math.random() * this.confettiSpriteKeys_.length);
+    const key = this.confettiSpriteKeys_[keyIndex];
+    const confetti = this.scene_.add.sprite(x, -10, key);
+    confetti.displayWidth *= Config.VICTORY_CONFETTI_SCALE;
+    confetti.displayHeight *= Config.VICTORY_CONFETTI_SCALE;
+    confetti.depth = Depths.CONFETTI;
+    confetti.angle = 0;
+
+    const yTween = this.scene_.tweens.add({
+      targets: confetti,
+      duration: Config.VICTORY_CONFETTI_DURATION,
+      y: Config.WORLD_HEIGHT_PX + 10
+    });
+    const angleTween = this.scene_.tweens.add({
+      targets: confetti,
+      duration: Config.VICTORY_CONFETTI_DURATION,
+      angle: endAngle
+    });
+    yTween.setCallback('onComplete', function() {
+      confetti.destroy();
+    }, [] /* params */);
+
+    // Do it again!
+    setTimeout(
+        () => this.spawnRandomConfetti_(),
+        Config.VICTORY_CONFETTI_FREQUENCY);
   }
 }

@@ -52,6 +52,13 @@ function main() {
     this.load.image('acadia', 'img/acadia.png');
     this.load.image('bkb', 'img/bkb.png');
     this.load.image('bookcase', 'img/bookcase.png');
+    this.load.image('confetti1', 'img/confetti1.png');
+    this.load.image('confetti2', 'img/confetti2.png');
+    this.load.image('confetti3', 'img/confetti3.png');
+    this.load.image('confetti4', 'img/confetti4.png');
+    this.load.image('confetti5', 'img/confetti5.png');
+    this.load.image('confetti6', 'img/confetti6.png');
+    this.load.image('confetti7', 'img/confetti7.png');
     this.load.image('counter', 'img/counter.png');
     this.load.image('crate', 'img/crate.png');
     this.load.image('fireplace', 'img/fireplace.png');
@@ -93,7 +100,20 @@ function main() {
     gift = new Gift(this, grid);
     director = new Director(
         this, grid, pathery, santa, grinch, gift, directorState);
-    victoryCutscene = new VictoryCutscene(this, patty, gift, directorState);
+    victoryCutscene = new VictoryCutscene(
+        this,
+        patty,
+        gift,
+        directorState,
+        [
+          'confetti1',
+          'confetti2',
+          'confetti3',
+          'confetti4',
+          'confetti5',
+          'confetti6',
+          'confetti7'
+        ]);
     instructions = new Instructions(this);
 
     this.input.keyboard.on('keydown', function(e) {
