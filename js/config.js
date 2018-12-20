@@ -123,5 +123,7 @@ const Config = {
   /** How long to flash during the victory cutscene. */
   VICTORY_FLASH_DURATION: 1000,
   /** How close Patty needs to be to the gift to show the victory cutscene. */
-  VICTORY_GIFT_PATTY_PROXIMITY: 45
+  VICTORY_GIFT_PATTY_PROXIMITY: 45,
+  /** How long it takes the victory Cathy text to pulse on (and off). */
+  VICTORY_CATHY_TEXT_PULSATE_DURATION: 1000
 };
