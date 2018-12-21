@@ -15,6 +15,7 @@ class BlockState {
         + sprite.displayWidth / 2);
     sprite.y = (centerY - Config.GRID_TILE_SIZE_PX / 2
         + sprite.displayHeight / 2);
+    console.log(`${sprite.displayWidth}, ${sprite.displayHeight}`);
     sprite.depth = Depths.BLOCKS;
     if (spriteAnimationKey) {
       sprite.anims.play(spriteAnimationKey);
@@ -92,6 +93,7 @@ class BlockState {
       return;
     }
 
+    console.log('ruh');
     const tween = {
       targets: this.sprite_,
       duration: Config.BLOCK_MOVE_DURATION
