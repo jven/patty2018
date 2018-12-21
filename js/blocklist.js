@@ -16,7 +16,13 @@ class BlockList {
     this.blockIndex_ = 0;
   }
 
-  addBlock_(centerX, centerY, spriteKey, hysteresis, canMoveOffGrid) {
+  addBlock_(
+      centerX,
+      centerY,
+      spriteKey,
+      spriteAnimationKey,
+      hysteresis,
+      canMoveOffGrid) {
     const blockState = new BlockState(
         this.scene_,
         this.world_,
@@ -25,6 +31,7 @@ class BlockList {
         centerX,
         centerY,
         spriteKey,
+        spriteAnimationKey,
         hysteresis,
         canMoveOffGrid);
     this.blocks_.push(blockState);
@@ -38,12 +45,13 @@ class BlockList {
     return sprite;
   }
 
-  addBlockOffGrid(tileX, tileY, spriteKey) {
+  addBlockOffGrid(tileX, tileY, spriteKey, spriteAnimationKey) {
     const center = this.grid_.getTileCenterOffGrid(tileX, tileY);
     return this.addBlock_(
         center.x,
         center.y,
         spriteKey,
+        spriteAnimationKey,
         Config.BLOCK_OFF_GRID_HYSTERESIS,
         true /* canMoveOffGrid */);
   }
@@ -54,6 +62,7 @@ class BlockList {
         center.x,
         center.y,
         spriteKey,
+        null /* spriteAnimationKey */,
         Config.BLOCK_HYSTERESIS,
         false /* canMoveOffGrid */);
   }

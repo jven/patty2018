@@ -86,6 +86,14 @@ const Config = {
   /** How close Patty needs to be to Justin to show hearts. <3 */
   PATTY_JUSTIN_HEART_PROXIMITY: 80,
 
+  /** The dimensions of each frame of the Justin sprites. */
+  JUSTIN_SPRITE_WIDTH: 24,
+  JUSTIN_SPRITE_HEIGHT: 40,
+  /** How much longer to have eyes open than closed when Justin blinks. */
+  JUSTIN_BLINKING_RATIO: 5,
+  /** The number of frames per second to animate Justin blinking. */
+  JUSTIN_BLINKING_SPEED: 2,
+
   /** The dimensions of each frame of the Santa sprites. */
   SANTA_RUN_SPRITE_WIDTH: 45,
   SANTA_RUN_SPRITE_HEIGHT: 56,

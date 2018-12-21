@@ -48,6 +48,10 @@ function main() {
       frameWidth: Config.TREE_SPRITE_WIDTH,
       frameHeight: Config.TREE_SPRITE_HEIGHT
     });
+    this.load.spritesheet('justinblink', 'img/justinblink.png', {
+      frameWidth: Config.JUSTIN_SPRITE_WIDTH,
+      frameHeight: Config.JUSTIN_SPRITE_HEIGHT
+    });
 
     this.load.image('acadia', 'img/acadia.png');
     this.load.image('bkb', 'img/bkb.png');
@@ -121,14 +125,14 @@ function main() {
         director.toggleProductionRunning();
       }
       if (e.keyCode == Config.RESET_KEY_CODE) {
-        // resetWithPresetPuzzle();
+        // resetWithPresetPuzzle(this);
       }
       if (e.keyCode == Config.TOGGLE_INSTRUCTIONS_KEY_CODE) {
         instructions.toggleVisibility();
       }
     });
 
-    resetWithPresetPuzzle();
+    resetWithPresetPuzzle(this /* scene */);
   }
 
   function updateFn() {
@@ -144,12 +148,13 @@ function main() {
     victoryCutscene.update();
   }
 
-  function resetWithPresetPuzzle() {
+  function resetWithPresetPuzzle(scene) {
     if (directorState.isVictorious()) {
       // Don't reset if we're victorious.
       return;
     }
     resetPuzzle(
+        scene,
         4 /* startY */,
         1 /* endY */,
         6 /* targetX */,
@@ -160,7 +165,7 @@ function main() {
   }
 
   function resetPuzzle(
-      startY, endY, targetX, targetY, pattyX, pattyY, grinchMaxStamina) {
+      scene, startY, endY, targetX, targetY, pattyX, pattyY, grinchMaxStamina) {
     world.reset();
     grid.reset(startY, endY, {x: targetX, y: targetY});
     
@@ -176,7 +181,10 @@ function main() {
     blockList.addBlockInGrid(7, 2, 'crate');
     blockList.addBlockInGrid(8, 5, 'crate');
     blockList.addBlockInGrid(9, 4, 'crate');
-    const justin = blockList.addBlockOffGrid(0, -1, 'justin');
+
+    createBlinkAnimation(scene, 'justinBlinking');
+    const justin = blockList.addBlockOffGrid(
+        0, -1, 'justinblink', 'justinBlinking');
 
     santa.hide();
     grinch.reset(grinchMaxStamina);
@@ -192,6 +200,27 @@ function main() {
         pattyBounds.height)) {
       patty.teleportTo(pattyX, pattyY);
     }
+  }
+
+  function createBlinkAnimation(scene, animationKey) {
+    const frames = [];
+    for (var i = 0; i < Config.JUSTIN_BLINKING_RATIO; i++) {
+      frames.push({
+        key: 'justinblink',
+        frame: 0
+      });
+    }
+    frames.push({
+      key: 'justinblink',
+      frame: 1
+    });
+
+    scene.anims.create({
+      key: 'justinBlinking',
+      frames: frames,
+      frameRate: Config.JUSTIN_BLINKING_SPEED,
+      repeat: -1
+    });
   }
 }
 
