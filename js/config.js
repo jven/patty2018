@@ -137,7 +137,7 @@ const Config = {
   /** How big the confetti is. */
   VICTORY_CONFETTI_SCALE: 0.5,
   /** How often to make new confetti. */
-  VICTORY_CONFETTI_FREQUENCY: 300,
+  VICTORY_CONFETTI_FREQUENCY: 50,
   /** How long it takes the confetti to fall. */
-  VICTORY_CONFETTI_DURATION: 15000
+  VICTORY_CONFETTI_DURATION: 5000
 };
