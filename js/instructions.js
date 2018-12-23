@@ -21,38 +21,58 @@ class Instructions {
   addAllInstructions_() {
     const f = this.addText_.bind(this);
     const normalColor = 'white';
+    const pattyColor = '#d07b4c';
     const keyColor = 'orange';
     const giftColor = 'yellow';
+    const santaColor = '#ec0000';
+    const grinchColor = '#6bef08';
     const lineHeight = 25;
     
     var left = Config.WORLD_WIDTH_PX / 2 - 270;
-    var top = Config.WORLD_HEIGHT_PX / 2 + 110;
+    var top = Config.WORLD_HEIGHT_PX / 2 + 60;
 
     // Show instructions at the top.
-    f('Move with the', left, top, normalColor);
-    f('arrow keys', left + 168, top, keyColor);
-    f('.', left + 290, top, normalColor);
+    f('Help', left, top, normalColor);
+    f('Patty', left + 61, top, pattyColor);
+    f('get her', left + 61 + 71, top, normalColor);
+    f('gift', left + 61 + 71 + 95, top, giftColor);
+    f('from', left + 61 + 71 + 95 + 58, top, normalColor);
+    f('Santa', left + 61 + 71 + 95 + 58 + 61, top, santaColor);
+    f('!', left + 61 + 71 + 95 + 58 + 61 + 65, top, normalColor);
+
+    top += 2 * lineHeight;
+    f('Move', left, top, normalColor);
+    f('Patty', left + 61, top, pattyColor);
+    f('with the', left + 61 + 71, top, normalColor);
+    f('arrow keys', left + 61 + 71 + 107, top, keyColor);
+    f('.', left + 61 + 71 + 107 + 125, top, normalColor);
     
     top += lineHeight;
     f('Press', left, top, normalColor);
-    f('G', left + 71, top, keyColor);
-    f('to get your', left + 93, top, normalColor);
-    f('gift', left + 237, top, giftColor);
-    f('from', left + 296, top, normalColor);
-    f('Santa', left + 357, top, '#ec0000');
-    f('!', left + 419, top, normalColor);
+    f('G', left + 72, top, keyColor);
+    f('to make', left + 72 + 22, top, normalColor);
+    f('Santa', left + 72 + 22 + 95, top, santaColor);
+    f('bring the', left + 72 + 22 + 95 + 71, top, normalColor);
+    f('gift', left + 72 + 22 + 95 + 71 + 119, top, giftColor);
+    f('!', left + 72 + 22 + 95 + 71 + 119 + 53, top, normalColor);
 
     top += lineHeight;
     f('Don\'t let the', left, top, normalColor);
-    f('Grinch', left + 168, top, '#6bef08');
-    f('run away with your', left + 252, top, normalColor);
-    f('gift', left + 479, top, giftColor);
-    f('.', left + 529, top, normalColor);
+    f('Grinch', left + 168, top, grinchColor);
+    f('run away with the', left + 168 + 84, top, normalColor);
+    f('gift', left + 168 + 84 + 215, top, giftColor);
+    f('.', left + 168 + 84 + 215 + 53, top, normalColor);
 
     top += lineHeight;
     f('Hold', left, top, normalColor);
     f('Space', left + 60, top, keyColor);
-    f('to make them go faster.', left + 130, top, normalColor);
+    f('to make', left + 60 + 70, top, normalColor);
+    f('Santa', left + 60 + 70 + 96, top, santaColor);
+    f('and the', left + 60 + 70 + 96 + 70, top, normalColor);
+    f('Grinch', left + 60 + 70 + 96 + 70 + 96, top, grinchColor);
+
+    top += lineHeight;
+    f('run faster.', left + 60, top, normalColor);
 
     top += 2 * lineHeight;
     f('Press', left, top, normalColor);
